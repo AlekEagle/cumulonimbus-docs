@@ -51,6 +51,12 @@
     color: var(--h1-color);
   }
 
+  html.dark-theme
+    .sidebar-group.is-sub-group
+    > .sidebar-heading:not(.clickable) {
+    opacity: 1;
+  }
+
   html.dark-theme h2,
   html.dark-theme .page-nav .inner,
   html.dark-theme .features,

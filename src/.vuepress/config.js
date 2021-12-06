@@ -47,7 +47,7 @@ module.exports = {
     nav: [
       {
         text: 'Reference',
-        link: '/api/reference.html'
+        link: '/reference/'
       },
       {
         text: 'API',
@@ -58,20 +58,34 @@ module.exports = {
         link: 'https://alekeagle.me/'
       }
     ],
-    sidebar: {
-      '/api/': [
-        {
-          title: 'Reference',
-          collapsable: true,
-          children: ['reference', 'structures']
-        },
-        {
-          title: 'API',
-          collapsable: true,
-          children: ['', 'user', 'admin']
-        }
-      ]
-    }
+    sidebar: [
+      {
+        title: 'API',
+        path: '/api/',
+        collapsable: true,
+        sidebarDepth: 3,
+        children: [
+          '/api/',
+          {
+            title: 'Non-Administrative Endpoints',
+            collapsable: true,
+            children: ['/api/user/account']
+          },
+          {
+            title: 'Administrative Endpoints',
+            collapsable: true,
+            children: ['/api/admin/account']
+          }
+        ]
+      },
+      {
+        title: 'Reference',
+        path: '/reference/',
+        collapsable: true,
+        sidebarDepth: 3,
+        children: ['/reference/', '/reference/faq', 'reference/structs']
+      }
+    ]
   },
 
   /**

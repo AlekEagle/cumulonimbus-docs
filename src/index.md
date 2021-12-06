@@ -6,7 +6,7 @@ actionText: Get Started →
 actionLink: /api/
 features:
   - title: Fast and Secure
-    details: Without using the API, the database is almost completely unreachable to unauthorized persons.
+    details: Without using the API, the database is completely unreachable to unauthorized persons.
   - title: Easy to Use
     details: API endpoints are easy to use and intuitive.
   - title: Open Source
