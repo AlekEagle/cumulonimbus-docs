@@ -1,0 +1,19 @@
+{
+  "name": "cumulonimbus-docs",
+  "version": "0.0.1",
+  "description": "Documentation for the public and open-source file sharing platform Cumulonimbus.",
+  "main": "index.js",
+  "authors": {
+    "name": "Alek Evans",
+    "email": "contact@alekeagle.com"
+  },
+  "repository": "https://github.com/AlekEagle/cumulonimbus-docs/cumulonimbus-docs",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.5.3"
+  }
+}
