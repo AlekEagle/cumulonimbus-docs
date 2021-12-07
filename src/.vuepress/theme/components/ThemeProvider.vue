@@ -20,7 +20,8 @@
 
   html.dark-theme-transition,
   html.dark-theme-transition * {
-    transition: color 0.02s, background-color 0.2s, border-color 0.2s;
+    transition: color 0.02s, background-color 0.2s, border-color 0.2s,
+      opacity 0.2s;
   }
 
   html.dark-theme,
@@ -66,6 +67,11 @@
 
   html.dark-theme .router-link-active:not(.site-name),
   html.dark-theme .nav-link:hover:not(.action-button) {
+    color: var(--accent-color);
+  }
+
+  html.dark-theme .page-edit .edit-link a,
+  html.dark-theme .page-edit .last-updated .prefix {
     color: var(--accent-color);
   }
 

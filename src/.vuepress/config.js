@@ -37,7 +37,7 @@ module.exports = {
    * ref：https://v1.vuepress.vuejs.org/theme/default-theme-config.html
    */
   themeConfig: {
-    repo: 'AlekEagle/sharex-vue-docs',
+    repo: 'AlekEagle/cumulonimbus-docs',
     editLinks: true,
     docsDir: 'src',
     editLinkText: 'Edit this page on GitHub',

@@ -23,3 +23,35 @@ Any request that has a body can use any of the following:
 - `application/json`
 
 :::
+
+## Your First API Call
+
+Now that we know the basics, we can go ahead and get started with making our first API call! All examples will use curl. More examples of making API calls will come when I care :^)
+
+## ANY /api
+
+Any method calling this endpoint will work, it's more of a sanity check than a useful endpoint.
+
+No authorization is required.
+
+:::details Example Request
+
+```sh
+curl -X GET \
+  https://alekeagle.me/api
+```
+
+:::
+
+:::details Example Response
+
+- 200 OK
+
+  - ```json
+    {
+      "hello": "world",
+      "version": "3.0.0"
+    }
+    ```
+
+:::
