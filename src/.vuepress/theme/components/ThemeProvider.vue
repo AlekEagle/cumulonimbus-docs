@@ -18,6 +18,30 @@
     --accent-color: #3eaf7c;
   }
 
+  body {
+    overflow-y: overlay;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+  }
+
+  html:not(.dark-theme) ::-webkit-scrollbar-thumb {
+    background-color: #18222c;
+  }
+
+  html.dark-theme ::-webkit-scrollbar-thumb {
+    background-color: #3eaf7c;
+  }
+
   html.dark-theme-transition,
   html.dark-theme-transition * {
     transition: color 0.02s, background-color 0.2s, border-color 0.2s,

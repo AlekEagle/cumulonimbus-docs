@@ -16,6 +16,7 @@ module.exports = {
    * ref：https://v1.vuepress.vuejs.org/config/#head
    */
   head: [
+    ['link', { rel: 'icon', href: '/assets/images/Cumulonimbus.png' }],
     ['meta', { name: 'theme-color', content: '#3eaf7c' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
     [
@@ -26,7 +27,7 @@ module.exports = {
       'meta',
       {
         name: 'og:image',
-        content: 'https://alekeagle.me/img/Cumulonimbus.webp'
+        content: '/assets/images/Cumulonimbus.webp'
       }
     ]
   ],
@@ -43,7 +44,7 @@ module.exports = {
     editLinkText: 'Edit this page on GitHub',
     smoothScroll: true,
     lastUpdated: true,
-    logo: 'https://alekeagle.me/img/Cumulonimbus.webp',
+    logo: '/assets/images/Cumulonimbus.svg',
     nav: [
       {
         text: 'Reference',
@@ -69,7 +70,11 @@ module.exports = {
           {
             title: 'Non-Administrative Endpoints',
             collapsable: true,
-            children: ['/api/user/account']
+            children: [
+              '/api/user/account',
+              '/api/user/session',
+              '/api/user/domain'
+            ]
           },
           {
             title: 'Administrative Endpoints',
@@ -83,7 +88,19 @@ module.exports = {
         path: '/reference/',
         collapsable: true,
         sidebarDepth: 3,
-        children: ['/reference/', '/reference/faq', 'reference/structs']
+        children: [
+          '/reference/',
+          '/reference/faq',
+          {
+            title: 'Structures',
+            collapsable: true,
+            children: [
+              '/reference/structures/data',
+              '/reference/structures/errors',
+              '/reference/structures/successes'
+            ]
+          }
+        ]
       }
     ]
   },

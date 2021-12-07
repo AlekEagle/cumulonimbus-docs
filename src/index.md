@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: https://alekeagle.me/img/Cumulonimbus.webp
+heroImage: /assets/images/Cumulonimbus.svg
 tagline: Documentation for the public and open-source file sharing platform Cumulonimbus.
 actionText: Get Started →
 actionLink: /api/

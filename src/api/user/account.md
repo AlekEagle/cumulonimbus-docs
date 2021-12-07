@@ -8,31 +8,53 @@ Returns the user object of the current authenticated user.
 
 :::details Example Request
 
+<code-group>
+
+<code-block title="cURL">
+
 ```sh
 curl -X GET \
-  -H "Authorization: Token" \
+  -H "Authorization: token" \
   https://alekeagle.me/api/user
 ```
 
+</code-block>
+
+<code-block title="JS Fetch">
+
+```js
+fetch('https://alekeagle.me/api/user', {
+  method: 'GET',
+  credentials: 'include',
+  headers: {
+    Authorization: 'token'
+  }
+});
+```
+
+</code-block>
+
+</code-group>
+
 :::
 
-:::details Example Responses
+:::details Responses
 
 - 200 OK
 
-  - [User](/reference/structs.md#user)
+  - [User](/reference/structures/data.md#user)
 
 - 401 Unauthorized
 
-  - [InvalidSession](/reference/structs.md#invalidsession)
+  - [InvalidSession](/reference/structures/errors.md#invalidsession)
 
 - 403 Forbidden
 
-  - [Banned](/reference/structs.md#banned)
+  - [Banned](/reference/structures/errors.md#banned)
 
 - 500 Internal Server Error
 
-  - [Internal](/reference/structs.md#internal)
+  - [Internal](/reference/structures/errors.md#internal)
 
 :::
 
@@ -66,6 +88,10 @@ At least one optional parameter is required in this request.
 
 :::details Example Request
 
+<code-group>
+
+<code-block title="cURL">
+
 ```sh
 curl -X PATCH \
   -H "Authorization: token" \
@@ -74,29 +100,53 @@ curl -X PATCH \
   https://alekeagle.me/api/user
 ```
 
+</code-block>
+
+<code-block title="JS Fetch">
+
+```js
+fetch('https://alekeagle.me/api/user', {
+  method: 'PATCH',
+  credentials: 'include',
+  headers: {
+    'Authorization': 'token',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    username: 'bob',
+    password: 'joe',
+    newPassword: 'bob'
+  })
+});
+```
+
+</code-block>
+
+</code-group>
+
 :::
 
-:::details Example Responses
+:::details Responses
 
 - 200 OK
 
-  - [User](/reference/structs.md#user)
+  - [User](/reference/structures/data.md#user)
 
 - 400 Bad Request
 
-  - [MissingFields](/reference/structs.md#missingfields)
+  - [MissingFields](/reference/structures/errors.md#missingfields)
 
 - 401 Unauthorized
 
-  - [InvalidSession](/reference/structs.md#invalidsession)
+  - [InvalidSession](/reference/structures/errors.md#invalidsession)
 
 - 403 Forbidden
 
-  - [Banned](/reference/structs.md#banned)
+  - [Banned](/reference/structures/errors.md#banned)
 
 - 500 Internal Server Error
 
-  - [Internal](/reference/structs.md#internal)
+  - [Internal](/reference/structures/errors.md#internal)
 
 :::
 
@@ -120,6 +170,10 @@ Delete the current authenticated user.
 
 :::details Example Request
 
+<code-group>
+
+<code-block title="cURL">
+
 ```sh
 curl -X DELETE \
   -H "Authorization: token" \
@@ -128,35 +182,62 @@ curl -X DELETE \
   https://alekeagle.me/api/user
 ```
 
+</code-block>
+
+<code-block title="JS Fetch">
+
+```js
+fetch('https://alekeagle.me/api/user', {
+  method: 'DELETE',
+  credentials: 'include',
+  headers: {
+    'Authorization': 'token',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    username: 'joe',
+    password: 'joe'
+  })
+});
+```
+
+</code-block>
+
+</code-group>
+
 :::
 
-:::details Example Responses
+:::details Responses
 
 - 200 OK
 
-  - [User](/reference/structs.md#user)
+  - [User](/reference/structures/data.md#user)
 
 - 400 Bad Request
 
-  - [MissingFields](/reference/structs.md#missingfields)
+  - [MissingFields](/reference/structures/errors.md#missingfields)
 
 - 401 Unauthorized
 
-  - [InvalidSession](/reference/structs.md#invalidsession)
+  - [InvalidSession](/reference/structures/errors.md#invalidsession)
 
 - 403 Forbidden
 
-  - [Banned](/reference/structs.md#banned)
+  - [Banned](/reference/structures/errors.md#banned)
 
 - 500 Internal Server Error
 
-  - [Internal](/reference/structs.md#internal)
+  - [Internal](/reference/structures/errors.md#internal)
 
 :::
 
 ## POST /user
 
-Create a new user
+Create a new user.
+
+:::tip No Authorization Required
+This endpoint does not require authorization.
+:::
 
 :::details Parameters
 
@@ -186,6 +267,10 @@ Create a new user
 
 :::details Example Request
 
+<code-group>
+
+<code-block title="cURL">
+
 ```sh
 curl -X POST \
   -H "Content-Type: application/json" \
@@ -193,24 +278,135 @@ curl -X POST \
   https://alekeagle.me/api/user
 ```
 
+</code-block>
+
+<code-block title="JS Fetch">
+
+```js
+fetch('https://alekeagle.me/api/user', {
+  method: 'POST',
+  credentials: 'include',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    username: 'joe',
+    email: 'joe@joe.joe',
+    password: 'joe',
+    repeatPassword: 'joe',
+    rememberMe: true
+  })
+});
+```
+
+</code-block>
+
+</code-group>
+
 :::
 
-:::details Example Responses
+:::details Responses
 
 - 201 Created
 
-  - [SuccessfulAuth](/reference/structs.md#successfulauth)
+  - [SuccessfulAuth](/reference/structures/errors.md#successfulauth)
 
 - 400 Bad Request
 
-  - [MissingFields](/reference/structs.md#missingfields)
+  - [MissingFields](/reference/structures/errors.md#missingfields)
 
 - 409 Conflict
 
-  - [UserExists](/reference/structs.md#userexists)
+  - [UserExists](/reference/structures/errors.md#userexists)
 
 - 500 Internal Server Error
 
-  - [Internal](/reference/structs.md#internal)
+  - [Internal](/reference/structures/errors.md#internal)
+
+:::
+
+## PATCH /user/domain
+
+Update the authenticated user's domain and subdomain selection.
+
+:::details Parameters
+
+- Body
+
+  - `domain`
+
+    - The domain you would like to select. Domain must be valid.
+
+  - `subdomain` _optional_
+
+    - The subdomain you would like to use. Any non alphanumeric characters will be stripped, must not be longer than 63 characters.
+
+:::
+
+:::details Example Request
+
+<code-group>
+
+<code-block title="cURL">
+
+```sh
+curl -X PATCH \
+  -H "Authorization: token" \
+  -H "Content-Type: application/json" \
+  -d "{\"domain\":\"digiorno.delivery\",\"subdomain\":\"its not\"}" \
+  https://alekeagle.me/api/user/domain
+```
+
+</code-block>
+
+<code-block title="JS Fetch">
+
+```js
+fetch('https://alekeagle.me/api/user/domain', {
+  method: 'PATCH',
+  credentials: 'include',
+  headers: {
+    'Authorization': 'token',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ domain: 'digiorno.delivery', subdomain: 'its not' })
+});
+```
+
+</code-block>
+
+</code-group>
+
+:::
+
+:::details Responses
+
+- 200 OK
+
+  - [User](/reference/structures/data.md#user)
+
+- 400 Bad Request
+
+  - [MissingFields](/reference/structures/errors.md#missingfields)
+
+  - [InvalidDomain](/reference/structures/errors.md#invaliddomain)
+
+  - [InvalidSubdomain](/reference/structures/errors.md#invalidsubdomain)
+
+  - [SubdomainNotSupported](/reference/structures/errors.md#subdomainnotsupported)
+
+- 401 Unauthorized
+
+  - [InvalidSession](/reference/structures/errors.md#invalidsession)
+
+- 403 Forbidden
+
+  - [Banned](/reference/structures/errors.md#banned)
+
+  - [Permissions](/reference/structures/errors.md#permissions)
+
+- 500 Internal Server Error
+
+  - [Internal](/reference/structures/errors.md#internal)
 
 :::

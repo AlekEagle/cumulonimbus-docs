@@ -1,127 +1,8 @@
-# Structures
+# Errors
 
-The common structure of errors and data returned from the API.
+The various errors you can receive from the API when an error is returned. The interface all of these implement is the [Error](/reference/structures/data.md#error) structure.
 
-## Data Structures
-
-### User
-
-```ts
-interface User {
-  id: string;
-  username: string;
-  displayName: string;
-  email: string;
-  staff: string;
-  domain: string;
-  subdomain: string;
-  bannedAt: string;
-  createdAt: string;
-  updatedAt: string;
-}
-```
-
-### Session
-
-```ts
-interface Session {
-  iat: number;
-  exp: number;
-  name: string;
-}
-```
-
-### SessionList
-
-```ts
-interface SessionList {
-  count: number;
-  sessions: Session[];
-}
-```
-
-### Success
-
-```ts
-interface Success {
-  success: boolean;
-  message?: string;
-}
-```
-
-### DeleteBulk
-
-```ts
-interface DeleteBulk {
-  count: number;
-  type: 'user' | 'session' | 'file' | 'domain' | 'instruction';
-}
-```
-
-### Domain
-
-```ts
-interface Domain {
-  domain: string;
-  allowsSubdomains: boolean;
-  createdAt: string;
-  updatedAt: string;
-}
-```
-
-### DomainList
-
-```ts
-interface DomainList {
-  count: number;
-  domains: Domain[];
-}
-```
-
-### Error
-
-```ts
-interface Error {
-  code: string;
-  message: string;
-}
-```
-
-### SuccessfulAuth
-
-```ts
-interface SuccessfulAuth {
-  token: string;
-  exp: number;
-}
-```
-
-### File
-
-```ts
-interface File {
-  filename: string;
-  createdAt: string;
-  updatedAt: string;
-  userId: string;
-  size: number;
-}
-```
-
-### FileList
-
-```ts
-interface FileList {
-  count: number;
-  files: File[];
-}
-```
-
-## Errors
-
-The various errors you can receive from the API when an error is returned. The interface all of these implement is the [Error](#error) structure above.
-
-### InvalidSession
+## InvalidSession
 
 Returned when your token is invalid or your session has expired for that token. Either way the solution is to generate a new token.
 
@@ -132,7 +13,7 @@ class InvalidSession implements Error {
 }
 ```
 
-### InvalidUser
+## InvalidUser
 
 Returned when you attempt to access, edit, or delete a user that doesn't exist, or when someone attempts to create a new session for an account that doesn't exist.
 
@@ -143,7 +24,7 @@ class InvalidUser implements Error {
 }
 ```
 
-### InvalidPassword
+## InvalidPassword
 
 Returned when the password that is provided doesn't match the password in the system.
 
@@ -154,7 +35,7 @@ class InvalidPassword implements Error {
 }
 ```
 
-### Permissions
+## Permissions
 
 Returned when the authenticated user's permission is insufficient for the action they are trying to perform.
 
@@ -165,7 +46,7 @@ class Permissions implements Error {
 }
 ```
 
-### UserExists
+## UserExists
 
 Returned when trying to create a new user that already exists with a provided email or username.
 
@@ -176,7 +57,7 @@ class UserExists implements Error {
 }
 ```
 
-### MissingFields
+## MissingFields
 
 Returned when you do not provide a required parameter in a request.
 
@@ -188,7 +69,7 @@ class MissingFields implements Error {
 }
 ```
 
-### InvalidDomain
+## InvalidDomain
 
 Returned when you try to request a domain that doesn't exist.
 
@@ -199,7 +80,7 @@ class InvalidDomain implements Error {
 }
 ```
 
-### InvalidSubdomain
+## InvalidSubdomain
 
 Returned when you try to set a subdomain that is longer than 63 characters.
 
@@ -211,7 +92,7 @@ class InvalidSubdomain implements Error {
 }
 ```
 
-### SubdomainNotSupported
+## SubdomainNotSupported
 
 Returned when you try to use a subdomain on a domain that does not support a subdomain.
 
@@ -222,7 +103,7 @@ class SubdomainNotSupported implements Error {
 }
 ```
 
-### FileMissing
+## FileMissing
 
 Returned when trying to interact with a file that does not exist.
 
@@ -233,7 +114,7 @@ class FileMissing implements Error {
 }
 ```
 
-### SessionMissing
+## SessionMissing
 
 Returned when trying to interact with a session that does not exist.
 
@@ -244,7 +125,7 @@ class SessionMissing implements Error {
 }
 ```
 
-### Banned
+## Banned
 
 Returned when a banned user is trying to interact with the API in any way.
 
@@ -255,7 +136,7 @@ class Banned implements Error {
 }
 ```
 
-### Internal
+## Internal
 
 Returned when the server encounters an internal server error.
 
@@ -266,13 +147,24 @@ class Internal implements Error {
 }
 ```
 
-### Generic
+## InvalidEndpoint
+
+Returned when you are stupid and somehow fuck up the API endpoint.
+
+```ts
+class InvalidEndpoint implements Error {
+  public readonly code: string = 'ENDPOINT_NOT_FOUND_ERROR';
+  public readonly message: string = 'Endpoint Not Found';
+}
+```
+
+## Generic
 
 A generic error for when the specific error is not handled.
 
 ```ts
 class Generic implements Error {
   public readonly code: string = 'GENERIC_ERROR';
-  public message: string;
+  public message?: string;
 }
 ```

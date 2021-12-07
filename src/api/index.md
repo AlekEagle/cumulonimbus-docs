@@ -2,7 +2,7 @@
 
 ## Making API Calls
 
-If you don't know already, Cumulonimbus is a RESTful API. API calls are made by making HTTP requests to the server and the server responds inline with your request. Upon receiving an error from the server, it will provide a status code for the type of error as well as any details that my be needed to correct the error.
+If you don't know already, Cumulonimbus is a RESTful API. API calls are made by making HTTP requests to the server and the server responds inline with your request. Upon receiving an error from the server, it will provide a status code for the type of error as well as any details that my be needed to correct the error. The base URL is [here](/reference/#base-url).
 
 ## Requests
 
@@ -26,7 +26,7 @@ Any request that has a body can use any of the following:
 
 ## Your First API Call
 
-Now that we know the basics, we can go ahead and get started with making our first API call! All examples will use curl. More examples of making API calls will come when I care :^)
+Now that we know the basics, we can go ahead and get started with making our first API call! More examples of making API calls for different languages will come in the future when I care :^)
 
 ## ANY /api
 
