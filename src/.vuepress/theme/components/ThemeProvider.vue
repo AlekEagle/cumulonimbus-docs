@@ -18,6 +18,39 @@
     --accent-color: #3eaf7c;
   }
 
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .nav-item,
+  .repo-link,
+  .nav-link,
+  .sidebar-link,
+  .sidebar-heading,
+  .custom-block-title,
+  .custom-block.details summary {
+    font-family: 'Montserrat', 'Franklin Gothic Medium', 'Arial Narrow', Arial,
+      sans-serif;
+  }
+
+  .nav-item,
+  .repo-link,
+  .nav-item a,
+  .nav-link,
+  a.sidebar-link,
+  .sidebar-group.is-sub-group > .sidebar-heading,
+  .custom-block-title,
+  .custom-block.details summary {
+    font-weight: 600;
+  }
+
+  p,
+  div {
+    font-family: 'Ubuntu', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
   div[class*='language-'] pre,
   div[class*='language-'] pre[class*='language-'],
   code {
@@ -70,7 +103,9 @@
   }
 
   html.dark-theme span.site-name {
-    color: var(--header-color) !important;
+    font-family: Montserrat, 'Franklin Gothic Medium', 'Arial Narrow', Arial,
+      sans-serif;
+    color: var(--header-color);
   }
 
   html.dark-theme div.search-box input {
@@ -98,10 +133,7 @@
   }
 
   html.dark-theme .router-link-active:not(.site-name),
-  html.dark-theme .nav-link:hover:not(.action-button) {
-    color: var(--accent-color);
-  }
-
+  html.dark-theme .nav-link:hover:not(.action-button),
   html.dark-theme .page-edit .edit-link a,
   html.dark-theme .page-edit .last-updated .prefix {
     color: var(--accent-color);
