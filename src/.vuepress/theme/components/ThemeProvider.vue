@@ -18,12 +18,20 @@
     --accent-color: #3eaf7c;
   }
 
+  div[class*='language-'] pre,
+  div[class*='language-'] pre[class*='language-'],
+  code {
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 500;
+  }
+
   body {
     overflow-y: overlay;
   }
 
   ::-webkit-scrollbar {
     width: 10px;
+    height: 10px;
   }
 
   ::-webkit-scrollbar-track {

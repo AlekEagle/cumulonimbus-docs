@@ -32,14 +32,35 @@ Now that we know the basics, we can go ahead and get started with making our fir
 
 Any method calling this endpoint will work, it's more of a sanity check than a useful endpoint.
 
-No authorization is required.
+:::tip No Authorization Required
+This endpoint does not require authorization.
+:::
 
 :::details Example Request
+
+<code-group>
+
+<code-block title="cURL">
 
 ```sh
 curl -X GET \
   https://alekeagle.me/api
 ```
+
+</code-block>
+
+<code-block title="JS Fetch">
+
+```js
+fetch('https://alekeagle.me/api', {
+  method: 'GET',
+  credentials: 'include'
+});
+```
+
+</code-block>
+
+</code-group>
 
 :::
 

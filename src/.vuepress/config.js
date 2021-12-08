@@ -16,6 +16,22 @@ module.exports = {
    * ref：https://v1.vuepress.vuejs.org/config/#head
    */
   head: [
+    ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
+    [
+      'link',
+      {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com',
+        crossorigin: true
+      }
+    ],
+    [
+      'link',
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap'
+      }
+    ],
     ['link', { rel: 'icon', href: '/assets/images/Cumulonimbus.png' }],
     ['meta', { name: 'theme-color', content: '#3eaf7c' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
@@ -47,12 +63,12 @@ module.exports = {
     logo: '/assets/images/Cumulonimbus.svg',
     nav: [
       {
-        text: 'Reference',
-        link: '/reference/'
-      },
-      {
         text: 'API',
         link: '/api/'
+      },
+      {
+        text: 'Reference',
+        link: '/reference/'
       },
       {
         text: 'alekeagle.me',
@@ -62,7 +78,6 @@ module.exports = {
     sidebar: [
       {
         title: 'API',
-        path: '/api/',
         collapsable: true,
         sidebarDepth: 3,
         children: [
@@ -85,7 +100,6 @@ module.exports = {
       },
       {
         title: 'Reference',
-        path: '/reference/',
         collapsable: true,
         sidebarDepth: 3,
         children: [

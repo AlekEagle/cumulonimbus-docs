@@ -6,7 +6,7 @@ Data structures returned from the API.
 
 ```ts
 interface List<T> {
-  count: number;
+  count: number; // Count will be the total of items that you can view, not the length of the items object.
   items: T[];
 }
 ```

@@ -6,6 +6,20 @@ These endpoints pertains to the various actions that can be performed on domains
 
 Get all domains usable domains.
 
+:::details Parameters
+
+- Query
+
+  - `limit` _optional_
+
+    - The number of domain entries you want in this page. The default and max is 50.
+
+  - `offset` _optional_
+
+    - The offset from 0 of domains you wish to see.
+
+:::
+
 :::details Example Request
 
 <code-group>
