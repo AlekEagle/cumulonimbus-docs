@@ -97,3 +97,18 @@ interface File {
   size: number;
 }
 ```
+
+## Instruction
+
+```ts
+interface Instruction {
+  name: string; // Used as instruction ID
+  steps: string[];
+  filename: string;
+  fileContent: string;
+  description: string;
+  displayName: string;
+  createdAt: string;
+  updatedAt: string;
+}
+```

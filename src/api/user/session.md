@@ -2,7 +2,7 @@
 
 These endpoints pertains to the various actions that can be performed on sessions of the authenticated user.
 
-## GET /session
+## GET /user/session
 
 Get the current session used to authenticate.
 
@@ -58,7 +58,7 @@ fetch('https://alekeagle.me/api/session', {
 
 :::
 
-## POST /session
+## POST /user/session
 
 Create a new session (log in).
 
@@ -138,7 +138,7 @@ fetch('https://alekeagle.me/api/session', {
 
 :::
 
-## GET /sessions
+## GET /user/sessions
 
 Get all sessions for the authenticated user.
 
@@ -194,7 +194,7 @@ fetch('https://alekeagle.me/api/session', {
 
 :::
 
-## DELETE /session/:id
+## DELETE /user/session/:id
 
 Delete a specific session for the authenticated user.
 
@@ -264,7 +264,7 @@ fetch('https://alekeagle.me/api/session/sid', {
 
 :::
 
-## DELETE /sessions
+## DELETE /user/sessions
 
 Bulk delete multiple sessions for the authenticated user.
 
@@ -338,7 +338,7 @@ fetch('https://alekeagle.me/api/sessions', {
 
 :::
 
-## DELETE /sessions/all
+## DELETE /user/sessions/all
 
 Delete all sessions for the authenticated users.
 

@@ -1,6 +1,6 @@
 # Account Management
 
-These are endpoints that relate to viewing or modifying the account of the user that is associated with the token.
+These are endpoints that relate to interacting with the account of the user that is associated with the token.
 
 ## GET /user
 

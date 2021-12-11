@@ -87,8 +87,9 @@ module.exports = {
             collapsable: true,
             children: [
               '/api/user/account',
-              '/api/user/session',
-              '/api/user/domain'
+              '/api/user/domain',
+              '/api/user/file',
+              '/api/user/session'
             ]
           },
           {
