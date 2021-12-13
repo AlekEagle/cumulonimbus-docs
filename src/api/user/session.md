@@ -52,6 +52,10 @@ fetch('https://alekeagle.me/api/session', {
 
   - [Banned](/reference/structures/errors.md#banned)
 
+- 429 Too Many Requests
+
+  - [RateLimited](/reference/structures/errors.md#ratelimited)
+
 - 500 Internal Server Error
 
   - [Internal](/reference/structures/errors.md#internal)
@@ -132,6 +136,10 @@ fetch('https://alekeagle.me/api/session', {
 
   - [InvalidPassword](/reference/structures/errors.md#invalidpassword)
 
+- 429 Too Many Requests
+
+  - [RateLimited](/reference/structures/errors.md#ratelimited)
+
 - 404 Not Found
 
   - [InvalidUser](/reference/structures/errors.md#invaliduser)
@@ -187,6 +195,10 @@ fetch('https://alekeagle.me/api/session', {
 - 403 Forbidden
 
   - [Banned](/reference/structures/errors.md#banned)
+
+- 429 Too Many Requests
+
+  - [RateLimited](/reference/structures/errors.md#ratelimited)
 
 - 500 Internal Server Error
 
@@ -257,6 +269,10 @@ fetch('https://alekeagle.me/api/session/sid', {
 - 404 Not Found
 
   - [SessionMissing](/reference/structures/errors.md#sessionmissing)
+
+- 429 Too Many Requests
+
+  - [RateLimited](/reference/structures/errors.md#ratelimited)
 
 - 500 Internal Server Error
 
@@ -332,6 +348,10 @@ fetch('https://alekeagle.me/api/sessions', {
 
   - [Banned](/reference/structures/errors.md#banned)
 
+- 429 Too Many Requests
+
+  - [RateLimited](/reference/structures/errors.md#ratelimited)
+
 - 500 Internal Server Error
 
   - [Internal](/reference/structures/errors.md#internal)
@@ -397,6 +417,10 @@ fetch('https://alekeagle.me/api/sessions/all?allbutSelf=true', {
 - 403 Forbidden
 
   - [Banned](/reference/structures/errors.md#banned)
+
+- 429 Too Many Requests
+
+  - [RateLimited](/reference/structures/errors.md#ratelimited)
 
 - 500 Internal Server Error
 

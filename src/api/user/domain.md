@@ -12,11 +12,11 @@ Get all domains usable domains.
 
   - `limit` _optional_
 
-    - The number of domain entries you want in this page. The default and max is 50.
+    - The number of domains returned in the request, the default and max is 50.
 
   - `offset` _optional_
 
-    - The offset from 0 of domains you wish to see.
+    - Used to paginate requests, default is no offset.
 
 :::
 
@@ -65,6 +65,10 @@ fetch('https://alekeagle.me/api/domains', {
 - 403 Forbidden
 
   - [Banned](/reference/structures/errors.md#banned)
+
+- 429 Too Many Requests
+
+  - [RateLimited](/reference/structures/errors.md#ratelimited)
 
 - 500 Internal Server Error
 
@@ -131,6 +135,10 @@ fetch('https://alekeagle.me/api/domains', {
 - 403 Forbidden
 
   - [Banned](/reference/structures/errors.md#banned)
+
+- 429 Too Many Requests
+
+  - [RateLimited](/reference/structures/errors.md#ratelimited)
 
 - 500 Internal Server Error
 

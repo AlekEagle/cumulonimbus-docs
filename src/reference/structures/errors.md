@@ -169,6 +169,18 @@ class Banned implements Error {
 }
 ```
 
+## RateLimited
+
+Returned when you have reached a ratelimit for making requests.
+
+```ts
+class RateLimited implements Error {
+  public readonly code: string = 'RATELIMITED_ERROR';
+  public readonly message: string =
+    'You Have Been Ratelimited. Please Try Again Later.';
+}
+```
+
 ## Internal
 
 Returned when the server encounters an internal server error.

@@ -66,6 +66,10 @@ fetch('https://alekeagle.me/api/instructions', {
 
   - [Banned](/reference/structures/errors.md#banned)
 
+- 429 Too Many Requests
+
+  - [RateLimited](/reference/structures/errors.md#ratelimited)
+
 - 500 Internal Server Error
 
   - [Internal](/reference/structures/errors.md#internal)
@@ -135,6 +139,10 @@ fetch('https://alekeagle.me/api/instruction/joe', {
 - 404 Not Found
 
   - [InvalidInstruction](/reference/structures/errors.md#invalidinstruction)
+
+- 429 Too Many Requests
+
+  - [RateLimited](/reference/structures/errors.md#ratelimited)
 
 - 500 Internal Server Error
 

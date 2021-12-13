@@ -52,6 +52,10 @@ fetch('https://alekeagle.me/api/user', {
 
   - [Banned](/reference/structures/errors.md#banned)
 
+- 429 Too Many Requests
+
+  - [RateLimited](/reference/structures/errors.md#ratelimited)
+
 - 500 Internal Server Error
 
   - [Internal](/reference/structures/errors.md#internal)
@@ -144,6 +148,10 @@ fetch('https://alekeagle.me/api/user', {
 
   - [Banned](/reference/structures/errors.md#banned)
 
+- 429 Too Many Requests
+
+  - [RateLimited](/reference/structures/errors.md#ratelimited)
+
 - 500 Internal Server Error
 
   - [Internal](/reference/structures/errors.md#internal)
@@ -225,6 +233,10 @@ fetch('https://alekeagle.me/api/user', {
 
   - [Banned](/reference/structures/errors.md#banned)
 
+- 429 Too Many Requests
+
+  - [RateLimited](/reference/structures/errors.md#ratelimited)
+
 - 500 Internal Server Error
 
   - [Internal](/reference/structures/errors.md#internal)
@@ -237,6 +249,10 @@ Create a new user.
 
 :::tip No Authorization Required
 This endpoint does not require authorization.
+:::
+
+:::warning Ratelimits
+This endpoint uses a ratelimit that is separate from other endpoints, this endpoint may be used `1` time(s) every `30 minutes`.
 :::
 
 :::details Parameters
@@ -319,6 +335,10 @@ fetch('https://alekeagle.me/api/user', {
 
   - [UserExists](/reference/structures/errors.md#userexists)
 
+- 429 Too Many Requests
+
+  - [RateLimited](/reference/structures/errors.md#ratelimited)
+
 - 500 Internal Server Error
 
   - [Internal](/reference/structures/errors.md#internal)
@@ -389,8 +409,6 @@ fetch('https://alekeagle.me/api/user/domain', {
 
   - [MissingFields](/reference/structures/errors.md#missingfields)
 
-  - [InvalidDomain](/reference/structures/errors.md#invaliddomain)
-
   - [InvalidSubdomain](/reference/structures/errors.md#invalidsubdomain)
 
   - [SubdomainNotSupported](/reference/structures/errors.md#subdomainnotsupported)
@@ -404,6 +422,14 @@ fetch('https://alekeagle.me/api/user/domain', {
   - [Banned](/reference/structures/errors.md#banned)
 
   - [Permissions](/reference/structures/errors.md#permissions)
+
+- 404 Not Found
+
+  - [InvalidDomain](/reference/structures/errors.md#invaliddomain)
+
+- 429 Too Many Requests
+
+  - [RateLimited](/reference/structures/errors.md#ratelimited)
 
 - 500 Internal Server Error
 

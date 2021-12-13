@@ -24,6 +24,10 @@ Any request that has a body can use any of the following:
 
 :::
 
+## Ratelimits
+
+This API implements a ratelimit system. All endpoints are managed by this ratelimiting system, the default limit is 100 requests in 5 minutes unless otherwise specified. If you do get ratelimited, your request will return with error `429 Too Many Requests`, with the headers: `X-RateLimit-Limit`, `X-RateLimit-Remaining`, and `Retry-After`.
+
 ## Your First API Call
 
 Now that we know the basics, we can go ahead and get started with making our first API call! More examples of making API calls for different languages will come in the future when I care :^)

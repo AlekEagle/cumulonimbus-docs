@@ -96,7 +96,11 @@ module.exports = {
           {
             title: 'Administrative Endpoints',
             collapsable: true,
-            children: ['/api/admin/account']
+            children: [
+              '/api/admin/account',
+              '/api/admin/domain',
+              '/api/admin/file'
+            ]
           }
         ]
       },
