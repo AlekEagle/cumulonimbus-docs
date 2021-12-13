@@ -89,6 +89,7 @@ module.exports = {
               '/api/user/account',
               '/api/user/domain',
               '/api/user/file',
+              '/api/user/instruction',
               '/api/user/session'
             ]
           },

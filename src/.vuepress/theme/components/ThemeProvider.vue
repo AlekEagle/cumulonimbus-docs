@@ -102,9 +102,12 @@
     border-color: transparent;
   }
 
-  html.dark-theme span.site-name {
+  span.site-name {
     font-family: Montserrat, 'Franklin Gothic Medium', 'Arial Narrow', Arial,
       sans-serif;
+  }
+
+  html.dark-theme span.site-name {
     color: var(--header-color);
   }
 

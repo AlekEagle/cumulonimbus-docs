@@ -93,7 +93,7 @@ interface File {
   filename: string; // Used as file ID
   createdAt: string;
   updatedAt: string;
-  userId: string;
+  userID: string;
   size: number;
 }
 ```
@@ -110,5 +110,15 @@ interface Instruction {
   displayName: string;
   createdAt: string;
   updatedAt: string;
+}
+```
+
+## SuccessfulUpload
+
+```ts
+interface SuccessfulUpload {
+  url: string;
+  thumbnail: string;
+  manage: string;
 }
 ```

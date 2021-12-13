@@ -1,10 +1,10 @@
-# Domain Management
+# Instruction Management
 
-These endpoints pertains to the various actions that can be performed on domains.
+These are endpoints that relate to interacting with setup instructions for various services.
 
-## GET /domains
+## GET /instructions
 
-Get all domains usable domains.
+Get a list of all officially supported upload software.
 
 :::details Parameters
 
@@ -12,15 +12,15 @@ Get all domains usable domains.
 
   - `limit` _optional_
 
-    - The number of domain entries you want in this page. The default and max is 50.
+    - The number of files returned in the request, the default and max is 50.
 
   - `offset` _optional_
 
-    - The offset from 0 of domains you wish to see.
+    - Used to paginate requests, default is no offset.
 
 :::
 
-:::details Example Request
+:::details Example Requests
 
 <code-group>
 
@@ -29,7 +29,7 @@ Get all domains usable domains.
 ```sh
 curl -X GET \
   -H "Authorization: token" \
-  https://alekeagle.me/api/domains
+  https://alekeagle.me/api/instructions
 ```
 
 </code-block>
@@ -37,7 +37,7 @@ curl -X GET \
 <code-block title="JS Fetch">
 
 ```js
-fetch('https://alekeagle.me/api/domains', {
+fetch('https://alekeagle.me/api/instructions', {
   method: 'GET',
   credentials: 'include',
   headers: {
@@ -56,7 +56,7 @@ fetch('https://alekeagle.me/api/domains', {
 
 - 200 OK
 
-  - [List](/reference/structures/data.md#list)<[Domain](/reference/structures/data.md#domain)>
+  - [List](/reference/structures/data.md#list)<[Instruction](/reference/structures/data.md#instruction)>
 
 - 401 Unauthorized
 
@@ -72,9 +72,9 @@ fetch('https://alekeagle.me/api/domains', {
 
 :::
 
-## GET /domain/:id
+## GET /instruction/:id
 
-Get details about specific domain.
+Get specific instructions for officially supported upload software.
 
 :::details Parameters
 
@@ -82,11 +82,11 @@ Get details about specific domain.
 
   - `id`
 
-    - The ID of the domain.
+    - The name of the specific instructions object.
 
 :::
 
-:::details Example Request
+:::details Example Requests
 
 <code-group>
 
@@ -95,7 +95,7 @@ Get details about specific domain.
 ```sh
 curl -X GET \
   -H "Authorization: token" \
-  https://alekeagle.me/api/domains
+  https://alekeagle.me/api/instruction/joe
 ```
 
 </code-block>
@@ -103,7 +103,7 @@ curl -X GET \
 <code-block title="JS Fetch">
 
 ```js
-fetch('https://alekeagle.me/api/domains', {
+fetch('https://alekeagle.me/api/instruction/joe', {
   method: 'GET',
   credentials: 'include',
   headers: {
@@ -122,7 +122,7 @@ fetch('https://alekeagle.me/api/domains', {
 
 - 200 OK
 
-  - [List](/reference/structures/data.md#list)<[Domain](/reference/structures/data.md#domain)>
+  - [Instruction](/reference/structures/data.md#instruction)
 
 - 401 Unauthorized
 
@@ -131,6 +131,10 @@ fetch('https://alekeagle.me/api/domains', {
 - 403 Forbidden
 
   - [Banned](/reference/structures/errors.md#banned)
+
+- 404 Not Found
+
+  - [InvalidInstruction](/reference/structures/errors.md#invalidinstruction)
 
 - 500 Internal Server Error
 
