@@ -42,7 +42,8 @@
   a.sidebar-link,
   .sidebar-group.is-sub-group > .sidebar-heading,
   .custom-block-title,
-  .custom-block.details summary {
+  .custom-block.details summary,
+  .sidebar-sub-headers a.sidebar-link.active {
     font-weight: 600;
   }
 
@@ -122,9 +123,7 @@
     color: var(--h1-color);
   }
 
-  html.dark-theme
-    .sidebar-group.is-sub-group
-    > .sidebar-heading:not(.clickable) {
+  .sidebar-group.is-sub-group > .sidebar-heading:not(.clickable) {
     opacity: 1;
   }
 
@@ -160,6 +159,10 @@
 
   html.dark-theme .custom-block {
     background-color: var(--navbar-bg-color);
+  }
+
+  html.dark-theme code {
+    background-color: rgb(27 31 35);
   }
 
   html.dark-theme .custom-block.danger .custom-block-title {

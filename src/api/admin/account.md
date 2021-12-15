@@ -158,7 +158,9 @@ fetch('https://alekeagle.me/api/user/1234567890', {
 
 Update a specific user.
 
+:::warning Optional Parameters
 At least 1 field is required in the body.
+:::
 
 :::details Parameters
 

@@ -135,6 +135,17 @@ class UserExists implements Error {
 }
 ```
 
+## InstructionExists
+
+Returned when trying to create a new instruction set for a service that already exists.
+
+```ts
+class InstructionExists implements Error {
+  public readonly code: string = 'INSTRUCTION_EXISTS_ERROR';
+  public readonly message: string = 'Instruction Already Exists';
+}
+```
+
 ## MissingFields
 
 Returned when you do not provide a required parameter in a request.

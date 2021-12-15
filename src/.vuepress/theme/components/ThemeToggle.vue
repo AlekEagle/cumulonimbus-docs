@@ -8,18 +8,39 @@
 <script>
   const html = document.getElementsByTagName('html')[0];
   export default {
+    data() {
+      return {
+        themeTransitionTimeout: -1
+      };
+    },
     mounted() {
       this.initThemePreference();
     },
     methods: {
       toggleDarkTheme() {
-        if (html.classList.contains('dark-theme'))
-          setTimeout(() => {
-            html.classList.toggle('dark-theme-transition');
-          }, 250);
-        else html.classList.toggle('dark-theme-transition');
-        html.classList.toggle('dark-theme');
+        if (html.classList.contains('dark-theme')) {
+          this.enableTransition();
+          html.classList.remove('dark-theme');
+        } else {
+          this.enableTransition();
+          html.classList.add('dark-theme');
+        }
         this.toggleUserPreference();
+      },
+      enableTransition() {
+        if (this.$data.themeTransitionTimeout !== -1) {
+          clearTimeout(this.themeTransitionTimeout);
+          this.themeTransitionTimeout = setTimeout(() => {
+            html.classList.remove('dark-theme-transition');
+            this.themeTransitionTimeout = -1;
+          }, 250);
+        } else {
+          html.classList.add('dark-theme-transition');
+          this.themeTransitionTimeout = setTimeout(() => {
+            html.classList.remove('dark-theme-transition');
+            this.themeTransitionTimeout = -1;
+          }, 250);
+        }
       },
       checkUserPreference() {
         if (!localStorage.getItem('dark-theme'))
@@ -29,7 +50,6 @@
       initThemePreference() {
         if (!this.checkUserPreference()) return;
         html.classList.add('dark-theme');
-        setTimeout(() => html.classList.add('dark-theme-transition'), 500);
         document.getElementById('theme-toggle').checked = true;
       },
       toggleUserPreference() {

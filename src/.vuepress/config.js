@@ -99,7 +99,9 @@ module.exports = {
             children: [
               '/api/admin/account',
               '/api/admin/domain',
-              '/api/admin/file'
+              '/api/admin/file',
+              '/api/admin/instruction',
+              '/api/admin/session'
             ]
           }
         ]
