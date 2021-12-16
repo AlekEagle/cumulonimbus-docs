@@ -64,7 +64,7 @@ fetch('https://alekeagle.me/api/session', {
 
 ## POST /user/session
 
-Create a new session (log in).
+Create a new session (log in). The name of the session is controlled by the User-Agent Header, if the User-Agent cannot be parsed from a normal browser User-Agent, the entire User-Agent string will be used as the name.
 
 :::tip No Authorization Required
 This endpoint does not require authorization.
@@ -229,7 +229,7 @@ Delete a specific session for the authenticated user.
 ```sh
 curl -X DELETE \
   -H "Authorization: token" \
-  https://alekeagle.me/api/session/sid
+  https://alekeagle.me/api/session/1234567890
 ```
 
 </code-block>
@@ -237,7 +237,7 @@ curl -X DELETE \
 <code-block title="JS Fetch">
 
 ```js
-fetch('https://alekeagle.me/api/session/sid', {
+fetch('https://alekeagle.me/api/session/1234567890', {
   method: 'DELETE',
   credentials: 'include',
   headers: {
@@ -268,7 +268,7 @@ fetch('https://alekeagle.me/api/session/sid', {
 
 - 404 Not Found
 
-  - [SessionMissing](/reference/structures/errors.md#sessionmissing)
+  - [InvalidSession](/reference/structures/errors.md#invalidsession)
 
 - 429 Too Many Requests
 

@@ -37,7 +37,7 @@ class InvalidPassword implements Error {
 
 ## InvalidSession
 
-Returned when your token is invalid or your session has expired for that token. Either way the solution is to generate a new token.
+Returned when your token is invalid (401 Unauthorized) or when you are attempting to interact with a session that doesn't exist (404 Not Found).
 
 ```ts
 class InvalidSession implements Error {
@@ -155,17 +155,6 @@ class MissingFields implements Error {
   public readonly code: string = 'MISSING_FIELDS_ERROR';
   public readonly message: string = 'Missing Fields';
   public fields: string[];
-}
-```
-
-## SessionMissing
-
-Returned when trying to interact with a session that does not exist.
-
-```ts
-class SessionMissing implements Error {
-  public readonly code: string = 'SESSION_NOT_FOUND_ERROR';
-  public readonly message: string = 'Session Not Found';
 }
 ```
 

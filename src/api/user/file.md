@@ -364,3 +364,84 @@ fetch('https://alekeagle.me/api/user/files/all', {
   - [Internal](/reference/structures/errors.md#internal)
 
 :::
+
+## POST /upload
+
+Upload a file.
+
+:::warning Max File Size
+The max file size is 100MB, if you want me to increase it, [support me on patreon](https://patreon.com/alekeagle) so I can afford a higher tier of on CloudFlare.
+:::
+
+:::details Parameters
+
+- Body
+
+  - `file`
+
+    - The file you want to upload, if not provided in `multipart/form-data`, the server will assume it is text and upload it as a plain text file.
+
+:::
+
+:::details Example Requests
+
+<code-group>
+
+<code-block title="cURL">
+
+```sh
+curl -X POST \
+  -H "Authorization: token" \
+  -d "@/file.png" \
+  https://alekeagle.me/api/upload
+```
+
+</code-block>
+
+<code-block title="JS Fetch">
+
+```js
+fetch('https://alekeagle.me/api/upload', {
+  method: 'POST',
+  credentials: 'include',
+  headers: {
+    Authorization: 'token'
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({file: 'joe'})
+});
+```
+
+</code-block>
+
+</code-group>
+
+:::
+
+:::details Responses
+
+- 201 Created
+
+  - [SuccessfulUpload](/reference/structures/data.md#successfulupload)
+
+- 400 Bad Request
+
+  - [MissingFields](/reference/structures/errors.md#missingifields)
+
+- 401 Unauthorized
+
+  - [InvalidSession](/reference/structures/errors.md#invalidsession)
+
+- 403 Forbidden
+
+  - [Banned](/reference/structures/errors.md#banned)
+
+- 429 Too Many Requests
+
+  - [RateLimited](/reference/structures/errors.md#ratelimited)
+
+- 500 Internal Server Error
+
+  - [Internal](/reference/structures/errors.md#internal)
+
+:::
