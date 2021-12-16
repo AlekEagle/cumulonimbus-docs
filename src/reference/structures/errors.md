@@ -97,8 +97,8 @@ Returned when you are stupid and somehow fuck up the API endpoint.
 
 ```ts
 class InvalidEndpoint implements Error {
-  public readonly code: string = 'ENDPOINT_NOT_FOUND_ERROR';
-  public readonly message: string = 'Endpoint Not Found';
+  public readonly code: string = 'INVALID_ENDPOINT_ERROR';
+  public readonly message: string = 'Invalid Endpoint';
 }
 ```
 
