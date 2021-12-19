@@ -437,4 +437,22 @@ fetch('https://alekeagle.me/images/assets/Cumulonimbus.svg').then(res => {
 
 - 400 Bad Request
 
-  - [MissingFields](/reference/structures/errors.md#missingfields)
+  - [MissingFields](/reference/structures/errors.md#missingifields)
+
+- 401 Unauthorized
+
+  - [InvalidSession](/reference/structures/errors.md#invalidsession)
+
+- 403 Forbidden
+
+  - [Banned](/reference/structures/errors.md#banned)
+
+- 429 Too Many Requests
+
+  - [RateLimited](/reference/structures/errors.md#ratelimited)
+
+- 500 Internal Server Error
+
+  - [Internal](/reference/structures/errors.md#internal)
+
+:::
