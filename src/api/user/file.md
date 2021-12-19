@@ -364,3 +364,77 @@ fetch('https://alekeagle.me/api/user/files/all', {
   - [Internal](/reference/structures/errors.md#internal)
 
 :::
+
+## POST /upload
+
+Upload data or a file.
+
+:::warning Uploading Files
+Uploading Files with proper extensions is only fully supported using `multipart/form-data`, that way, if the server fails to detect what the file type is, it can fall back to the files original extension.
+:::
+
+:::danger Max File Size
+Unfortunately, the max file size is capped at `100MB`, and in order to raise the limit I need to pay for a paid tier of CloudFlare, if you want to help cover the cost, please support me on [Patreon](https://patreon.com/alekeagle).
+:::
+
+:::details Parameters
+
+- Body
+
+  - `file`
+
+    - The file, or any other data, you wish to upload.
+
+:::
+
+:::details Example Requests
+
+<code-group>
+
+<code-block title="cURL">
+
+```sh
+curl -X POST \
+  -H "Authorization: token" \
+  -F file=@Cumulonimbus.svg \
+  https://alekeagle.me/api/upload
+```
+
+</code-block>
+
+<code-block title="JS Fetch">
+
+```js
+const formDataWithFile = new FormData();
+
+fetch('https://alekeagle.me/images/assets/Cumulonimbus.svg').then(res => {
+  res.blob().then(tastyBlob => {
+    formDataWithFile.append('file', new File([tastyBlob], 'Cumulonimbus.svg'));
+
+    fetch('https://alekeagle.me/api/user/1234567890/session/1234567890', {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        Authorization: 'token'
+      },
+      body: formDataWithFile
+    });
+  });
+});
+```
+
+</code-block>
+
+</code-group>
+
+:::
+
+:::details Responses
+
+- 201 Created
+
+  - [SuccessfulUpload](/reference/structures/data.md#successfulupload)
+
+- 400 Bad Request
+
+  - [MissingFields](/reference/structures/errors.md#missingfields)

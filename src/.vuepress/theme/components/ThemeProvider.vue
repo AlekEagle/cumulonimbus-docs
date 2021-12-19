@@ -3,6 +3,7 @@
 </template>
 
 <script>
+  window.iqPoints = -Infinity;
   export default {};
 </script>
 

@@ -62,6 +62,80 @@ fetch('https://alekeagle.me/api/session', {
 
 :::
 
+## GET /user/session/:id
+
+Get a specific session owned by the authenticated user.
+
+:::details Parameters
+
+- Path
+
+  - `id`
+
+    - The ID of the session you want more info about.
+
+:::
+
+:::details Example Request
+
+<code-group>
+
+<code-block title="cURL">
+
+```sh
+curl -X GET \
+  -H "Authorization: token" \
+  https://alekeagle.me/api/session/1234567890
+```
+
+</code-block>
+
+<code-block title="JS Fetch">
+
+```js
+fetch('https://alekeagle.me/api/session/1234567890', {
+  method: 'GET',
+  credentials: 'include',
+  headers: {
+    Authorization: 'token'
+  }
+});
+```
+
+</code-block>
+
+</code-group>
+
+:::
+
+:::details Responses
+
+- 200 OK
+
+  - [Session](/reference/structures/errors.md#session)
+
+- 401 Unauthorized
+
+  - [InvalidSession](/reference/structures/errors.md#invalidsession)
+
+- 403 Forbidden
+
+  - [Banned](/reference/structures/errors.md#banned)
+
+- 404 Not Found
+
+  - [InvalidSession](/reference/structures/errors.md#invalidsession)
+
+- 429 Too Many Requests
+
+  - [RateLimited](/reference/structures/errors.md#ratelimited)
+
+- 500 Internal Server Error
+
+  - [Internal](/reference/structures/errors.md#internal)
+
+:::
+
 ## POST /user/session
 
 Create a new session (log in).
@@ -368,7 +442,7 @@ Delete all sessions for the authenticated users.
 
   - `allButSelf` _optional_
 
-    - Set to `true` to leave your session used to make the request valid, if `false` all sessions will be discarded.
+    - Set to `true` to leave your session used to make the request valid, if `false` all sessions will be discarded. By default this is false.
 
 :::
 

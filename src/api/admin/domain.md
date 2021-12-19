@@ -92,6 +92,12 @@ Modify a domain's `allowsSubdomains` value.
 
 :::details Parameters
 
+- Path
+
+  - `id`
+
+    - The ID of the domain you want to modify.
+
 - Body
 
   - `allowsSubdomains`
