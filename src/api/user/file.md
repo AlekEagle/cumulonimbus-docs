@@ -447,6 +447,10 @@ fetch('https://alekeagle.me/images/assets/Cumulonimbus.svg').then(res => {
 
   - [Banned](/reference/structures/errors.md#banned)
 
+- 413 Payload Too Large
+
+  - There is no specific error structure associated with this, as the error may not come from our origin server.
+
 - 429 Too Many Requests
 
   - [RateLimited](/reference/structures/errors.md#ratelimited)
