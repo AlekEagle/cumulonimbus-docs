@@ -449,7 +449,7 @@ fetch('https://alekeagle.me/images/assets/Cumulonimbus.svg').then(res => {
 
 - 413 Payload Too Large
 
-  - There is no specific error structure associated with this, as the error may not come from our origin server.
+  - [BodyTooLarge](/reference/structures/errors.md#bodytoolarge)
 
 - 429 Too Many Requests
 

@@ -169,6 +169,21 @@ class Banned implements Error {
 }
 ```
 
+## BodyTooLarge
+
+Returned when the request body is too large to be processed. Normally returned when file is too large.
+
+:::danger Response Not Guaranteed
+We cannot guarantee that the response for this will always be what is returned below. You have been warned.
+:::
+
+```ts
+class BodyTooLarge implements Error {
+  public readonly code: string = 'BODY_TOO_LARGE_ERROR';
+  public readonly message: string = 'Request Body Too Large';
+}
+```
+
 ## RateLimited
 
 Returned when you have reached a ratelimit for making requests.

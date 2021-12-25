@@ -1,29 +1,35 @@
 <template>
   <div class="dark-mode-widget">
-    <input type="checkbox" id="theme-toggle" @click="toggleDarkTheme" />
+    <input
+      type="checkbox"
+      id="theme-toggle"
+      ref="themeToggle"
+      @click="toggleDarkTheme"
+    />
     <label for="theme-toggle"><span></span></label>
   </div>
 </template>
 
 <script>
-  const html = document.getElementsByTagName('html')[0];
   export default {
     data() {
       return {
-        themeTransitionTimeout: -1
+        themeTransitionTimeout: -1,
+        html: null
       };
     },
     mounted() {
+      this.$data.html = document.getElementsByTagName('html')[0];
       this.initThemePreference();
     },
     methods: {
       toggleDarkTheme() {
-        if (html.classList.contains('dark-theme')) {
+        if (this.$data.html.classList.contains('dark-theme')) {
           this.enableTransition();
-          html.classList.remove('dark-theme');
+          this.$data.html.classList.remove('dark-theme');
         } else {
           this.enableTransition();
-          html.classList.add('dark-theme');
+          this.$data.html.classList.add('dark-theme');
         }
         this.toggleUserPreference();
       },
@@ -31,13 +37,13 @@
         if (this.$data.themeTransitionTimeout !== -1) {
           clearTimeout(this.themeTransitionTimeout);
           this.themeTransitionTimeout = setTimeout(() => {
-            html.classList.remove('dark-theme-transition');
+            this.$data.html.classList.remove('dark-theme-transition');
             this.themeTransitionTimeout = -1;
           }, 250);
         } else {
-          html.classList.add('dark-theme-transition');
+          this.$data.html.classList.add('dark-theme-transition');
           this.themeTransitionTimeout = setTimeout(() => {
-            html.classList.remove('dark-theme-transition');
+            this.$data.html.classList.remove('dark-theme-transition');
             this.themeTransitionTimeout = -1;
           }, 250);
         }
@@ -49,8 +55,8 @@
       },
       initThemePreference() {
         if (!this.checkUserPreference()) return;
-        html.classList.add('dark-theme');
-        document.getElementById('theme-toggle').checked = true;
+        this.$data.html.classList.add('dark-theme');
+        this.$refs.themeToggle.checked = true;
       },
       toggleUserPreference() {
         localStorage.setItem(

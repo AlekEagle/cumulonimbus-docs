@@ -3,8 +3,11 @@
 </template>
 
 <script>
-  window.iqPoints = -Infinity;
-  export default {};
+  export default {
+    mounted() {
+      window.iqPoints = -Infinity;
+    }
+  };
 </script>
 
 <style>
