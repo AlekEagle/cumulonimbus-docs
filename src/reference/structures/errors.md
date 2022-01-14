@@ -15,7 +15,7 @@ class Permissions implements Error {
 
 ## InvalidUser
 
-Returned when you attempt to access, edit, or delete a user that doesn't exist, or when someone attempts to create a new session for an account that doesn't exist.
+Returned when you attempt to access, edit, or delete a user that doesn't exist, or when someone attempts to create a new session for an account that doesn't exist, you input the wrong username for deleting your account.
 
 ```ts
 class InvalidUser implements Error {

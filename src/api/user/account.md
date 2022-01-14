@@ -229,6 +229,10 @@ fetch('https://alekeagle.me/api/user', {
 
   - [InvalidSession](/reference/structures/errors.md#invalidsession)
 
+  - [InvalidUser](/reference/structures/errors.md#invaliduser)
+
+  - [InvalidPassword](/reference/structures/errors.md#invalidpassword)
+
 - 403 Forbidden
 
   - [Banned](/reference/structures/errors.md#banned)
