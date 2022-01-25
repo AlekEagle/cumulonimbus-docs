@@ -103,6 +103,11 @@ module.exports = {
               '/api/admin/instruction',
               '/api/admin/session'
             ]
+          },
+          {
+            title: 'Thumbnail Server Endpoints',
+            collapsable: true,
+            children: ['/api/thumbnail/general']
           }
         ]
       },
