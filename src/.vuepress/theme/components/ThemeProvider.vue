@@ -169,6 +169,10 @@
     background-color: rgb(27 31 35);
   }
 
+  html.dark-theme div.sw-update-popup {
+    background-color: var(--main-bg-color);
+  }
+
   html.dark-theme .custom-block.danger .custom-block-title {
     color: var(--body-color);
   }
