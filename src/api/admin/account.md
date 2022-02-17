@@ -246,6 +246,10 @@ fetch('https://alekeagle.me/api/users', {
 
   - [InvalidUser](/reference/structures/errors.md#invaliduser)
 
+- 409 Conflict
+
+  - [UserExists](/reference/structures/errors.md#userexists)
+
 - 429 Too Many Requests
 
   - [RateLimited](/reference/structures/errors.md#ratelimited)

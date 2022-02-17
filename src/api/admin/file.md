@@ -316,6 +316,76 @@ fetch('https://alekeagle.me/api/file/abcdefghij.txt', {
 
 :::
 
+## DELETE /user/:id/files
+
+Delete all files owned by a user.
+
+:::details Example Requests
+
+<code-group>
+
+  <code-block title="cURL">
+
+    ```sh
+
+    curl -X DELETE \
+      -H "Authorization: token" \
+      https://alekeagle.me/api/user/1234567890/files
+
+    ```
+
+  </code-block>
+
+  <code-block title="JS Fetch">
+
+    ```js
+
+    fetch('https://alekeagle.me/api/user/1234567890/files', {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: {
+        Authorization: 'token'
+      }
+    });
+
+    ```
+
+  </code-block>
+
+</code-group>
+
+:::
+
+:::details Responses
+
+- 200 OK
+
+  - [DeleteBulk](/reference/structures/data.md#deletebulk)
+
+- 401 Unauthorized
+
+  - [InvalidSession](/reference/structures/errors.md#invalidsession)
+
+- 403 Forbidden
+
+  - [Banned](/reference/structures/errors.md#banned)
+
+  - [Permissions](/reference/structures/errors.md#permissions)
+
+- 404 Not Found
+
+  - [InvalidUser](/reference/structures/errors.md#invaliduser)
+
+- 429 Too Many Requests
+
+  - [RateLimited](/reference/structures/errors.md#ratelimited)
+
+- 500 Internal Server Error
+
+  - [Internal](/reference/structures/errors.md#internal)
+
+:::
+
 ## DELETE /files
 
 Bulk delete a list of files.
