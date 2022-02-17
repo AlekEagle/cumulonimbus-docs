@@ -316,7 +316,7 @@ fetch('https://alekeagle.me/api/file/abcdefghij.txt', {
 
 :::
 
-## DELETE /user/:id/files
+## DELETE /user/:id/files/all
 
 Delete all files owned by a user.
 
@@ -330,7 +330,7 @@ Delete all files owned by a user.
 
     curl -X DELETE \
       -H "Authorization: token" \
-      https://alekeagle.me/api/user/1234567890/files
+      https://alekeagle.me/api/user/1234567890/files/all
 
     ```
 
@@ -340,7 +340,7 @@ Delete all files owned by a user.
 
     ```js
 
-    fetch('https://alekeagle.me/api/user/1234567890/files', {
+    fetch('https://alekeagle.me/api/user/1234567890/files/all', {
       method: 'DELETE',
       credentials: 'include',
       headers: {
