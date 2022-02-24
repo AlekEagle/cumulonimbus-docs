@@ -184,6 +184,10 @@ At least 1 field is required in the body.
 
     - The new password for the user.
 
+  - `staff` _optional_
+
+    - Whether the user is a staff member or not.
+
 :::
 
 :::details Example Requests
