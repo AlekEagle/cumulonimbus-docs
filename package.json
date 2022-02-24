@@ -1,6 +1,6 @@
 {
   "name": "cumulonimbus-docs",
-  "version": "3.1.0",
+  "version": "3.1.3",
   "description": "Documentation for the public and open-source file sharing platform Cumulonimbus.",
   "main": "index.js",
   "authors": {
