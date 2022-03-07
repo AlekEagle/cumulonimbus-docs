@@ -14,6 +14,10 @@ The server does **NOT** respect the Accept header. It will only respond with `ap
 
 Any request that has a body can use any of the following:
 
+:::tip Recommended Body Content Type
+Even though the REST API supports the formats below, we can only guarantee 100% support with `application/json`. If you experience any issues with any other format types, please let me know.
+:::
+
 :::details Compatible Content Types
 
 - `multipart/form-data`
