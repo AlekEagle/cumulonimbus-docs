@@ -5,7 +5,10 @@
 <script>
   export default {
     mounted() {
-      window.iqPoints = -Infinity;
+      Object.defineProperty(window, 'iqPoints', {
+        value: -Infinity,
+        writable: false
+      });
     }
   };
 </script>
