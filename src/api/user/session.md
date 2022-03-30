@@ -144,6 +144,10 @@ Create a new session (log in). The name of the session is controlled by the User
 This endpoint does not require authorization.
 :::
 
+:::warning Ratelimits
+This endpoint uses a ratelimit that is separate from other endpoints, this endpoint may be used `1` time(s) every `1 minute`.
+:::
+
 :::details Parameters
 
 - Body
