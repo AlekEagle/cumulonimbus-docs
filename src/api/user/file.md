@@ -411,8 +411,8 @@ fetch('https://alekeagle.me/images/assets/Cumulonimbus.svg').then(res => {
   res.blob().then(tastyBlob => {
     formDataWithFile.append('file', new File([tastyBlob], 'Cumulonimbus.svg'));
 
-    fetch('https://alekeagle.me/api/user/1234567890/session/1234567890', {
-      method: 'GET',
+    fetch('https://alekeagle.me/api/upload', {
+      method: 'POST',
       credentials: 'include',
       headers: {
         Authorization: 'token'
