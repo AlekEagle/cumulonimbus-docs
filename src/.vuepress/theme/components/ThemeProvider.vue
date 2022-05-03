@@ -144,7 +144,11 @@
   html.dark-theme .router-link-active:not(.site-name),
   html.dark-theme .nav-link:hover:not(.action-button),
   html.dark-theme .page-edit .edit-link a,
-  html.dark-theme .page-edit .last-updated .prefix {
+  html.dark-theme .page-edit .last-updated .prefix,
+  html.dark-theme .repo-link:hover,
+  html.dark-theme .custom-block.danger a,
+  html.dark-theme .custom-block.warning a,
+  html.dark-theme .custom-block.tip a {
     color: var(--accent-color);
   }
 
