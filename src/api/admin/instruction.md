@@ -46,7 +46,7 @@ Create a new instruction set for a service.
 curl -X POST \
   -H "Authorization: token" \
   -H "Content-Type: application/json" \
-  -d "{\"name\":\"sharex\",\"displayName\":\"ShareX\",\"description\":\"The Windows solution for screen capture, file sharing and productivity tools.\",\"filename\":\"Cumulonimbus-ShareX-Config.sxcu\",\"fileContent\":\"I can't be bothered to oneline a ShareX custom uploader config here so you'll just have to do with this.\",\"steps\":[\"Download the configuration file by clicking me!\",\"Once it finishes downloading, open the file, when ShareX prompts you if you want to set this service as your default uploader, select \\\"yes\\\".\",\"Done!\"]}" \
+  -d "{\"name\":\"sharex\",\"displayName\":\"ShareX\",\"description\":\"The Windows solution for screen capture, file uploading and productivity tools.\",\"filename\":\"Cumulonimbus-ShareX-Config.sxcu\",\"fileContent\":\"I can't be bothered to oneline a ShareX custom uploader config here so you'll just have to do with this.\",\"steps\":[\"Download the configuration file by clicking me!\",\"Once it finishes downloading, open the file, when ShareX prompts you if you want to set this service as your default uploader, select \\\"yes\\\".\",\"Done!\"]}" \
   https://alekeagle.me/api/instruction
 ```
 
@@ -66,7 +66,7 @@ fetch('https://alekeagle.me/api/instruction', {
     name: 'sharex',
     displayName: 'ShareX',
     description:
-      'The Windows solution for screen capture, file sharing and productivity tools.',
+      'The Windows solution for screen capture, file uploading and productivity tools.',
     filename: 'Cumulonimbus-ShareX-Config.sxcu',
     fileContent:
       "I can't be bothered to oneline a ShareX custom uploader config here so you'll just have to do with this.",
