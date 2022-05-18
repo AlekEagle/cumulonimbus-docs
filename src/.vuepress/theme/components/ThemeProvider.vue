@@ -6,8 +6,12 @@
   export default {
     mounted() {
       Object.defineProperty(window, 'iqPoints', {
-        value: -Infinity,
-        writable: false
+        get: () => {
+          return -Infinity;
+        },
+        set: () => {
+          throw new Error('Cannot modify read-only property');
+        }
       });
     }
   };
