@@ -68,6 +68,17 @@ interface Domain {
 }
 ```
 
+## DomainSlim
+
+Similar to Domain, but without the `createdAt` and `updatedAt` fields.
+
+```ts
+interface DomainSlim {
+  domain: string; // Used as domain ID
+  allowsSubdomains: boolean;
+}
+```
+
 ## Error
 
 ```ts
