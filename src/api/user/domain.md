@@ -76,7 +76,7 @@ fetch('https://alekeagle.me/api/domains', {
 
 :::
 
-## GET /domain/slim
+## GET /domains/slim
 
 Get a slimmed down version of all domains. This is useful for the frontend to display a list of domains without having to deal with pagination.
 
@@ -89,7 +89,7 @@ Get a slimmed down version of all domains. This is useful for the frontend to di
 ```sh
 curl -X GET \
   -H "Authorization: token" \
-  https://alekeagle.me/api/domain/slim
+  https://alekeagle.me/api/domains/slim
 ```
 
 </code-block>
@@ -97,7 +97,7 @@ curl -X GET \
 <code-block title="JS Fetch">
 
 ```js
-fetch('https://alekeagle.me/api/domain/slim', {
+fetch('https://alekeagle.me/api/domains/slim', {
   method: 'GET',
   credentials: 'include',
   headers: {
