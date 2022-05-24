@@ -17,7 +17,6 @@ interface List<T> {
 interface User {
   id: string;
   username: string;
-  displayName: string;
   email: string;
   staff: boolean;
   domain: string;
@@ -53,7 +52,7 @@ interface Success {
 ```ts
 interface DeleteBulk {
   count: number;
-  type: 'user' | 'session' | 'file' | 'domain' | 'instruction';
+  type: "user" | "session" | "file" | "domain" | "instruction";
 }
 ```
 
