@@ -1,6 +1,6 @@
 {
   "name": "cumulonimbus-docs",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "description": "Documentation for the public and open-source file hosting platform Cumulonimbus.",
   "main": "index.js",
   "authors": {
