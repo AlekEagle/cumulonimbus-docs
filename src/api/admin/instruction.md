@@ -4,7 +4,7 @@ These are endpoints that relate to interacting with setup instructions for vario
 
 ## POST /instruction
 
-Create a new instruction set for a service.
+Create new setup instructions for a specific service.
 
 :::details Parameters
 
@@ -12,7 +12,7 @@ Create a new instruction set for a service.
 
   - `steps`
 
-    - An array of step by step instructions on how to get the service set up. The setup file download link will be accessable by clicking on the first step.
+    - An array of step by step instructions on how to get the service set up. The setup file download link will be accessible by clicking on the first step.
 
   - `filename`
 
@@ -117,7 +117,7 @@ fetch('https://alekeagle.me/api/instruction', {
 
 ## PATCH /instruction/:id
 
-Update a instruction set for a specified service.
+Update a specific setup instruction.
 
 :::warning Optional Parameters
 At least 1 field is required in the body.
@@ -129,7 +129,7 @@ At least 1 field is required in the body.
 
   - `id`
 
-    - The ID of the instruction set.
+    - The ID of the instruction.
 
 - Body
 
@@ -227,7 +227,7 @@ fetch('https://alekeagle.me/api/instruction/sharex', {
 
 ## DELETE /instruction/:id
 
-Delete an instruction set for a specific upload service.
+Delete a specific setup instruction.
 
 :::details Parameters
 
@@ -235,7 +235,7 @@ Delete an instruction set for a specific upload service.
 
   - `id`
 
-    - The ID of the instruction set you wish to remove.
+    - The ID of the instruction.
 
 :::
 
@@ -303,7 +303,7 @@ fetch('https://alekeagle.me/api/instruction/sharex', {
 
 ## DELETE /instructions
 
-Bulk delete all instruction sets provided.
+Bulk delete multiple setup instructions.
 
 :::details Parameters
 
@@ -311,7 +311,7 @@ Bulk delete all instruction sets provided.
 
   - `instruction`
 
-    - A list of instruction sets you wish to delete.
+    - An array of instruction IDs to delete.
 
 :::
 

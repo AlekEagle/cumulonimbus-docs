@@ -88,7 +88,7 @@ fetch('https://alekeagle.me/api/domain', {
 
 ## PATCH /domain/:id
 
-Modify a domain's `allowsSubdomains` value.
+Update a specific domain.
 
 :::details Parameters
 
@@ -96,7 +96,7 @@ Modify a domain's `allowsSubdomains` value.
 
   - `id`
 
-    - The ID of the domain you want to modify.
+    - The ID of the domain.
 
 - Body
 
@@ -174,7 +174,7 @@ fetch('https://alekeagle.me/api/domain/alekeagle.biz', {
 
 ## DELETE /domain/:id
 
-Delete the specified domain.
+Delete a specific domain.
 
 :::details Parameters
 
@@ -182,7 +182,7 @@ Delete the specified domain.
 
   - `id`
 
-    - The domain you want to delete.
+    - The ID of the domain.
 
 :::
 
@@ -246,7 +246,7 @@ fetch('https://alekeagle.me/api/domain/alekeagle.biz', {
 
 ## DELETE /domains
 
-Bulk delete the provided domains.
+Bulk delete multiple domains.
 
 :::details Parameters
 

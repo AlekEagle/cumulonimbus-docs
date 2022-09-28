@@ -4,7 +4,7 @@ These endpoints pertains to the various actions that can be performed on domains
 
 ## GET /domains
 
-Get all domains usable domains.
+Get a list of all usable domains.
 
 :::details Parameters
 

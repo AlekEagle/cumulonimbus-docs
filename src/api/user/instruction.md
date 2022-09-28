@@ -4,7 +4,7 @@ These are endpoints that relate to interacting with setup instructions for vario
 
 ## GET /instructions
 
-Get a list of all officially supported upload software.
+Get a list of all setup instructions for various services.
 
 :::details Parameters
 
@@ -12,7 +12,7 @@ Get a list of all officially supported upload software.
 
   - `limit` _optional_
 
-    - The number of files returned in the request, the default and max is 50.
+    - The number of instructions returned in the request, the default and max is 50.
 
   - `offset` _optional_
 
@@ -78,7 +78,7 @@ fetch('https://alekeagle.me/api/instructions', {
 
 ## GET /instruction/:id
 
-Get specific instructions for officially supported upload software.
+Get specific setup instructions for a service.
 
 :::details Parameters
 
@@ -86,7 +86,7 @@ Get specific instructions for officially supported upload software.
 
   - `id`
 
-    - The name of the specific instructions object.
+    - The ID of the instruction.
 
 :::
 

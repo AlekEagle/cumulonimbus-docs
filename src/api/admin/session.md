@@ -90,7 +90,7 @@ fetch('https://alekeagle.me/api/user1234567890/sessions', {
 
 ## GET /user/:id/session/:sid
 
-Get a specific session of a user.
+Get a specific session of a specific user.
 
 :::details Parameters
 
@@ -98,7 +98,7 @@ Get a specific session of a user.
 
   - `id`
 
-    - The user who owns the session you are requesting.
+    - The user who the session belongs to.
 
   - `sid`
 

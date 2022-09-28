@@ -4,7 +4,7 @@ These are endpoints that relate to interacting with the account of the user that
 
 ## GET /user
 
-Returns the user object of the current authenticated user.
+Get the current authenticated user.
 
 :::details Example Request
 
@@ -351,7 +351,7 @@ fetch('https://alekeagle.me/api/user', {
 
 ## PATCH /user/domain
 
-Update the authenticated user's domain and subdomain selection.
+Update the current authenticated user's domain and subdomain selection.
 
 :::details Parameters
 

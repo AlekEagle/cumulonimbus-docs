@@ -4,7 +4,7 @@ These are endpoints that relate to interacting with the user specified in the re
 
 ## GET /users
 
-Get all users on the server.
+Get a list of all users.
 
 :::details Parameters
 
@@ -80,7 +80,7 @@ fetch('https://alekeagle.me/api/users', {
 
 ## GET /user/:id
 
-Get info of a specific user.
+Get a specific user.
 
 :::details Parameters
 
@@ -88,7 +88,7 @@ Get info of a specific user.
 
   - `id`
 
-    - The ID of the user you want the information of.
+    - The ID of the user.
 
 :::
 
@@ -168,7 +168,7 @@ At least 1 field is required in the body.
 
   - `id`
 
-    - The ID of the user you want to modify.
+    - The ID of the user.
 
 - Body
 
@@ -266,7 +266,7 @@ fetch('https://alekeagle.me/api/users', {
 
 ## PATCH /user/:id/domain
 
-Update a specific users domain and subdomain selection.
+Update a specific user's domain and subdomain selection.
 
 :::details Parameters
 
@@ -274,7 +274,7 @@ Update a specific users domain and subdomain selection.
 
   - `id`
 
-    - The ID of the user's you wish to modify.
+    - The ID of the user.
 
 - Body
 
@@ -366,7 +366,7 @@ fetch('https://alekeagle.me/api/user/1234567890/domain', {
 
 ## PATCH /user/:id/ban
 
-Toggle the ban status of a user.
+Toggle the ban status of a specific user.
 
 :::details Parameters
 
@@ -450,7 +450,7 @@ Delete a specified user and all of their files.
 
   - `id`
 
-    - The ID of the user you want to delete.
+    - The ID of the user.
 
 :::
 
@@ -518,7 +518,7 @@ fetch('https://alekeagle.me/api/user/1234567890', {
 
 ## DELETE /users
 
-Bulk delete the users provided in the request.
+Bulk delete multiple users.
 
 :::details Parameters
 

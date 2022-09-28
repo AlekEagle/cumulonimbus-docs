@@ -4,7 +4,7 @@ These are endpoints that relate to interacting with the files of the user that i
 
 ## GET /user/files
 
-Get all files for the authenticated user.
+Get all files owned by the authenticated user.
 
 :::details Parameters
 
@@ -225,7 +225,7 @@ fetch('https://alekeagle.me/api/user/file/abcdefghij.txt', {
 
 ## DELETE /user/files
 
-Bulk-delete the list of files that are owned by the authenticated user provided.
+Bulk-delete multiple files owned by the authenticated user.
 
 :::details Parameters
 
@@ -303,7 +303,7 @@ fetch('https://alekeagle.me/api/user/files', {
 
 ## DELETE /user/files/all
 
-Bulk-delete all files owned by the authenticated user.
+Delete all files owned by the authenticated user.
 
 :::danger Dangerous Endpoint
 Calling this endpoint can result in a mass loss of data, and there is no conformation. Be careful!

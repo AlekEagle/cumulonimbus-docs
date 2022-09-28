@@ -4,7 +4,7 @@ These endpoints are for interacting with files on the server.
 
 ## GET /files
 
-Get the files on the server.
+Get a list of all files.
 
 :::details Parameters
 
@@ -80,7 +80,7 @@ fetch('https://alekeagle.me/api/files', {
 
 ## GET /user/:id/files
 
-View a specific user's files.
+Get a list of all files owned by a specific user.
 
 :::details Parameters
 
@@ -166,7 +166,7 @@ fetch('https://alekeagle.me/api/user/1234567890/files', {
 
 ## GET /file/:id
 
-Get the details of a specific file.
+Get a specific file.
 
 :::details Parameters
 
@@ -174,7 +174,7 @@ Get the details of a specific file.
 
   - `id`
 
-    - The file you want the details of.
+    - The ID of the file.
 
 :::
 
@@ -250,7 +250,7 @@ Delete a specific file.
 
   - `id`
 
-    - The file you wish to delete.
+    - The ID of the file.
 
 :::
 
@@ -318,7 +318,7 @@ fetch('https://alekeagle.me/api/file/abcdefghij.txt', {
 
 ## DELETE /user/:id/files/all
 
-Delete all files owned by a user.
+Delete all files owned by a specific user.
 
 :::details Example Requests
 

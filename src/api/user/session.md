@@ -226,7 +226,7 @@ fetch('https://alekeagle.me/api/session', {
 
 ## GET /user/sessions
 
-Get all sessions for the authenticated user.
+Get a list of all sessions for the authenticated user.
 
 :::details Example Request
 
