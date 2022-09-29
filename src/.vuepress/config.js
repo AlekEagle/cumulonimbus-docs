@@ -129,6 +129,12 @@ module.exports = {
             ]
           }
         ]
+      },
+      {
+        title: 'Deprecation Notices',
+        collapsable: true,
+        sidebarDepth: 2,
+        path: '/deprecation-notices'
       }
     ]
   },

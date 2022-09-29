@@ -149,24 +149,36 @@ This endpoint uses a ratelimit that is separate from other endpoints, this endpo
 :::
 
 :::danger Using Email for Login
-Logging in with your email will be deprecated in the future, please use your username instead. The fields will also be renamed from `user` to `username` and `pass` to `password`.
+Logging in with your email will be deprecated in the future, please use your username instead. Refer to [this](/deprecation-notices.md#emails-for-login) for more information.
+:::
+
+:::danger Field Changes
+The `user` field has been renamed to `username` and the `pass` field has been renamed to `password` in the request body. Please use the new field names instead. Refer to [this](/deprecation-notices.md#post-user-session-fields) for more information.
 :::
 
 :::details Parameters
 
 - Body
 
-  - `user`
+  - `user` **Deprecated**
 
-    - The username or email of the user you wish to authenticate as.
+    - The username or email of the user you wish to authenticate as. This is deprecated, please use `username` instead.
 
-  - `pass`
+  - `username`
 
-    - The password of the use you wish to authenticate as.
+    - The username of the user you wish to authenticate as.
+
+  - `pass` **Deprecated**
+
+    - The password of the user you wish to authenticate as. This is deprecated, please use `password` instead.
+
+  - `password`
+
+    - The password of the user you wish to authenticate as.
 
   - `rememberMe` _optional_
 
-    - Wether or not your session should last for a month or ten years.
+    - Wether or not your session should last for a day or ten years.
 
 :::
 
