@@ -1,0 +1,6 @@
+{
+  // Disable warnings about line length
+  "MD013": false,
+  // Disable warnings about inline HTML (we use it for VuePress components)
+  "MD033": false
+}

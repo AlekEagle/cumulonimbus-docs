@@ -148,6 +148,10 @@ This endpoint does not require authorization.
 This endpoint uses a ratelimit that is separate from other endpoints, this endpoint may be used `1` time(s) every `1 minute`.
 :::
 
+:::danger Using Email for Login
+Logging in with your email will be deprecated in the future, please use your username instead. The fields will also be renamed from `user` to `username` and `pass` to `password`.
+:::
+
 :::details Parameters
 
 - Body
