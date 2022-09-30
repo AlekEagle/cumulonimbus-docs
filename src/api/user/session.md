@@ -160,17 +160,9 @@ The `user` field has been renamed to `username` and the `pass` field has been re
 
 - Body
 
-  - `user` **Deprecated**
-
-    - The username or email of the user you wish to authenticate as. This is deprecated, please use `username` instead.
-
   - `username`
 
     - The username of the user you wish to authenticate as.
-
-  - `pass` **Deprecated**
-
-    - The password of the user you wish to authenticate as. This is deprecated, please use `password` instead.
 
   - `password`
 
@@ -191,7 +183,7 @@ The `user` field has been renamed to `username` and the `pass` field has been re
 ```sh
 curl -X POST \
   -H "Content-Type: application/json" \
-  -d "{\"user\":\"joe\",\"pass\":\"joe\",\"rememberMe\":true}" \
+  -d "{\"username\":\"joe\",\"password\":\"joe\",\"rememberMe\":true}" \
   https://alekeagle.me/api/session
 ```
 
@@ -206,7 +198,7 @@ fetch('https://alekeagle.me/api/session', {
   headers: {
     'Content-Type': 'application/json'
   },
-  body: JSON.stringify({ user: 'joe', pass: 'joe', rememberMe: true })
+  body: JSON.stringify({ username: 'joe', password: 'joe', rememberMe: true })
 });
 ```
 
