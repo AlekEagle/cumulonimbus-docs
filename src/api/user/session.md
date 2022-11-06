@@ -467,7 +467,7 @@ Delete all sessions for the authenticated users.
 ```sh
 curl -X DELETE \
   -H "Authorization: token" \
-  https://alekeagle.me/api/user/sessions/?allButSelf=true
+  https://alekeagle.me/api/user/sessions/all?allButSelf=true
 ```
 
 </code-block>
@@ -475,7 +475,7 @@ curl -X DELETE \
 <code-block title="JS Fetch">
 
 ```js
-fetch('https://alekeagle.me/api/user/sessions/?allbutSelf=true', {
+fetch('https://alekeagle.me/api/user/sessions/all?allbutSelf=true', {
   method: 'DELETE',
   credentials: 'include',
   headers: {
