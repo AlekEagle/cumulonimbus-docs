@@ -284,7 +284,7 @@ fetch('https://alekeagle.me/api/domains', {
     Authorization: 'token',
     'Content-Type': 'application/json'
   },
-  body: JSON.stringify({domains: ['alekeagle.biz', 'ifunny.lol'])
+  body: JSON.stringify({ domains: ['alekeagle.biz', 'ifunny.lol'] })
 });
 ```
 

@@ -43,7 +43,7 @@ curl -X GET \
 <code-block title="JS Fetch">
 
 ```js
-fetch('https://alekeagle.me/api/user1234567890/sessions', {
+fetch('https://alekeagle.me/api/user/1234567890/sessions', {
   method: 'GET',
   credentials: 'include',
   headers: {

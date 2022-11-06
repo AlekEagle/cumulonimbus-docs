@@ -15,7 +15,7 @@ Get the current session used to authenticate.
 ```sh
 curl -X GET \
   -H "Authorization: token" \
-  https://alekeagle.me/api/session
+  https://alekeagle.me/api/user/session
 ```
 
 </code-block>
@@ -23,7 +23,7 @@ curl -X GET \
 <code-block title="JS Fetch">
 
 ```js
-fetch('https://alekeagle.me/api/session', {
+fetch('https://alekeagle.me/api/user/session', {
   method: 'GET',
   credentials: 'include',
   headers: {
@@ -85,7 +85,7 @@ Get a specific session owned by the authenticated user.
 ```sh
 curl -X GET \
   -H "Authorization: token" \
-  https://alekeagle.me/api/session/1234567890
+  https://alekeagle.me/api/user/session/1234567890
 ```
 
 </code-block>
@@ -93,7 +93,7 @@ curl -X GET \
 <code-block title="JS Fetch">
 
 ```js
-fetch('https://alekeagle.me/api/session/1234567890', {
+fetch('https://alekeagle.me/api/user/session/1234567890', {
   method: 'GET',
   credentials: 'include',
   headers: {
@@ -184,7 +184,7 @@ The `user` field has been renamed to `username` and the `pass` field has been re
 curl -X POST \
   -H "Content-Type: application/json" \
   -d "{\"username\":\"joe\",\"password\":\"joe\",\"rememberMe\":true}" \
-  https://alekeagle.me/api/session
+  https://alekeagle.me/api/user/session
 ```
 
 </code-block>
@@ -192,7 +192,7 @@ curl -X POST \
 <code-block title="JS Fetch">
 
 ```js
-fetch('https://alekeagle.me/api/session', {
+fetch('https://alekeagle.me/api/user/session', {
   method: 'POST',
   credentials: 'include',
   headers: {
@@ -245,7 +245,7 @@ Get a list of all sessions for the authenticated user.
 ```sh
 curl -X GET \
   -H "Authorization: token" \
-  https://alekeagle.me/api/sessions
+  https://alekeagle.me/api/user/sessions
 ```
 
 </code-block>
@@ -253,7 +253,7 @@ curl -X GET \
 <code-block title="JS Fetch">
 
 ```js
-fetch('https://alekeagle.me/api/session', {
+fetch('https://alekeagle.me/api/user/session', {
   method: 'GET',
   credentials: 'include',
   headers: {
@@ -315,7 +315,7 @@ Delete a specific session for the authenticated user.
 ```sh
 curl -X DELETE \
   -H "Authorization: token" \
-  https://alekeagle.me/api/session/1234567890
+  https://alekeagle.me/api/user/session/1234567890
 ```
 
 </code-block>
@@ -323,7 +323,7 @@ curl -X DELETE \
 <code-block title="JS Fetch">
 
 ```js
-fetch('https://alekeagle.me/api/session/1234567890', {
+fetch('https://alekeagle.me/api/user/session/1234567890', {
   method: 'DELETE',
   credentials: 'include',
   headers: {
@@ -391,7 +391,7 @@ curl -X DELETE \
   -H "Authorization: token" \
   -H "Content-Type: application/json" \
   -d "{\"sessions\":[\"sid1\",\"sid2\"]}" \
-  https://alekeagle.me/api/sessions
+  https://alekeagle.me/api/user/sessions
 ```
 
 </code-block>
@@ -399,7 +399,7 @@ curl -X DELETE \
 <code-block title="JS Fetch">
 
 ```js
-fetch('https://alekeagle.me/api/sessions', {
+fetch('https://alekeagle.me/api/user/sessions', {
   credentials: 'include',
   method: 'DELETE',
   headers: {
@@ -467,7 +467,7 @@ Delete all sessions for the authenticated users.
 ```sh
 curl -X DELETE \
   -H "Authorization: token" \
-  https://alekeagle.me/sessions/all?allButSelf=true
+  https://alekeagle.me/api/user/sessions/?allButSelf=true
 ```
 
 </code-block>
@@ -475,7 +475,7 @@ curl -X DELETE \
 <code-block title="JS Fetch">
 
 ```js
-fetch('https://alekeagle.me/api/sessions/all?allbutSelf=true', {
+fetch('https://alekeagle.me/api/user/sessions/?allbutSelf=true', {
   method: 'DELETE',
   credentials: 'include',
   headers: {
