@@ -2,6 +2,10 @@
 
 Here lies import information upcoming breaking changes, what to do to prepare for them, what to do when they happen, and when they'll happen. If you have any questions, feel free to ask in the [Discord server](https://alekeagle.com/d) or [send me an email](mailto:cumulonimbus@alekeagle.com).
 
+## RateLimit Headers
+
+On June 1st, 2023, ratelimit headers that are prefixed with `X-` will be removed. To prepare, make sure you start using the headers without the `X-` prefix. When this happens, the old headers will no longer be sent and the new headers will be sent instead.
+
 ## Emails for login
 
 On September 30th, 2022, using an email in the `user` field of the `POST /user/session` is deprecated and will be removed in the future. To prepare, make sure you start using your username instead of your email. When this happens, emails will no longer resolve users and act as if the user doesn't exist, and will return the [InvalidUser](/reference/structures/errors.md#invaliduser) error.
