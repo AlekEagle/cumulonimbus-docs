@@ -30,7 +30,7 @@ Even though the REST API supports the formats below, we can only guarantee 100% 
 
 ## Ratelimits
 
-This API implements a ratelimit system. All endpoints are managed by this ratelimiting system, the default limit is 100 requests in 5 minutes unless otherwise specified. If you do get ratelimited, your request will return with error [RateLimited](/reference/structures/errors.md#ratelimited) (`429 Too Many Requests`), with the headers: `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`, and `Retry-After`.
+This API implements a ratelimit system. All endpoints are managed by this ratelimiting system, the default limit is 200 requests in 5 minutes unless otherwise specified. If you do get ratelimited, your request will return with error [RateLimited](/reference/structures/errors.md#ratelimited) (`429 Too Many Requests`), with the headers: `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`, and `Retry-After`.
 
 ## Your First API Call
 
