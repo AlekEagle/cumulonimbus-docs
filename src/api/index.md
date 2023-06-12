@@ -34,19 +34,11 @@ This API implements a ratelimit system. All endpoints are managed by this rateli
 
 :::details Ratelimit Headers
 
-- `RateLimit-Limit` or `X-RateLimit-Limit`: The number of requests you have for a particular endpoint/group of endpoints. (e.g. `RateLimit-Limit: 50` means you can make 50 requests before you have to wait for your ratelimit to reset.)
+- `RateLimit-Limit`: The number of requests you have for a particular endpoint/group of endpoints. (e.g. `RateLimit-Limit: 50` means you can make 50 requests before you have to wait for your ratelimit to reset.)
 
-- `RateLimit-Remaining` or `X-RateLimit-Remaining`: The number of requests you have remaining for a particular endpoint/group of endpoints. (e.g. `RateLimit-Remaining: 23` means that you have used 27 of your 50 requests and you have 23 remaining.)
-
-- `X-RateLimit-Reset`: A UNIX timestamp (in seconds) for when your ratelimit will reset. (e.g. `X-RateLimit-Reset: 1531420618` means your ratelimit will reset at 2018-07-11T15:30:18.000Z
+- `RateLimit-Remaining`: The number of requests you have remaining for a particular endpoint/group of endpoints. (e.g. `RateLimit-Remaining: 23` means that you have used 27 of your 50 requests and you have 23 remaining.)
 
 - `RateLimit-Reset`: The time in seconds before your ratelimit resets and your remaining requests reset. (e.g. `RateLimit-Reset: 3600` means your ratelimit will reset in 3600 seconds (1 hour))
-
-:::
-
-:::danger RateLimit Headers
-
-Headers prefixed with `X-` are deprecated and will be removed in a future update. Please use the headers without the `X-` prefix.
 
 :::
 
