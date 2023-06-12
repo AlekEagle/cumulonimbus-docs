@@ -23,12 +23,12 @@ curl -X GET \
 <code-block title="JS Fetch">
 
 ```js
-fetch('https://alekeagle.me/api/user', {
-  method: 'GET',
-  credentials: 'include',
+fetch("https://alekeagle.me/api/user", {
+  method: "GET",
+  credentials: "include",
   headers: {
-    Authorization: 'token'
-  }
+    Authorization: "token",
+  },
 });
 ```
 
@@ -62,27 +62,17 @@ fetch('https://alekeagle.me/api/user', {
 
 :::
 
-## PATCH /user
+## PATCH /user/username
 
-Update the current authenticated user.
-
-At least one optional parameter is required in this request.
+Update the current authenticated user's username.
 
 :::details Parameters
 
 - Body
 
-  - `username` _optional_
+  - `username`
 
     - The new username for the account.
-
-  - `email` _optional_
-
-    - The new email for the account.
-
-  - `newPassword` _optional_
-
-    - The new password for the account.
 
   - `password`
 
@@ -100,8 +90,8 @@ At least one optional parameter is required in this request.
 curl -X PATCH \
   -H "Authorization: token" \
   -H "Content-Type: application/json" \
-  -d "{\"username\":\"bob\",\"newPassword\":\"bob\",\"password\":\"joe\"}" \
-  https://alekeagle.me/api/user
+  -d "{\"username\":\"bob\",\"password\":\"joe\"}" \
+  https://alekeagle.me/api/user/username
 ```
 
 </code-block>
@@ -109,18 +99,17 @@ curl -X PATCH \
 <code-block title="JS Fetch">
 
 ```js
-fetch('https://alekeagle.me/api/user', {
-  method: 'PATCH',
-  credentials: 'include',
+fetch("https://alekeagle.me/api/user/username", {
+  method: "PATCH",
+  credentials: "include",
   headers: {
-    'Authorization': 'token',
-    'Content-Type': 'application/json'
+    Authorization: "token",
+    "Content-Type": "application/json",
   },
   body: JSON.stringify({
-    username: 'bob',
-    password: 'joe',
-    newPassword: 'bob'
-  })
+    username: "bob",
+    password: "joe",
+  }),
 });
 ```
 
@@ -143,6 +132,195 @@ fetch('https://alekeagle.me/api/user', {
 - 401 Unauthorized
 
   - [InvalidSession](/reference/structures/errors.md#invalidsession)
+
+  - [InvalidPassword](/reference/structures/errors.md#invalidpassword)
+
+- 403 Forbidden
+
+  - [Banned](/reference/structures/errors.md#banned)
+
+- 409 Conflict
+
+  - [UsernameTaken](/reference/structures/errors.md#usernametaken)
+
+- 429 Too Many Requests
+
+  - [RateLimited](/reference/structures/errors.md#ratelimited)
+
+- 500 Internal Server Error
+
+  - [Internal](/reference/structures/errors.md#internal)
+
+:::
+
+## PATCH /user/email
+
+Update the current authenticated user's email.
+
+:::details Parameters
+
+- Body
+
+  - `email`
+
+    - The new email for the account.
+
+  - `password`
+
+    - The current password of the account for verification purposes.
+
+:::
+
+:::details Example Request
+
+<code-group>
+
+<code-block title="cURL">
+
+```sh
+curl -X PATCH \
+  -H "Authorization: token" \
+  -H "Content-Type: application/json" \
+  -d "{\"email\":\"real@email.biz\",\"password\":\"joe\"}" \
+  https://alekeagle.me/api/user/email
+```
+
+</code-block>
+
+<code-block title="JS Fetch">
+
+```js
+fetch("https://alekeagle.me/api/user/email", {
+  method: "PATCH",
+  credentials: "include",
+  headers: {
+    Authorization: "token",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    email: "real@email.biz",
+    password: "joe",
+  }),
+});
+```
+
+</code-block>
+
+</code-group>
+
+:::
+
+:::details Responses
+
+- 200 OK
+
+  - [User](/reference/structures/data.md#user)
+
+- 400 Bad Request
+
+  - [MissingFields](/reference/structures/errors.md#missingfields)
+
+- 401 Unauthorized
+
+  - [InvalidSession](/reference/structures/errors.md#invalidsession)
+
+  - [InvalidPassword](/reference/structures/errors.md#invalidpassword)
+
+- 403 Forbidden
+
+  - [Banned](/reference/structures/errors.md#banned)
+
+- 409 Conflict
+
+  - [UserExists](/reference/structures/errors.md#userexists)
+
+- 429 Too Many Requests
+
+  - [RateLimited](/reference/structures/errors.md#ratelimited)
+
+- 500 Internal Server Error
+
+  - [Internal](/reference/structures/errors.md#internal)
+
+:::
+
+## PATCH /user/password
+
+Update the current authenticated user's password.
+
+:::details Parameters
+
+- Body
+
+  - `password`
+
+    - The current password of the account for verification purposes.
+
+  - `newPassword`
+
+    - The new password for the account.
+
+  - `confirmNewPassword`
+
+    - The new password for the account, must match `newPassword` field.
+
+:::
+
+:::details Example Request
+
+<code-group>
+
+<code-block title="cURL">
+
+```sh
+curl -X PATCH \
+  -H "Authorization: token" \
+  -H "Content-Type: application/json" \
+  -d "{\"password\":\"joe\",\"newPassword\":\"bob\",\"confirmNewPassword\":\"bob\"}" \
+  https://alekeagle.me/api/user/password
+```
+
+</code-block>
+
+<code-block title="JS Fetch">
+
+```js
+fetch("https://alekeagle.me/api/user/password", {
+  method: "PATCH",
+  credentials: "include",
+  headers: {
+    Authorization: "token",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    password: "joe",
+    newPassword: "bob",
+    confirmNewPassword: "bob",
+  }),
+});
+```
+
+</code-block>
+
+</code-group>
+
+:::
+
+:::details Responses
+
+- 200 OK
+
+  - [User](/reference/structures/data.md#user)
+
+- 400 Bad Request
+
+  - [MissingFields](/reference/structures/errors.md#missingfields)
+
+- 401 Unauthorized
+
+  - [InvalidSession](/reference/structures/errors.md#invalidsession)
+
+  - [InvalidPassword](/reference/structures/errors.md#invalidpassword)
 
 - 403 Forbidden
 
@@ -195,17 +373,17 @@ curl -X DELETE \
 <code-block title="JS Fetch">
 
 ```js
-fetch('https://alekeagle.me/api/user', {
-  method: 'DELETE',
-  credentials: 'include',
+fetch("https://alekeagle.me/api/user", {
+  method: "DELETE",
+  credentials: "include",
   headers: {
-    'Authorization': 'token',
-    'Content-Type': 'application/json'
+    Authorization: "token",
+    "Content-Type": "application/json",
   },
   body: JSON.stringify({
-    username: 'joe',
-    password: 'joe'
-  })
+    username: "joe",
+    password: "joe",
+  }),
 });
 ```
 
@@ -303,19 +481,19 @@ curl -X POST \
 <code-block title="JS Fetch">
 
 ```js
-fetch('https://alekeagle.me/api/user', {
-  method: 'POST',
-  credentials: 'include',
+fetch("https://alekeagle.me/api/user", {
+  method: "POST",
+  credentials: "include",
   headers: {
-    'Content-Type': 'application/json'
+    "Content-Type": "application/json",
   },
   body: JSON.stringify({
-    username: 'joe',
-    email: 'joe@joe.joe',
-    password: 'joe',
-    repeatPassword: 'joe',
-    rememberMe: true
-  })
+    username: "joe",
+    email: "joe@joe.joe",
+    password: "joe",
+    repeatPassword: "joe",
+    rememberMe: true,
+  }),
 });
 ```
 
@@ -386,14 +564,14 @@ curl -X PATCH \
 <code-block title="JS Fetch">
 
 ```js
-fetch('https://alekeagle.me/api/user/domain', {
-  method: 'PATCH',
-  credentials: 'include',
+fetch("https://alekeagle.me/api/user/domain", {
+  method: "PATCH",
+  credentials: "include",
   headers: {
-    'Authorization': 'token',
-    'Content-Type': 'application/json'
+    Authorization: "token",
+    "Content-Type": "application/json",
   },
-  body: JSON.stringify({ domain: 'digiorno.delivery', subdomain: 'its not' })
+  body: JSON.stringify({ domain: "digiorno.delivery", subdomain: "its not" }),
 });
 ```
 

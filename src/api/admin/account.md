@@ -37,12 +37,12 @@ curl -X GET \
 <code-block title="JS Fetch">
 
 ```js
-fetch('https://alekeagle.me/api/users', {
-  method: 'GET',
-  credentials: 'include',
+fetch("https://alekeagle.me/api/users", {
+  method: "GET",
+  credentials: "include",
   headers: {
-    Authorization: 'token'
-  }
+    Authorization: "token",
+  },
 });
 ```
 
@@ -109,12 +109,12 @@ curl -X GET \
 <code-block title="JS Fetch">
 
 ```js
-fetch('https://alekeagle.me/api/user/1234567890', {
-  method: 'GET',
-  credentials: 'include',
+fetch("https://alekeagle.me/api/user/1234567890", {
+  method: "GET",
+  credentials: "include",
   headers: {
-    Authorization: 'token'
-  }
+    Authorization: "token",
+  },
 });
 ```
 
@@ -154,13 +154,9 @@ fetch('https://alekeagle.me/api/user/1234567890', {
 
 :::
 
-## PATCH /user/:id
+## PATCH /user/:id/username
 
-Update a specific user.
-
-:::warning Optional Parameters
-At least 1 field is required in the body.
-:::
+Update a specific user's username.
 
 :::details Parameters
 
@@ -172,21 +168,9 @@ At least 1 field is required in the body.
 
 - Body
 
-  - `username` _optional_
+  - `username`
 
-    - The new username for the user.
-
-  - `email` _optional_
-
-    - The new email for the user.
-
-  - `password` _optional_
-
-    - The new password for the user.
-
-  - `staff` _optional_
-
-    - Whether the user is a staff member or not.
+    - The new username for the user, must be between 1 and 60 characters long.
 
 :::
 
@@ -200,8 +184,8 @@ At least 1 field is required in the body.
 curl -X PATCH \
   -H "Authorization: token" \
   -H "Content-Type: application/json" \
-  -d "{\"username\":\"joe\"}" \
-  https://alekeagle.me/api/user/1234567890
+  -d "{\"username\":\"alekeagle\"}" \
+  https://alekeagle.me/api/user/1234567890/username
 ```
 
 </code-block>
@@ -209,14 +193,14 @@ curl -X PATCH \
 <code-block title="JS Fetch">
 
 ```js
-fetch('https://alekeagle.me/api/users', {
-  method: 'PATCH',
-  credentials: 'include',
+fetch("https://alekeagle.me/api/user/1234567890/username", {
+  method: "PATCH",
+  credentials: "include",
   headers: {
-    'Authorization': 'token',
-    'Content-Type': 'application/json'
+    Authorization: "token",
+    "Content-Type": "application/json",
   },
-  body: JSON.stringify({ username: 'joe' })
+  body: JSON.stringify({ username: "alekeagle" }),
 });
 ```
 
@@ -253,6 +237,190 @@ fetch('https://alekeagle.me/api/users', {
 - 409 Conflict
 
   - [UserExists](/reference/structures/errors.md#userexists)
+
+- 429 Too Many Requests
+
+  - [RateLimited](/reference/structures/errors.md#ratelimited)
+
+- 500 Internal Server Error
+
+  - [Internal](/reference/structures/errors.md#internal)
+
+:::
+
+## PATCH /user/:id/email
+
+Update a specific user's email.
+
+:::details Parameters
+
+- Path
+
+  - `id`
+
+    - The ID of the user.
+
+- Body
+
+  - `email`
+
+    - The new email for the user.
+
+:::
+
+:::details Example Requests
+
+<code-group>
+
+<code-block title="cURL">
+
+```sh
+curl -X PATCH \
+  -H "Authorization: token" \
+  -H "Content-Type: application/json" \
+  -d "{\"email\":\"real@email.biz\"}" \
+  https://alekeagle.me/api/user/1234567890/email
+```
+
+</code-block>
+
+<code-block title="JS Fetch">
+
+```js
+fetch("https://alekeagle.me/api/user/1234567890/email", {
+  method: "PATCH",
+  credentials: "include",
+  headers: {
+    Authorization: "token",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ email: "real@email.biz" }),
+});
+```
+
+</code-block>
+
+</code-group>
+
+:::
+
+:::details Responses
+
+- 200 OK
+
+  - [User](/reference/structures/data.md#user)
+
+- 400 Bad Request
+
+  - [MissingFields](/reference/structures/errors.md#missingfields)
+
+- 401 Unauthorized
+
+  - [InvalidSession](/reference/structures/errors.md#invalidsession)
+
+- 403 Forbidden
+
+  - [Banned](/reference/structures/errors.md#banned)
+
+  - [Permissions](/reference/structures/errors.md#permissions)
+
+- 404 Not Found
+
+  - [InvalidUser](/reference/structures/errors.md#invaliduser)
+
+- 409 Conflict
+
+  - [UserExists](/reference/structures/errors.md#userexists)
+
+- 429 Too Many Requests
+
+  - [RateLimited](/reference/structures/errors.md#ratelimited)
+
+- 500 Internal Server Error
+
+  - [Internal](/reference/structures/errors.md#internal)
+
+:::
+
+## PATCH /user/:id/password
+
+Update a specific user's password.
+
+:::details Parameters
+
+- Path
+
+  - `id`
+
+    - The ID of the user.
+
+- Body
+
+  - `password`
+
+    - The new password for the user.
+
+:::
+
+:::details Example Requests
+
+<code-group>
+
+<code-block title="cURL">
+
+```sh
+curl -X PATCH \
+  -H "Authorization: token" \
+  -H "Content-Type: application/json" \
+  -d "{\"password\":\"real_password\"}" \
+  https://alekeagle.me/api/user/1234567890/password
+```
+
+</code-block>
+
+<code-block title="JS Fetch">
+
+```js
+fetch("https://alekeagle.me/api/user/1234567890/password", {
+  method: "PATCH",
+  credentials: "include",
+  headers: {
+    Authorization: "token",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ password: "real_password" }),
+});
+```
+
+</code-block>
+
+</code-group>
+
+:::
+
+:::details Responses
+
+- 200 OK
+
+  - [User](/reference/structures/data.md#user)
+
+- 400 Bad Request
+
+  - [MissingFields](/reference/structures/errors.md#missingfields)
+
+- 401 Unauthorized
+
+  - [InvalidSession](/reference/structures/errors.md#invalidsession)
+
+- 403 Forbidden
+
+  - [Banned](/reference/structures/errors.md#banned)
+
+  - [Permissions](/reference/structures/errors.md#permissions)
+
+- 404 Not Found
+
+  - [InvalidUser](/reference/structures/errors.md#invaliduser)
 
 - 429 Too Many Requests
 
@@ -307,14 +475,14 @@ curl -X PATCH \
 <code-block title="JS Fetch">
 
 ```js
-fetch('https://alekeagle.me/api/user/1234567890/domain', {
-  method: 'PATCH',
-  credentials: 'include',
+fetch("https://alekeagle.me/api/user/1234567890/domain", {
+  method: "PATCH",
+  credentials: "include",
   headers: {
-    'Authorization': 'token',
-    'Content-Type': 'application/json'
+    Authorization: "token",
+    "Content-Type": "application/json",
   },
-  body: JSON.stringify({ domain: 'alekeagle.me', subdomain: 'use' })
+  body: JSON.stringify({ domain: "alekeagle.me", subdomain: "use" }),
 });
 ```
 
@@ -395,12 +563,12 @@ curl -X PATCH \
 <code-block title="JS Fetch">
 
 ```js
-fetch('https://alekeagle.me/api/user/1234567890/ban', {
-  method: 'PATCH',
-  credentials: 'include',
+fetch("https://alekeagle.me/api/user/1234567890/ban", {
+  method: "PATCH",
+  credentials: "include",
   headers: {
-    Authorization: 'token'
-  }
+    Authorization: "token",
+  },
 });
 ```
 
@@ -471,12 +639,12 @@ curl -X DELETE \
 <code-block title="JS Fetch">
 
 ```js
-fetch('https://alekeagle.me/api/user/1234567890', {
-  method: 'DELETE',
-  credentials: 'include',
+fetch("https://alekeagle.me/api/user/1234567890", {
+  method: "DELETE",
+  credentials: "include",
   headers: {
-    Authorization: 'token'
-  }
+    Authorization: "token",
+  },
 });
 ```
 
@@ -549,14 +717,14 @@ curl -X DELETE \
 <code-block title="JS Fetch">
 
 ```js
-fetch('https://alekeagle.me/api/users', {
-  method: 'DELETE',
-  credentials: 'include',
+fetch("https://alekeagle.me/api/users", {
+  method: "DELETE",
+  credentials: "include",
   headers: {
-    'Authorization': 'token',
-    'Content-type': 'application/json'
+    Authorization: "token",
+    "Content-type": "application/json",
   },
-  body: JSON.stringify({ users: ['1234567890', '0987654321'] })
+  body: JSON.stringify({ users: ["1234567890", "0987654321"] }),
 });
 ```
 
