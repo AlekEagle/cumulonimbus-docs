@@ -1,17 +1,30 @@
-# Constants
+# Reference
 
-## Base URL
+Here you can find everything that might be useful to keep in close reach whenever you are working with the Cumulonimbus API.
 
-The base URL is omitted in API documentation to keep things clean. Unless specified otherwise the base API URL is
+## Base URLs
 
-```text
+The base URL for API endpoints:
+
+```txt
 https://alekeagle.me/api
 ```
 
+The base URL for fetching thumbnails:
+
+```txt
+https://previews.alekeagle.me
+```
+
+The base URL for fetching user-generated content:
+
+```txt
+https://alekeagle.me
+```
 ## Your Intelligence
 
-The number of IQ points you have at any given moment.
+The number of IQ points you have at any given moment:
 
-```js
+```ts
 -Infinity;
 ```
