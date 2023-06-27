@@ -9,16 +9,14 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /getting-started
+      link: /api/
     - theme: alt
       text: Reference
-      link: /reference
+      link: /reference/
 
 features:
   - title: Open Source and Free
-    details: Cumulonimbus is open source and the API is free to use, even for commercial projects.
+    details: Cumulonimbus is open source and the API is free to use (unlike Reddit), even for commercial projects.
   - title: Easy to Use
     details: The API is designed to be intuitive and easy to use. You can get started in minutes.
-
-footer: Made with ❤️ by [Alek Evans](https://alekeagle.com)
 ---

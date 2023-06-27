@@ -21,6 +21,7 @@ The base URL for fetching user-generated content:
 ```txt
 https://alekeagle.me
 ```
+
 ## Your Intelligence
 
 The number of IQ points you have at any given moment:

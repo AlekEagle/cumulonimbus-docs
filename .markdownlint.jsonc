@@ -1,6 +1,10 @@
 {
   // Disable warnings about line length
   "MD013": false,
-  // Disable warnings about inline HTML (we use it for VuePress components)
-  "MD033": false
+  // Disable warnings about inline HTML (we use it for Vue components)
+  "MD033": false,
+  // Disable warnings about the first line being a top-level header
+  "MD041": false,
+  // Disable warnings about using emphasized text as headers (Used for "slugless headers")
+  "MD036": false
 }

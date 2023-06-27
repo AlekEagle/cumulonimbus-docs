@@ -12,7 +12,23 @@ export default defineConfig({
     sidebar: [
       {
         text: "Getting Started",
-        link: "/getting-started",
+        link: "/api/",
+        items: [
+          {
+            text: "Unprivileged",
+            link: "/api/unprivileged/",
+            items: [
+              {
+                text: "Account",
+                link: "/api/unprivileged/account",
+              },
+              {
+                text: "Domain",
+                link: "/api/unprivileged/domain",
+              },
+            ],
+          },
+        ],
       },
       {
         text: "Reference",
@@ -22,7 +38,19 @@ export default defineConfig({
             text: "Structures",
             link: "/reference/structures",
           },
+          {
+            text: "Successes",
+            link: "/reference/successes",
+          },
+          {
+            text: "Errors",
+            link: "/reference/errors",
+          },
         ],
+      },
+      {
+        text: "Wrapper",
+        link: "/lib/",
       },
     ],
 
@@ -36,6 +64,10 @@ export default defineConfig({
         link: "https://github.com/AlekEagle/cumulonimbus-docs",
       },
     ],
+    footer: {
+      message: "Made with ❤️ by Alek Evans (AlekEagle)",
+    },
   },
   srcDir: "src",
+  cleanUrls: true,
 });
