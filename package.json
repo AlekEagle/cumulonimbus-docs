@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "docs:dev": "vitepress dev --host",
-    "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview --host"
+    "dev": "vitepress dev --host",
+    "build": "vitepress build",
+    "preview": "vitepress preview --host"
   },
   "devDependencies": {
     "vitepress": "^1.0.0-beta.2"
