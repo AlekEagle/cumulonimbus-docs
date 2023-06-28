@@ -15,18 +15,12 @@ export default defineConfig({
         link: "/api/",
         items: [
           {
-            text: "Unprivileged",
-            link: "/api/unprivileged/",
-            items: [
-              {
-                text: "Account",
-                link: "/api/unprivileged/account",
-              },
-              {
-                text: "Domain",
-                link: "/api/unprivileged/domain",
-              },
-            ],
+            text: "Account",
+            link: "/api/account",
+          },
+          {
+            text: "Domain",
+            link: "/api/domain",
           },
         ],
       },
