@@ -293,7 +293,7 @@ Updates a user's password. Updating other users' passwords requires the `staff` 
 
 | Name                 | Type   | Location | Required                      | Description                                                                        |
 | -------------------- | ------ | -------- | ----------------------------- | ---------------------------------------------------------------------------------- |
-| `id`                 | string | path     | Yes                           | The [User's ID](/ap/i#user-ids)                                                    |
+| `id`                 | string | path     | Yes                           | The [User's ID](/api/#user-ids)                                                    |
 | `password`           | string | body     | If modifying the current user | The user's current password. Must be no more than 64 characters in length          |
 | `newPassword`        | string | body     | Yes                           | The user's new password. Must be no more than 64 characters in length              |
 | `confirmNewPassword` | string | body     | Yes                           | The user's new password confirmation. Must be no more than 64 characters in length |

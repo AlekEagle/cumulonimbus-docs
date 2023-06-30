@@ -368,3 +368,61 @@ fetch("https://alekeagle.me/api/files/all", {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+
+## POST /upload
+
+Uploads a file to the server.
+
+**Parameters**
+
+| Name   | Type | Location | Required | Description |
+| ------ | ---- | -------- | -------- | ----------- |
+| `file` | file | body     | Yes      | The file    |
+
+::: warning Request Content-Type
+To upload a file, you must use the `multipart/form-data` content type.
+:::
+
+**Example Requests**
+
+::: code-group
+
+```sh [cURL]
+curl -X POST \
+-H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
+-F "file=@/path/to/file.png" \
+"https://alekeagle.me/api/upload"
+```
+
+```js [JS Fetch]
+const formData = new FormData();
+formData.append("file", file);
+
+fetch("https://alekeagle.me/api/upload", {
+  method: "POST",
+  headers: {
+    Authorization:
+      "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q",
+  },
+  body: formData,
+});
+```
+
+:::
+
+**Responses**
+
+- 201 Created
+  - [SuccessfulUpload](/reference/successes#successfulupload)
+- 400 Bad Request
+  - [MissingFields](/reference/errors#missingfields)
+- 401 Unauthorized
+  - [InvalidSession](/reference/errors#invalidsession)
+- 403 Forbidden
+  - [Banned](/reference/errors#banned)
+- 413 Payload Too Large
+  - [BodyTooLarge](/reference/errors#bodytoolarge)
+- 429 Too Many Requests
+  - [RateLimited](/reference/errors#ratelimited)
+- 500 Internal Server Error
+  - [Internal](/reference/errors#internal)

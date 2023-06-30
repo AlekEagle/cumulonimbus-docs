@@ -7,7 +7,12 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: "https://alekeagle.me/Cumulonimbus.webp",
-    nav: [{ text: "Home", link: "/" }],
+    nav: [
+      { text: "Home", link: "/" },
+      { text: "API", link: "/api/" },
+      { text: "Reference", link: "/reference/" },
+      { text: "Wrapper", link: "/lib/" },
+    ],
 
     sidebar: [
       {
@@ -25,6 +30,14 @@ export default defineConfig({
           {
             text: "File",
             link: "/api/file",
+          },
+          {
+            text: "Instruction",
+            link: "/api/instruction",
+          },
+          {
+            text: "Session",
+            link: "/api/session",
           },
         ],
       },
