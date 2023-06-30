@@ -75,10 +75,10 @@ This endpoint is not public and requires authentication of a user with `staff` p
 
 **Parameters**
 
-| Name     | Type   | Location | Required | Description                                                             |
-| -------- | ------ | -------- | -------- | ----------------------------------------------------------------------- |
-| `limit`  | number | query    | No       | The maximum number of users to return. The max and default is 50.       |
-| `offset` | number | query    | No       | The number of users to skip before returning results. The default is 0. |
+| Name     | Type   | Location | Required | Description                                                            |
+| -------- | ------ | -------- | -------- | ---------------------------------------------------------------------- |
+| `limit`  | number | query    | No       | The maximum number of users to return. The max and default is 50       |
+| `offset` | number | query    | No       | The number of users to skip before returning results. The default is 0 |
 
 **Example Requests**
 
@@ -118,13 +118,13 @@ fetch("https://alekeagle.me/api/users", {
 
 ## GET /users/:id
 
-Fetches a user by their ID. Fetching the current user can be done either by using the current user's 13-digit ID or `me`. Fetching other users requires the `staff` permission.
+Fetches a user by their ID. Fetching other users requires the `staff` permission.
 
 **Parameters**
 
-| Name | Type   | Location | Required | Description                                          |
-| ---- | ------ | -------- | -------- | ---------------------------------------------------- |
-| `id` | string | path     | Yes      | The user's 13-digit ID or `me` for the current user. |
+| Name | Type   | Location | Required | Description                     |
+| ---- | ------ | -------- | -------- | ------------------------------- |
+| `id` | string | path     | Yes      | The [User's ID](/api/#user-ids) |
 
 **Example Requests**
 
@@ -166,15 +166,15 @@ fetch("https://alekeagle.me/api/users/me", {
 
 ## PUT /users/:id/username
 
-Updates a user's username. Updating the current user's username can be done either by using the current user's 13-digit ID or `me`. Updating other users' usernames requires the `staff` permission.
+Updates a user's username. Updating other users' usernames requires the `staff` permission.
 
 **Parameters**
 
-| Name       | Type   | Location | Required                      | Description                                                                |
-| ---------- | ------ | -------- | ----------------------------- | -------------------------------------------------------------------------- |
-| `id`       | string | path     | Yes                           | The user's 13-digit ID or `me` for the current user.                       |
-| `password` | string | body     | If modifying the current user | The user's current password. Must be no more than 64 characters in length. |
-| `username` | string | body     | Yes                           | The user's new username. Must be between 1 and 64 characters in length.    |
+| Name       | Type   | Location | Required                      | Description                                                               |
+| ---------- | ------ | -------- | ----------------------------- | ------------------------------------------------------------------------- |
+| `id`       | string | path     | Yes                           | The [User's ID](/api/#user-ids)                                           |
+| `password` | string | body     | If modifying the current user | The user's current password. Must be no more than 64 characters in length |
+| `username` | string | body     | Yes                           | The user's new username. Must be between 1 and 64 characters in length    |
 
 **Example Requests**
 
@@ -225,15 +225,15 @@ fetch("https://alekeagle.me/api/users/me/username", {
 
 ## PUT /users/:id/email
 
-Updates a user's email. Updating the current user's email can be done either by using the current user's 13-digit ID or `me`. Updating other users' emails requires the `staff` permission.
+Updates a user's email. Updating other users' emails requires the `staff` permission.
 
 **Parameters**
 
-| Name       | Type   | Location | Required                      | Description                                                                |
-| ---------- | ------ | -------- | ----------------------------- | -------------------------------------------------------------------------- |
-| `id`       | string | path     | Yes                           | The user's 13-digit ID or `me` for the current user.                       |
-| `password` | string | body     | If modifying the current user | The user's current password. Must be no more than 64 characters in length. |
-| `email`    | string | body     | Yes                           | The user's new email. Must be a valid email address.                       |
+| Name       | Type   | Location | Required                      | Description                                                               |
+| ---------- | ------ | -------- | ----------------------------- | ------------------------------------------------------------------------- |
+| `id`       | string | path     | Yes                           | The [User's ID](/api/#user-ids)                                           |
+| `password` | string | body     | If modifying the current user | The user's current password. Must be no more than 64 characters in length |
+| `email`    | string | body     | Yes                           | The user's new email. Must be a valid email address                       |
 
 **Example Requests**
 
@@ -287,16 +287,16 @@ fetch("https://alekeagle.me/api/users/me/email", {
 
 ## PUT /users/:id/password
 
-Updates a user's password. Updating the current user's password can be done either by using the current user's 13-digit ID or `me`. Updating other users' passwords requires the `staff` permission.
+Updates a user's password. Updating other users' passwords requires the `staff` permission.
 
 **Parameters**
 
-| Name                 | Type   | Location | Required                      | Description                                                                         |
-| -------------------- | ------ | -------- | ----------------------------- | ----------------------------------------------------------------------------------- |
-| `id`                 | string | path     | Yes                           | The user's 13-digit ID or `me` for the current user.                                |
-| `password`           | string | body     | If modifying the current user | The user's current password. Must be no more than 64 characters in length.          |
-| `newPassword`        | string | body     | Yes                           | The user's new password. Must be no more than 64 characters in length.              |
-| `confirmNewPassword` | string | body     | Yes                           | The user's new password confirmation. Must be no more than 64 characters in length. |
+| Name                 | Type   | Location | Required                      | Description                                                                        |
+| -------------------- | ------ | -------- | ----------------------------- | ---------------------------------------------------------------------------------- |
+| `id`                 | string | path     | Yes                           | The [User's ID](/ap/i#user-ids)                                                    |
+| `password`           | string | body     | If modifying the current user | The user's current password. Must be no more than 64 characters in length          |
+| `newPassword`        | string | body     | Yes                           | The user's new password. Must be no more than 64 characters in length              |
+| `confirmNewPassword` | string | body     | Yes                           | The user's new password confirmation. Must be no more than 64 characters in length |
 
 **Example Requests**
 
@@ -358,10 +358,10 @@ This endpoint is not public and requires authentication of a user with `staff` p
 
 **Parameters**
 
-| Name    | Type    | Location | Required | Description                              |
-| ------- | ------- | -------- | -------- | ---------------------------------------- |
-| `id`    | string  | path     | Yes      | The user's 13-digit ID.                  |
-| `staff` | boolean | body     | Yes      | Whether the user should be staff or not. |
+| Name    | Type    | Location | Required | Description                                                              |
+| ------- | ------- | -------- | -------- | ------------------------------------------------------------------------ |
+| `id`    | string  | path     | Yes      | The [User's ID](/api/#user-ids) (`me` is not accepted for this endpoint) |
+| `staff` | boolean | body     | Yes      | Whether the user should be staff or not.                                 |
 
 **Example Requests**
 
@@ -417,9 +417,9 @@ This endpoint is not public and requires authentication of a user with `staff` p
 
 **Parameters**
 
-| Name | Type   | Location | Required | Description             |
-| ---- | ------ | -------- | -------- | ----------------------- |
-| `id` | string | path     | Yes      | The user's 13-digit ID. |
+| Name | Type   | Location | Required | Description                                                              |
+| ---- | ------ | -------- | -------- | ------------------------------------------------------------------------ |
+| `id` | string | path     | Yes      | The [User's ID](/api/#user-ids) (`me` is not accepted for this endpoint) |
 
 **Example Requests**
 
@@ -469,9 +469,9 @@ This endpoint is not public and requires authentication of a user with `staff` p
 
 **Parameters**
 
-| Name | Type   | Location | Required | Description             |
-| ---- | ------ | -------- | -------- | ----------------------- |
-| `id` | string | path     | Yes      | The user's 13-digit ID. |
+| Name | Type   | Location | Required | Description                                                              |
+| ---- | ------ | -------- | -------- | ------------------------------------------------------------------------ |
+| `id` | string | path     | Yes      | The [User's ID](/api/#user-ids) (`me` is not accepted for this endpoint) |
 
 **Example Requests**
 
@@ -519,9 +519,9 @@ Sets a user's domain and subdomain. Updating the current user's domain and subdo
 
 | Name        | Type   | Location | Required | Description                     |
 | ----------- | ------ | -------- | -------- | ------------------------------- |
-| `id`        | string | path     | Yes      | The user's 13-digit ID or `me`. |
-| `domain`    | string | body     | Yes      | The user's domain.              |
-| `subdomain` | string | body     | No       | The user's subdomain.           |
+| `id`        | string | path     | Yes      | The [User's ID](/api/#user-ids) |
+| `domain`    | string | body     | Yes      | The user's domain               |
+| `subdomain` | string | body     | No       | The user's subdomain            |
 
 **Example Requests**
 
@@ -579,11 +579,11 @@ Deletes a user. Deleting the current user can be done either by using the curren
 
 **Parameters**
 
-| Name       | Type   | Location | Required | Description                              |
-| ---------- | ------ | -------- | -------- | ---------------------------------------- |
-| `id`       | string | path     | Yes      | The user's 13-digit ID or `me`.          |
-| `username` | string | body     | Yes      | The user's username to confirm deletion. |
-| `password` | string | body     | Yes      | The user's password to confirm deletion. |
+| Name       | Type   | Location | Required                               | Description                             |
+| ---------- | ------ | -------- | -------------------------------------- | --------------------------------------- |
+| `id`       | string | path     | Yes                                    | The [User's ID](/api/#user-ids)         |
+| `username` | string | body     | If the user is deleting their own user | The user's username to confirm deletion |
+| `password` | string | body     | If the user is deleting their own user | The user's password to confirm deletion |
 
 **Example Requests**
 
@@ -640,9 +640,9 @@ Delete multiple users. Deleting users requires the `staff` permission.
 
 **Parameters**
 
-| Name  | Type   | Location | Required | Description                              |
-| ----- | ------ | -------- | -------- | ---------------------------------------- |
-| `ids` | string | body     | Yes      | The 13-digit IDs of the users to delete. |
+| Name  | Type   | Location | Required | Description                            |
+| ----- | ------ | -------- | -------- | -------------------------------------- |
+| `ids` | string | body     | Yes      | An array of [User IDs](/api/#user-ids) |
 
 **Example Requests**
 

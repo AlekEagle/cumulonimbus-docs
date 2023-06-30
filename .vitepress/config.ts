@@ -22,6 +22,10 @@ export default defineConfig({
             text: "Domain",
             link: "/api/domain",
           },
+          {
+            text: "File",
+            link: "/api/file",
+          },
         ],
       },
       {

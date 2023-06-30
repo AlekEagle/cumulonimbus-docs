@@ -79,8 +79,8 @@ interface Instruction {
 
 ```ts
 interface Domain {
-  domain: string;
-  allowsSubdomains: boolean;
+  id: string;
+  subdomains: boolean;
   createdAt: string; // Omitted in List<T>
   updatedAt: string; // Omitted in List<T>
 }
