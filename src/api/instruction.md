@@ -453,7 +453,7 @@ fetch("https://alekeagle.me/api/instructions/generic-service", {
 **Responses**
 
 - 200 OK
-  - [DeleteInstruction](/reference/success#deleteinstruction)
+  - [DeleteInstruction](/reference/successes#deleteinstruction)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)
 - 403 Forbidden
@@ -509,7 +509,7 @@ fetch("https://alekeagle.me/api/instructions", {
 **Responses**
 
 - 200 OK
-  - [DeleteInstructions](/reference/success#deleteinstructions)
+  - [DeleteInstructions](/reference/successes#deleteinstructions)
 - 400 Bad Request
   - [MissingFields](/reference/errors#missingfields)
 - 401 Unauthorized
