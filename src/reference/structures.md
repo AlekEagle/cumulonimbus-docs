@@ -37,7 +37,6 @@ interface User {
 interface Session {
   id: number;
   exp: number; // Omitted in List<T>
-  sub: string; // Omitted in List<T>
   name: string;
 }
 ```

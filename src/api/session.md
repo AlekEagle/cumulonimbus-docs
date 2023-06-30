@@ -8,6 +8,10 @@ Login to Cumulonimbus.
 This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is 3 requests per 3 minutes per IP address. If you try to register an account while providing a session, you will receive an [InvalidSession](/reference/errors#invalidsession) error.
 :::
 
+::: tip Custom Session Name
+You can provide a custom session name by setting the `X-Session-Name` header. This will override the server's name generated from the user agent.
+:::
+
 **Parameters**
 
 | Name         | Type    | Location | Required | Description                              |
@@ -23,6 +27,7 @@ This endpoint uses a ratelimit that is separate from the rest of the API. This r
 ```sh [cURL]
 curl -X POST https://alekeagle.me/api/login \
   -H "Content-Type: application/json" \
+  -H "X-Session-Name: Way Cool Cumulonimbus Session" \
   -d '{"username": "alekeagle", "password": "password", "rememberMe": true}'
 ```
 
@@ -31,6 +36,7 @@ fetch("https://alekeagle.me/api/login", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
+    "X-Session-Name": "Way Cool Cumulonimbus Session",
   },
   body: JSON.stringify({
     username: "alekeagle",
