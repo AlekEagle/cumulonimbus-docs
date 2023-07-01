@@ -350,7 +350,7 @@ fetch("https://alekeagle.me/api/users/me/email", {
 
 ## PUT /users/:id/staff
 
-Updates a user's staff status.
+Grants a specified user staff permissions.
 
 ::: warning Non-Public Endpoint
 This endpoint is not public and requires authentication of a user with `staff` permissions.
@@ -358,10 +358,9 @@ This endpoint is not public and requires authentication of a user with `staff` p
 
 **Parameters**
 
-| Name    | Type    | Location | Required | Description                                                              |
-| ------- | ------- | -------- | -------- | ------------------------------------------------------------------------ |
-| `id`    | string  | path     | Yes      | The [User's ID](/api/#user-ids) (`me` is not accepted for this endpoint) |
-| `staff` | boolean | body     | Yes      | Whether the user should be staff or not.                                 |
+| Name | Type   | Location | Required | Description                                                              |
+| ---- | ------ | -------- | -------- | ------------------------------------------------------------------------ |
+| `id` | string | path     | Yes      | The [User's ID](/api/#user-ids) (`me` is not accepted for this endpoint) |
 
 **Example Requests**
 
@@ -370,8 +369,6 @@ This endpoint is not public and requires authentication of a user with `staff` p
 ```sh [cURL]
 curl -X PUT \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
--H "Content-Type: application/json" \
--d '{ "staff": true }' \
 https://alekeagle.me/api/users/1234567890123/staff
 ```
 
@@ -381,9 +378,61 @@ fetch("https://alekeagle.me/api/users/1234567890123/staff", {
   headers: {
     Authorization:
       "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q",
-    "Content-Type": "application/json",
   },
-  body: JSON.stringify({ staff: true }),
+});
+```
+
+:::
+
+**Responses**
+
+- 200 OK
+  - [User](/reference/structures#user)
+- 400 Bad Request
+  - [MissingFields](/reference/errors#missingfields)
+- 401 Unauthorized
+  - [InvalidSession](/reference/errors#invalidsession)
+- 403 Forbidden
+  - [InsufficientPermissions](/reference/errors#insufficientpermissions)
+  - [Banned](/reference/errors#banned)
+- 404 Not Found
+  - [InvalidUser](/reference/errors#invaliduser)
+- 429 Too Many Requests
+  - [RateLimited](/reference/errors#ratelimited)
+- 500 Internal Server Error
+  - [Internal](/reference/errors#internal)
+
+## DELETE /users/:id/staff
+
+Revokes a specified user's staff permissions.
+
+::: warning Non-Public Endpoint
+This endpoint is not public and requires authentication of a user with `staff` permissions.
+:::
+
+**Parameters**
+
+| Name | Type   | Location | Required | Description                                                              |
+| ---- | ------ | -------- | -------- | ------------------------------------------------------------------------ |
+| `id` | string | path     | Yes      | The [User's ID](/api/#user-ids) (`me` is not accepted for this endpoint) |
+
+**Example Requests**
+
+::: code-group
+
+```sh [cURL]
+curl -X DELETE \
+-H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
+https://alekeagle.me/api/users/1234567890123/staff
+```
+
+```js [JS Fetch]
+fetch("https://alekeagle.me/api/users/1234567890123/staff", {
+  method: "DELETE",
+  headers: {
+    Authorization:
+      "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q",
+  },
 });
 ```
 
