@@ -81,4 +81,20 @@ export default defineConfig({
   },
   srcDir: "src",
   cleanUrls: true,
+  head: [
+    [
+      "link",
+      {
+        rel: "icon",
+        href: "https://alekeagle.me/Cumulonimbus.webp",
+      },
+    ],
+    [
+      "meta",
+      {
+        name: "og:image",
+        content: "https://alekeagle.me/Cumulonimbus.webp",
+      },
+    ],
+  ],
 });
