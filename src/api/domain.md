@@ -204,6 +204,7 @@ fetch("https://alekeagle.me/api/domains/example.com/subdomains", {
 - 429 Too Many Requests
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
+  - [Internal](/reference/errors#internal)
 
 ## DELETE /domains/:id/subdomains
 
@@ -257,6 +258,7 @@ fetch("https://alekeagle.me/api/domains/example.com/subdomains", {
 - 429 Too Many Requests
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
+  - [Internal](/reference/errors#internal)
 
 ## DELETE /domains/:id
 
