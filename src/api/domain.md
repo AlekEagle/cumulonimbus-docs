@@ -154,7 +154,7 @@ fetch("https://alekeagle.me/api/domains", {
 
 ## PUT /domains/:id/subdomains
 
-Update a domain's subdomain permissions.
+Allow subdomains on a domain.
 
 ::: warning Non-Public Endpoint
 This endpoint is not public and requires authentication of a user with `staff` permissions.
@@ -165,7 +165,6 @@ This endpoint is not public and requires authentication of a user with `staff` p
 | Name         | Type    | Location | Required | Description               |
 | ------------ | ------- | -------- | -------- | ------------------------- |
 | `id`         | string  | path     | Yes      | Domain Name (example.com) |
-| `subdomains` | boolean | body     | Yes      | Allow subdomains          |
 
 **Example Requests**
 
@@ -174,8 +173,6 @@ This endpoint is not public and requires authentication of a user with `staff` p
 ```sh [cURL]
 curl -X PUT \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
--H "Content-Type: application/json" \
--d '{"subdomains": true}' \
 https://alekeagle.me/api/domains/example.com/subdomains
 ```
 
@@ -185,9 +182,60 @@ fetch("https://alekeagle.me/api/domains/example.com/subdomains", {
   headers: {
     Authorization:
       "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q",
-    "Content-Type": "application/json",
   },
-  body: JSON.stringify({ subdomains: true }),
+});
+```
+
+:::
+
+**Responses**
+
+- 200 OK
+  - [Domain](/reference/structures#domain)
+- 400 Bad Request
+  - [MissingFields](/reference/errors#missingfields)
+- 401 Unauthorized
+  - [InvalidSession](/reference/errors#invalidsession)
+- 403 Forbidden
+  - [Banned](/reference/errors#banned)
+  - [InsufficientPermissions](/reference/errors#insufficientpermissions)
+- 404 Not Found
+  - [InvalidDomain](/reference/errors#invaliddomain)
+- 429 Too Many Requests
+  - [RateLimited](/reference/errors#ratelimited)
+- 500 Internal Server Error
+
+## DELETE /domains/:id/subdomains
+
+Disallow subdomains on a domain.
+
+::: warning Non-Public Endpoint
+This endpoint is not public and requires authentication of a user with `staff` permissions.
+:::
+
+**Parameters**
+
+| Name         | Type    | Location | Required | Description               |
+| ------------ | ------- | -------- | -------- | ------------------------- |
+| `id`         | string  | path     | Yes      | Domain Name (example.com) |
+
+**Example Requests**
+
+::: code-group
+
+```sh [cURL]
+curl -X DELETE \
+-H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
+https://alekeagle.me/api/domains/example.com/subdomains
+```
+
+```js [JS Fetch]
+fetch("https://alekeagle.me/api/domains/example.com/subdomains", {
+  method: "DELETE",
+  headers: {
+    Authorization:
+      "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q",
+  },
 });
 ```
 
