@@ -1,4 +1,4 @@
-# Unprivileged Domain Endpoints
+# Domain Endpoints
 
 ## GET /domains
 
