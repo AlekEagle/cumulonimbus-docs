@@ -62,6 +62,12 @@ export default defineConfig({
       {
         text: "Wrapper",
         link: "/lib/",
+        items: [
+          {
+            text: "Cumulonimbus",
+            link: "/lib/cumulonimbus",
+          },
+        ],
       },
     ],
 

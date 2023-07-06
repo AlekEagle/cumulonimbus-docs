@@ -157,6 +157,10 @@ fetch("https://alekeagle.me/api/files/abcdefghij.png/name", {
 
 Update a file's extension. Attempting to modify a file owned by another user without `staff` permissions will return a 404 error regardless of whether the file exists. This is to prevent users from being able to determine whether a file exists or not.
 
+::: warning Warning
+Since the file extension is part of the file's ID, changing the extension will change the file's ID. This means that any links to the file will no longer work.
+:::
+
 ::: tip Note
 When a file's extension is changed, it is logged to the server's logs, that way staff can use this information to help improve the file type detection.
 :::

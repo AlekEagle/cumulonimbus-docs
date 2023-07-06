@@ -35,3 +35,16 @@ Cumulonimbus will send the following headers with every response:
 ## User IDs
 
 User IDs are 13-digit numbers that uniquely identify a user (Fun fact: they're actually just the UNIX timestamp of when the user was created). When an endpoint mentions something about a user ID, it's referring to the 13-digit number. You can also substitute `me` for your own user ID (we recommend using `me` since it requires less logic on your end).
+
+## Your First Request
+
+Making a request of any type to the API's base URL (`https://alekeagle.me/api/`) will return a JSON object with the following structure:
+
+```json
+{
+  "hello": "world",
+  "version": "4.0.0"
+}
+```
+
+This is a simple way to check if the API is online and responding to requests and also works for the thumbnail API.

@@ -6,5 +6,7 @@
   // Disable warnings about the first line being a top-level header
   "MD041": false,
   // Disable warnings about using emphasized text as headers (Used for "slugless headers")
-  "MD036": false
+  "MD036": false,
+  // Disable warnings about link fragments
+  "MD051": false
 }
