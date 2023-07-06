@@ -20,7 +20,7 @@ Some of these interfaces, types, and subclasses are not documented here. This is
 
 ::::
 
-### RatelimitData
+### RatelimitData <Badge text="^3.0.0" type="tip"/>
 
 ```ts
 interface RatelimitData {
@@ -30,7 +30,7 @@ interface RatelimitData {
 }
 ```
 
-### ClientOptions
+### ClientOptions <Badge text="^3.0.0" type="tip"/>
 
 ```ts
 interface ClientOptions {
@@ -39,7 +39,7 @@ interface ClientOptions {
 }
 ```
 
-### APIResponse
+### APIResponse <Badge text="^3.0.0" type="tip"/>
 
 ::: tip Note
 The generic type `T` will contain one of the [Data Structures](/reference/structures) page.
@@ -52,7 +52,7 @@ interface APIResponse<T> {
 }
 ```
 
-### ResponseError
+### ResponseError <Badge text="^3.0.0" type="tip"/>
 
 ```ts
 class ResponseError extends Error implements Data.Error {
@@ -64,7 +64,7 @@ class ResponseError extends Error implements Data.Error {
 }
 ```
 
-### ThumbnailError
+### ThumbnailError <Badge text="^3.0.0" type="tip"/>
 
 ```ts
 class ThumbnailError extends Error {
@@ -76,7 +76,7 @@ class ThumbnailError extends Error {
 
 ## Static Methods
 
-### login
+### login <Badge text="^3.0.0" type="tip"/>
 
 This method is used to login to Cumulonimbus using the [/api/login](/api/session#post-login) endpoint, and will return a promise with an instance of the Cumulonimbus class upon succeeding.
 
@@ -90,7 +90,7 @@ static login(
 ): Promise<Cumulonimbus>;
 ```
 
-### register
+### register <Badge text="^3.0.0" type="tip"/>
 
 This method is used to register a new account on Cumulonimbus using the [/api/register](/api/account#post-register) endpoint, and will return a promise with an instance of the Cumulonimbus class upon succeeding.
 
@@ -105,7 +105,7 @@ static register(
 ): Promise<Cumulonimbus>;
 ```
 
-### getAPIStatus
+### getAPIStatus <Badge text="^3.0.0" type="tip"/>
 
 This method fetches the example endpoint [/](/api/#your-first-request) and returns a promise with the response.
 
@@ -113,7 +113,7 @@ This method fetches the example endpoint [/](/api/#your-first-request) and retur
 static getAPIStatus(options?: Cumulonimbus.ClientOptions): Promise<Response>;
 ```
 
-### getThumbnailAPIStatus
+### getThumbnailAPIStatus <Badge text="^3.0.0" type="tip"/>
 
 Similar to [getAPIStatus](#getapistatus), this method fetches the thumbnail server's example endpoint.
 
@@ -138,7 +138,7 @@ constructor(
 
 The following methods are on the Cumulonimbus class and are used to make requests to the Cumulonimbus API. Not all of these methods are pubic on the class and are only used internally. They'll be documented here anyway for completeness and will be marked as internal. For example, both the `token` and `options` parameters are internal and are not meant to be used by the end user of the library.
 
-### call <Badge text="internal" type="danger"/>
+### call <Badge text="Internal" type="danger"/>
 
 This method is used by the library to make requests to the API and does basic things like setting the user agent, extracting ratelimit data if it is present, etc. It returns a promise with the response.
 
@@ -149,7 +149,7 @@ call<T>(
 ): Promise<Cumulonimbus.APIResponse<T>>;
 ```
 
-### authenticatedCall <Badge text="internal" type="danger"/>
+### authenticatedCall <Badge text="Internal" type="danger"/>
 
 This method is used by the library to make requests to the API that require authentication. It does the same things as [call](#call) but also adds the `Authorization` header to the request.
 
@@ -160,7 +160,7 @@ authenticatedCall<T>(
 ): Promise<Cumulonimbus.APIResponse<T>>;
 ```
 
-### manufactureMethod <Badge text="internal" type="danger"/>
+### manufactureMethod <Badge text="Internal" type="danger"/>
 
 Because the developer of the library is lazy, this method is used to manufacture methods (wow! who would've guessed?) that call the API. It's a bit complicated, but it essentially takes an endpoint template, headers, and a body template and returns a function that uses the [authenticatedCall](#authenticatedcall) method to make a request to the API. This method is used to create all of the methods on the Cumulonimbus class.
 
@@ -173,7 +173,7 @@ manufactureMethod<T extends any[], M>(
 ): (...args: T) => Promise<Cumulonimbus.APIResponse<M>>;
 ```
 
-### manufactureMethodGet <Badge text="internal" type="danger"/>
+### manufactureMethodGet <Badge text="Internal" type="danger"/>
 
 This method is similar to [manufactureMethod](#manufacturemethod) but is used to create methods that use the `GET` method and don't have a body.
 
@@ -184,10 +184,31 @@ manufactureMethodGet<T extends any[], M>(
 ): (...args: T) => Promise<Cumulonimbus.APIResponse<M>>;
 ```
 
-### toQueryString <Badge text="internal" type="danger"/>
+### toQueryString <Badge text="Internal" type="danger"/>
 
 This method is used to convert an object to a query string. It's used by the template functions in [manufactureMethod](#manufacturemethod) and [manufactureMethodGet](#manufacturemethodget) to convert the arguments to the method to a query string.
 
 ```ts
 toQueryString(obj: { [key: string]: string | number | boolean }): string;
+```
+
+### getThumbnail <Badge text="^3.0.0" type="tip"/>
+
+Fetches a thumbnail from the thumbnail server. This method uses the configured `baseThumbnailURL` to fetch the thumbnail.
+
+```ts
+getThumbnail(
+  id: string | Cumulonimbus.Data.File
+)
+```
+
+### getSession <Badge text="^3.0.0" type="tip"/>
+
+Fetches the current session or the specified session of yourself or another user.
+
+```ts
+getSession(
+  sid?: string,
+  uid?: string
+)
 ```
