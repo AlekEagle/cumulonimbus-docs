@@ -10,7 +10,7 @@ Get a list of files. Fetching all files or files owned by another user requires 
 | -------- | ------ | -------- | -------- | -------------------------------------------------------------------------- |
 | `limit`  | number | query    | No       | The maximum number of files to return. The default and maximum value is 50 |
 | `offset` | number | query    | No       | The offset to start from when returning files. The default value is 0      |
-| `user`   | string | query    | No       | The [User's ID](/api/#user-ids) or blank for all files.                    |
+| `uid`    | string | query    | No       | The [User's ID](/api/#user-ids) or blank for all files.                    |
 
 **Example Requests**
 
@@ -19,11 +19,11 @@ Get a list of files. Fetching all files or files owned by another user requires 
 ```sh [cURL]
 curl -X GET \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
-"https://alekeagle.me/api/files?limit=5&offset=0&user=me"
+"https://alekeagle.me/api/files?limit=5&offset=0&uid=me"
 ```
 
 ```js [JS Fetch]
-fetch("https://alekeagle.me/api/files?limit=5&offset=0&user=me", {
+fetch("https://alekeagle.me/api/files?limit=5&offset=0&uid=me", {
   method: "GET",
   headers: {
     Authorization:

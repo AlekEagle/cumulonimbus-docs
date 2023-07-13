@@ -122,9 +122,11 @@ Fetch a list of sessions for a user.
 
 **Parameters**
 
-| Name  | Type   | Location | Required | Description                     |
-| ----- | ------ | -------- | -------- | ------------------------------- |
-| `uid` | string | path     | yes      | The [User's ID](/api/#user-ids) |
+| Name     | Type   | Location | Required | Description                                                     |
+| -------- | ------ | -------- | -------- | --------------------------------------------------------------- |
+| `uid`    | string | path     | yes      | The [User's ID](/api/#user-ids)                                 |
+| `limit`  | number | query    | no       | The maximum number of sessions to return. (Default and max: 50) |
+| `offset` | number | query    | no       | The number of sessions to skip. (Default: 0)                    |
 
 **Example Requests**
 

@@ -19,24 +19,28 @@ yarn add cumulonimbus-wrapper
 ## Usage
 
 ```js
+// CommonJS
 const Cumulonimbus = require("cumulonimbus-wrapper");
 
-// With a token
-const client = new Cumulonimbus(
-  "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q"
-);
+// ES6
+import Cumulonimbus from "cumulonimbus-wrapper";
 
-// Logging in with a username and password
+// Browser
+// Pray that you bundled it
+
+// Pre existing token
+const client = new Cumulonimbus("your-api-token");
+
+// Login (Creates a new token)
 const client = await Cumulonimbus.login("username", "password");
 
-// Registering an account
+// Register (Creates a new user and token)
 const client = await Cumulonimbus.register(
   "username",
   "email",
   "password",
-  "password"
+  "repeatPassword"
 );
 
-// Get your user object
-console.log((await client.getUser()).result);
+console.log((await client.getSession()).result);
 ```

@@ -199,16 +199,365 @@ Fetches a thumbnail from the thumbnail server. This method uses the configured `
 ```ts
 getThumbnail(
   id: string | Cumulonimbus.Data.File
-)
+);
 ```
 
 ### getSession <Badge text="^3.0.0" type="tip"/>
 
-Fetches the current session or the specified session of yourself or another user.
+Fetches the current session or the specified session of yourself or another user. If no session ID is specified, the current session will be fetched.
+
+See the [underlying endpoint](/api/session#get-users-uid-sessions-sid) for more information.
 
 ```ts
 getSession(
   sid?: string,
   uid?: string
-)
+);
+```
+
+### getSessions <Badge text="^3.0.0" type="tip"/>
+
+Fetches a list of sessions for yourself or another user. If no user ID is specified, the sessions for the current user will be fetched.
+
+See the [underlying endpoint](/api/session#get-users-uid-sessions) for more information.
+
+```ts
+getSessions(
+  uid?: string,
+  limit?: number,
+  offset?: number
+);
+```
+
+### deleteSession <Badge text="^3.0.0" type="tip"/>
+
+Deletes the specified session of yourself or another user. If no user ID is specified, it will assume the current user.
+
+See the [underlying endpoint](/api/session#delete-users-uid-sessions-sid) for more information.
+
+```ts
+deleteSession(
+  sid: string,
+  uid?: string
+);
+```
+
+### deleteSessions <Badge text="^3.0.0" type="tip"/>
+
+Deletes the specified sessions of yourself or another user. If no user ID is specified, it will assume the current user.
+
+See the [underlying endpoint](/api/session#delete-users-uid-sessions) for more information.
+
+```ts
+deleteSessions(
+  sids: string[],
+  uid?: string
+);
+```
+
+### deleteAllSessions <Badge text="^3.0.0" type="tip"/>
+
+Deletes all sessions of yourself or another user. If no user ID is specified, it will assume the current user.
+
+See the [underlying endpoint](/api/session#delete-users-uid-sessions-all) for more information.
+
+```ts
+deleteAllSessions(
+  uid?: string,
+  includeSelf?: boolean
+);
+```
+
+### getUsers <Badge text="^3.0.0" type="tip"/>
+
+Fetches a list of users.
+
+See the [underlying endpoint](/api/account#get-users) for more information.
+
+```ts
+getUsers(
+  limit?: number,
+  offset?: number
+);
+```
+
+### getUser <Badge text="^3.0.0" type="tip"/>
+
+Fetches a user. If no user ID is specified, it will fetch the current user.
+
+See the [underlying endpoint](/api/account#get-users-id) for more information.
+
+```ts
+getUser(
+  uid?: string
+);
+```
+
+### editUsername <Badge text="^3.0.0" type="tip"/>
+
+Edits the username of yourself or another user. If no user ID is specified, it will assume the current user. If you're editing the current user's username, you must provide the current password.
+
+See the [underlying endpoint](/api/account#put-users-id-username) for more information.
+
+```ts
+editUsername(
+  username: string,
+  password?: string,
+  uid?: string
+);
+```
+
+### editEmail <Badge text="^3.0.0" type="tip"/>
+
+Edits the email of yourself or another user. If no user ID is specified, it will assume the current user. If you're editing the current user's email, you must provide the current password.
+
+See the [underlying endpoint](/api/account#put-users-id-email) for more information.
+
+```ts
+editEmail(
+  email: string,
+  password?: string,
+  uid?: string
+);
+```
+
+### editPassword <Badge text="^3.0.0" type="tip"/>
+
+Edits the password of yourself or another user. If no user ID is specified, it will assume the current user. If you're editing the current user's password, you must provide the current password.
+
+See the [underlying endpoint](/api/account#put-users-id-password) for more information.
+
+```ts
+editPassword(
+  newPassword: string,
+  confirmNewPassword: string,
+  oldPassword?: string,
+  uid?: string
+);
+```
+
+### grantStaff <Badge text="^3.0.0" type="tip"/>
+
+Grants staff to the specified user.
+
+See the [underlying endpoint](/api/account#put-users-id-staff) for more information.
+
+```ts
+grantStaff(
+  uid: string
+);
+```
+
+### revokeStaff <Badge text="^3.0.0" type="tip"/>
+
+Revokes staff from the specified user.
+
+See the [underlying endpoint](/api/account#delete-users-id-staff) for more information.
+
+```ts
+revokeStaff(
+  uid: string
+);
+```
+
+### banUser <Badge text="^3.0.0" type="tip"/>
+
+Bans the specified user.
+
+See the [underlying endpoint](/api/account#put-users-id-ban) for more information.
+
+```ts
+banUser(
+  uid: string
+);
+```
+
+### unbanUser <Badge text="^3.0.0" type="tip"/>
+
+Unbans the specified user.
+
+See the [underlying endpoint](/api/account#delete-users-id-ban) for more information.
+
+```ts
+unbanUser(
+  uid: string
+);
+```
+
+### editDomainSelection <Badge text="^3.0.0" type="tip"/>
+
+Edits the domain selection of yourself or another user. If no user ID is specified, it will assume the current user.
+
+See the [underlying endpoint](/api/account#put-users-id-domain) for more information.
+
+```ts
+editDomainSelection(
+  domain: string,
+  subdomain?: string,
+  uid?: string
+);
+```
+
+### deleteUser <Badge text="^3.0.0" type="tip"/>
+
+Deletes the current user or the specified user. If no user ID is specified, it will assume the current user. If you're deleting the current user, you must provide the current username and password to confirm the deletion.
+
+See the [underlying endpoint](/api/account#delete-users-id) for more information.
+
+```ts
+deleteUser(
+  uid?: string,
+  username?: string,
+  password?: string
+);
+```
+
+### deleteUsers <Badge text="^3.0.0" type="tip"/>
+
+Deletes the specified users.
+
+See the [underlying endpoint](/api/account#delete-users) for more information.
+
+```ts
+deleteUsers(
+  uids: string[]
+);
+```
+
+### getDomains <Badge text="^3.0.0" type="tip"/>
+
+Fetches a list of domains.
+
+See the [underlying endpoint](/api/domain#get-domains) for more information.
+
+```ts
+getDomains(
+  limit?: 'all' | number,
+  offset?: number
+);
+```
+
+### getDomain <Badge text="^3.0.0" type="tip"/>
+
+Fetches the specified domain.
+
+See the [underlying endpoint](/api/domain#get-domains-id) for more information.
+
+```ts
+getDomain(
+  id: string
+);
+```
+
+### createDomain <Badge text="^3.0.0" type="tip"/>
+
+Creates a domain.
+
+See the [underlying endpoint](/api/domain#post-domains) for more information.
+
+```ts
+createDomain(
+  id: string,
+  subdomains?: boolean
+);
+```
+
+### allowSubdomains <Badge text="^3.0.0" type="tip"/>
+
+Allows subdomains for the specified domain.
+
+See the [underlying endpoint](/api/domain#put-domains-id-subdomains) for more information.
+
+```ts
+allowSubdomains(
+  id: string
+);
+```
+
+### disallowSubdomains <Badge text="^3.0.0" type="tip"/>
+
+Disallows subdomains for the specified domain.
+
+See the [underlying endpoint](/api/domain#delete-domains-id-subdomains) for more information.
+
+```ts
+disallowSubdomains(
+  id: string
+);
+```
+
+### deleteDomain <Badge text="^3.0.0" type="tip"/>
+
+Deletes the specified domain.
+
+See the [underlying endpoint](/api/domain#delete-domains-id) for more information.
+
+```ts
+deleteDomain(
+  id: string
+);
+```
+
+### deleteDomains <Badge text="^3.0.0" type="tip"/>
+
+Deletes the specified domains.
+
+See the [underlying endpoint](/api/domain#delete-domains) for more information.
+
+```ts
+deleteDomains(
+  ids: string[]
+);
+```
+
+### getFiles <Badge text="^3.0.0" type="tip"/>
+
+Fetches a list of files. If no user ID is specified, it will fetch all files from all users.
+
+See the [underlying endpoint](/api/file#get-files) for more information.
+
+```ts
+getFiles(
+  uid?: string,
+  limit?: number,
+  offset?: number
+);
+```
+
+### getFile <Badge text="^3.0.0" type="tip"/>
+
+Fetches the specified file.
+
+See the [underlying endpoint](/api/file#get-files-id) for more information.
+
+```ts
+getFile(
+  id: string
+);
+```
+
+### editFilename <Badge text="^3.0.0" type="tip"/>
+
+Edits the display name of the specified file.
+
+See the [underlying endpoint](/api/file#put-files-id-name) for more information.
+
+```ts
+editFilename(
+  id: string,
+  name?: string
+);
+```
+
+### editFileExtension <Badge text="^3.0.0" type="tip"/>
+
+Edits the extension of the specified file.
+
+See the [underlying endpoint](/api/file#put-files-id-extension) for more information.
+
+```ts
+editFileExtension(
+  id: string,
+  extension: string
+);
 ```

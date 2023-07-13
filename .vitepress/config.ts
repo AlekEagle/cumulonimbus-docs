@@ -67,6 +67,10 @@ export default defineConfig({
             text: "Cumulonimbus",
             link: "/lib/cumulonimbus",
           },
+          {
+            text: "Migrating from v2",
+            link: "/lib/migrating",
+          },
         ],
       },
     ],
