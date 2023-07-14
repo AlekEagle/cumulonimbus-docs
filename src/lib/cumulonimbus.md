@@ -561,3 +561,170 @@ editFileExtension(
   extension: string
 );
 ```
+
+### deleteFile <Badge text="^3.0.0" type="tip"/>
+
+Deletes the specified file.
+
+See the [underlying endpoint](/api/file#delete-files-id) for more information.
+
+```ts
+deleteFile(
+  id: string
+);
+```
+
+### deleteFiles <Badge text="^3.0.0" type="tip"/>
+
+Deletes the specified files.
+
+See the [underlying endpoint](/api/file#delete-files) for more information.
+
+```ts
+deleteFiles(
+  ids: string[]
+);
+```
+
+### deleteAllFiles <Badge text="^3.0.0" type="tip"/>
+
+Deletes all files from the specified user. If no user ID is specified, it will assume the current user. If you're deleting the files of the current user, you must provide the current password to confirm the deletion.
+
+See the [underlying endpoint](/api/file#delete-files-all) for more information.
+
+```ts
+deleteAllFiles(
+  uid?: string,
+  password?: string
+);
+```
+
+### getInstructions <Badge text="^3.0.0" type="tip"/>
+
+Fetches a list of instructions.
+
+See the [underlying endpoint](/api/instruction#get-instructions) for more information.
+
+```ts
+getInstructions(
+  limit?: number,
+  offset?: number
+);
+```
+
+### getInstruction <Badge text="^3.0.0" type="tip"/>
+
+Fetches the specified instruction.
+
+See the [underlying endpoint](/api/instruction#get-instructions-id) for more information.
+
+```ts
+getInstruction(
+  id: string
+);
+```
+
+### createInstruction <Badge text="^3.0.0" type="tip"/>
+
+Creates an instruction.
+
+See the [underlying endpoint](/api/instruction#post-instructions) for more information.
+
+```ts
+createInstruction(
+  id: string,
+  name: string,
+  description: string,
+  steps: string[],
+  content: string,
+  filename?: string
+);
+```
+
+### editInstructionName <Badge text="^3.0.0" type="tip"/>
+
+Edits the name of the specified instruction.
+
+See the [underlying endpoint](/api/instruction#put-instructions-id-name) for more information.
+
+```ts
+editInstructionName(
+  id: string,
+  name: string
+);
+```
+
+### editInstructionDescription <Badge text="^3.0.0" type="tip"/>
+
+Edits the description of the specified instruction.
+
+See the [underlying endpoint](/api/instruction#put-instructions-id-description) for more information.
+
+```ts
+editInstructionDescription(
+  id: string,
+  description: string
+);
+```
+
+### editInstructionFile <Badge text="^3.0.0" type="tip"/>
+
+Edits the file of the specified instruction.
+
+See the [underlying endpoint](/api/instruction#put-instructions-id-file) for more information.
+
+```ts
+editInstructionFile(
+  id: string,
+  content: string,
+  filename?: string
+);
+```
+
+### editInstructionSteps <Badge text="^3.0.0" type="tip"/>
+
+Edits the steps of the specified instruction.
+
+See the [underlying endpoint](/api/instruction#put-instructions-id-steps) for more information.
+
+```ts
+editInstructionSteps(
+  id: string,
+  steps: string[]
+);
+```
+
+### deleteInstruction <Badge text="^3.0.0" type="tip"/>
+
+Deletes the specified instruction.
+
+See the [underlying endpoint](/api/instruction#delete-instructions-id) for more information.
+
+```ts
+deleteInstruction(
+  id: string
+);
+```
+
+### deleteInstructions <Badge text="^3.0.0" type="tip"/>
+
+Deletes the specified instructions.
+
+See the [underlying endpoint](/api/instruction#delete-instructions) for more information.
+
+```ts
+deleteInstructions(
+  ids: string[]
+);
+```
+
+### upload <Badge text="^3.0.0" type="tip"/>
+
+Uploads the provided data to Cumulonimbus.
+
+```ts
+upload(
+  data: string | Buffer | File | Blob | ArrayBuffer,
+  type?: string,
+);
+```
