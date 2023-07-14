@@ -29,7 +29,7 @@ Cumulonimbus will send the following headers with every response:
 | Header                | Description                                                    |
 | --------------------- | -------------------------------------------------------------- |
 | `RateLimit-Limit`     | The maximum number of requests you can make per allotted time. |
-| `RateLimit-Reamining` | The number of requests you have left for this allotted time.   |
+| `RateLimit-Remaining` | The number of requests you have left for this allotted time.   |
 | `RateLimit-Reset`     | The time in seconds until the rate limit resets.               |
 
 ## User IDs
