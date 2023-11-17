@@ -3,8 +3,8 @@
 layout: home
 
 hero:
-  name: "Cumulonimbus"
-  text: "API Documentation"
+  name: 'Cumulonimbus'
+  text: 'API Documentation'
   tagline: Welcome to the funny cloud platform.
   actions:
     - theme: brand

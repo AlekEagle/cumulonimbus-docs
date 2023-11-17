@@ -6,8 +6,8 @@ All of the possible error messages that can be returned from the API.
 
 ```ts
 interface InvalidEndpoint {
-  code: "INVALID_ENDPOINT_ERROR";
-  message: "Invalid Endpoint";
+  code: 'INVALID_ENDPOINT_ERROR';
+  message: 'Invalid Endpoint';
 }
 ```
 
@@ -15,8 +15,8 @@ interface InvalidEndpoint {
 
 ```ts
 interface InsufficientPermissions {
-  code: "INSUFFICIENT_PERMISSIONS_ERROR";
-  message: "Insufficient Permissions";
+  code: 'INSUFFICIENT_PERMISSIONS_ERROR';
+  message: 'Insufficient Permissions';
 }
 ```
 
@@ -24,8 +24,8 @@ interface InsufficientPermissions {
 
 ```ts
 interface InvalidUser {
-  code: "INVALID_USER_ERROR";
-  message: "Invalid User";
+  code: 'INVALID_USER_ERROR';
+  message: 'Invalid User';
 }
 ```
 
@@ -33,8 +33,8 @@ interface InvalidUser {
 
 ```ts
 interface InvalidUsername {
-  code: "INVALID_USERNAME_ERROR";
-  message: "Invalid Username";
+  code: 'INVALID_USERNAME_ERROR';
+  message: 'Invalid Username';
 }
 ```
 
@@ -42,8 +42,8 @@ interface InvalidUsername {
 
 ```ts
 interface InvalidPassword {
-  code: "INVALID_PASSWORD_ERROR";
-  message: "Invalid Password";
+  code: 'INVALID_PASSWORD_ERROR';
+  message: 'Invalid Password';
 }
 ```
 
@@ -51,8 +51,8 @@ interface InvalidPassword {
 
 ```ts
 interface PasswordsDoNotMatch {
-  code: "PASSWORDS_DO_NOT_MATCH_ERROR";
-  message: "Passwords Do Not Match";
+  code: 'PASSWORDS_DO_NOT_MATCH_ERROR';
+  message: 'Passwords Do Not Match';
 }
 ```
 
@@ -60,8 +60,35 @@ interface PasswordsDoNotMatch {
 
 ```ts
 interface InvalidEmail {
-  code: "INVALID_EMAIL_ERROR";
-  message: "Invalid Email";
+  code: 'INVALID_EMAIL_ERROR';
+  message: 'Invalid Email';
+}
+```
+
+## EmailNotVerified
+
+```ts
+interface EmailNotVerified {
+  code: 'EMAIL_NOT_VERIFIED_ERROR';
+  message: 'Email Not Verified';
+}
+```
+
+## EmailAlreadyVerified
+
+```ts
+interface EmailAlreadyVerified {
+  code: 'EMAIL_ALREADY_VERIFIED_ERROR';
+  message: 'Email Already Verified';
+}
+```
+
+## InvalidVerificationToken
+
+```ts
+interface InvalidVerificationToken {
+  code: 'INVALID_VERIFICATION_TOKEN_ERROR';
+  message: 'Invalid Verification Token';
 }
 ```
 
@@ -69,8 +96,8 @@ interface InvalidEmail {
 
 ```ts
 interface InvalidSession {
-  code: "INVALID_SESSION_ERROR";
-  message: "Invalid Session";
+  code: 'INVALID_SESSION_ERROR';
+  message: 'Invalid Session';
 }
 ```
 
@@ -78,8 +105,8 @@ interface InvalidSession {
 
 ```ts
 interface InvalidDomain {
-  code: "INVALID_DOMAIN_ERROR";
-  message: "Invalid Domain";
+  code: 'INVALID_DOMAIN_ERROR';
+  message: 'Invalid Domain';
 }
 ```
 
@@ -87,8 +114,8 @@ interface InvalidDomain {
 
 ```ts
 interface SubdomainTooLong {
-  code: "SUBDOMAIN_TOO_LONG_ERROR";
-  message: "Subdomain Too Long";
+  code: 'SUBDOMAIN_TOO_LONG_ERROR';
+  message: 'Subdomain Too Long';
 }
 ```
 
@@ -96,8 +123,8 @@ interface SubdomainTooLong {
 
 ```ts
 interface InvalidFile {
-  code: "INVALID_FILE_ERROR";
-  message: "Invalid File";
+  code: 'INVALID_FILE_ERROR';
+  message: 'Invalid File';
 }
 ```
 
@@ -105,8 +132,8 @@ interface InvalidFile {
 
 ```ts
 interface InvalidInstruction {
-  code: "INVALID_INSTRUCTION_ERROR";
-  message: "Invalid Instruction";
+  code: 'INVALID_INSTRUCTION_ERROR';
+  message: 'Invalid Instruction';
 }
 ```
 
@@ -114,8 +141,8 @@ interface InvalidInstruction {
 
 ```ts
 interface SubdomainNotAllowed {
-  code: "SUBDOMAIN_NOT_ALLOWED_ERROR";
-  message: "Subdomain Not Allowed";
+  code: 'SUBDOMAIN_NOT_ALLOWED_ERROR';
+  message: 'Subdomain Not Allowed';
 }
 ```
 
@@ -123,8 +150,8 @@ interface SubdomainNotAllowed {
 
 ```ts
 interface DomainExists {
-  code: "DOMAIN_EXISTS_ERROR";
-  message: "Domain Exists";
+  code: 'DOMAIN_EXISTS_ERROR';
+  message: 'Domain Exists';
 }
 ```
 
@@ -132,8 +159,8 @@ interface DomainExists {
 
 ```ts
 interface UserExists {
-  code: "USER_EXISTS_ERROR";
-  message: "User Exists";
+  code: 'USER_EXISTS_ERROR';
+  message: 'User Exists';
 }
 ```
 
@@ -141,8 +168,8 @@ interface UserExists {
 
 ```ts
 interface InstructionExists {
-  code: "INSTRUCTION_EXISTS_ERROR";
-  message: "Instruction Exists";
+  code: 'INSTRUCTION_EXISTS_ERROR';
+  message: 'Instruction Exists';
 }
 ```
 
@@ -150,8 +177,8 @@ interface InstructionExists {
 
 ```ts
 interface MissingFields {
-  code: "MISSING_FIELDS_ERROR";
-  message: "Missing Fields";
+  code: 'MISSING_FIELDS_ERROR';
+  message: 'Missing Fields';
   fields: string[];
 }
 ```
@@ -160,8 +187,8 @@ interface MissingFields {
 
 ```ts
 interface Banned {
-  code: "BANNED_ERROR";
-  message: "Banned";
+  code: 'BANNED_ERROR';
+  message: 'Banned';
 }
 ```
 
@@ -169,8 +196,8 @@ interface Banned {
 
 ```ts
 interface BodyTooLarge {
-  code: "BODY_TOO_LARGE_ERROR";
-  message: "Body Too Large";
+  code: 'BODY_TOO_LARGE_ERROR';
+  message: 'Body Too Large';
 }
 ```
 
@@ -178,8 +205,8 @@ interface BodyTooLarge {
 
 ```ts
 interface RateLimited {
-  code: "RATELIMITED_ERROR";
-  message: "You Have Been Ratelimited. Please Try Again Later.";
+  code: 'RATELIMITED_ERROR';
+  message: 'You Have Been Ratelimited. Please Try Again Later.';
 }
 ```
 
@@ -187,7 +214,7 @@ interface RateLimited {
 
 ```ts
 interface Internal {
-  code: "INTERNAL_SERVER_ERROR";
-  message: "Internal Server Error";
+  code: 'INTERNAL_SERVER_ERROR';
+  message: 'Internal Server Error';
 }
 ```

@@ -6,8 +6,8 @@ All of the possible success messages that can be returned from the API.
 
 ```ts
 interface DeleteUser {
-  code: "DELETE_USER_SUCCESS";
-  message: "User Successfully Deleted";
+  code: 'DELETE_USER_SUCCESS';
+  message: 'User Successfully Deleted';
 }
 ```
 
@@ -15,8 +15,8 @@ interface DeleteUser {
 
 ```ts
 interface DeleteUsers {
-  code: "DELETE_USERS_SUCCESS";
-  message: "Users Successfully Deleted";
+  code: 'DELETE_USERS_SUCCESS';
+  message: 'Users Successfully Deleted';
   count: number;
 }
 ```
@@ -25,8 +25,8 @@ interface DeleteUsers {
 
 ```ts
 interface DeleteSession {
-  code: "DELETE_SESSION_SUCCESS";
-  message: "Session Successfully Deleted";
+  code: 'DELETE_SESSION_SUCCESS';
+  message: 'Session Successfully Deleted';
 }
 ```
 
@@ -34,8 +34,8 @@ interface DeleteSession {
 
 ```ts
 interface DeleteSessions {
-  code: "DELETE_SESSIONS_SUCCESS";
-  message: "Sessions Successfully Deleted";
+  code: 'DELETE_SESSIONS_SUCCESS';
+  message: 'Sessions Successfully Deleted';
   count: number;
 }
 ```
@@ -44,8 +44,8 @@ interface DeleteSessions {
 
 ```ts
 interface DeleteDomain {
-  code: "DELETE_DOMAIN_SUCCESS";
-  message: "Domain Successfully Deleted";
+  code: 'DELETE_DOMAIN_SUCCESS';
+  message: 'Domain Successfully Deleted';
 }
 ```
 
@@ -53,8 +53,8 @@ interface DeleteDomain {
 
 ```ts
 interface DeleteDomains {
-  code: "DELETE_DOMAINS_SUCCESS";
-  message: "Domains Successfully Deleted";
+  code: 'DELETE_DOMAINS_SUCCESS';
+  message: 'Domains Successfully Deleted';
   count: number;
 }
 ```
@@ -63,8 +63,8 @@ interface DeleteDomains {
 
 ```ts
 interface DeleteInstruction {
-  code: "DELETE_INSTRUCTION_SUCCESS";
-  message: "Instruction Successfully Deleted";
+  code: 'DELETE_INSTRUCTION_SUCCESS';
+  message: 'Instruction Successfully Deleted';
 }
 ```
 
@@ -72,8 +72,8 @@ interface DeleteInstruction {
 
 ```ts
 interface DeleteInstructions {
-  code: "DELETE_INSTRUCTIONS_SUCCESS";
-  message: "Instructions Successfully Deleted";
+  code: 'DELETE_INSTRUCTIONS_SUCCESS';
+  message: 'Instructions Successfully Deleted';
   count: number;
 }
 ```
@@ -82,8 +82,8 @@ interface DeleteInstructions {
 
 ```ts
 interface DeleteFile {
-  code: "DELETE_FILE_SUCCESS";
-  message: "File Successfully Deleted";
+  code: 'DELETE_FILE_SUCCESS';
+  message: 'File Successfully Deleted';
 }
 ```
 
@@ -91,8 +91,17 @@ interface DeleteFile {
 
 ```ts
 interface DeleteFiles {
-  code: "DELETE_FILES_SUCCESS";
-  message: "Files Successfully Deleted";
+  code: 'DELETE_FILES_SUCCESS';
+  message: 'Files Successfully Deleted';
   count: number;
+}
+```
+
+## SendVerificationEmail
+
+```ts
+interface SendVerificationEmail {
+  code: 'SEND_VERIFICATION_EMAIL_SUCCESS';
+  message: 'Verification Email Successfully Sent';
 }
 ```

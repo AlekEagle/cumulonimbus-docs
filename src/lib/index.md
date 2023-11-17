@@ -20,26 +20,26 @@ yarn add cumulonimbus-wrapper
 
 ```js
 // CommonJS
-const Cumulonimbus = require("cumulonimbus-wrapper");
+const Cumulonimbus = require('cumulonimbus-wrapper');
 
 // ES6
-import Cumulonimbus from "cumulonimbus-wrapper";
+import Cumulonimbus from 'cumulonimbus-wrapper';
 
 // Browser
 // Pray that you bundled it
 
 // Pre existing token
-const client = new Cumulonimbus("your-api-token");
+const client = new Cumulonimbus('your-api-token');
 
 // Login (Creates a new token)
-const client = await Cumulonimbus.login("username", "password");
+const client = await Cumulonimbus.login('username', 'password');
 
 // Register (Creates a new user and token)
 const client = await Cumulonimbus.register(
-  "username",
-  "email",
-  "password",
-  "repeatPassword"
+  'username',
+  'email',
+  'password',
+  'repeatPassword',
 );
 
 console.log((await client.getSession()).result);

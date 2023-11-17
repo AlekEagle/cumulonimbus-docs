@@ -22,11 +22,11 @@ https://alekeagle.me/api/domains
 ```
 
 ```js [JS Fetch]
-fetch("https://alekeagle.me/api/domains", {
-  method: "GET",
+fetch('https://alekeagle.me/api/domains', {
+  method: 'GET',
   headers: {
     Authorization:
-      "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q",
+      'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
   },
 });
 ```
@@ -67,11 +67,11 @@ https://alekeagle.me/api/domains/alekeagle.me
 ```
 
 ```js [JS Fetch]
-fetch("https://alekeagle.me/api/domains/alekeagle.me", {
-  method: "GET",
+fetch('https://alekeagle.me/api/domains/alekeagle.me', {
+  method: 'GET',
   headers: {
     Authorization:
-      "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q",
+      'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
   },
 });
 ```
@@ -121,14 +121,14 @@ https://alekeagle.me/api/domains
 ```
 
 ```js [JS Fetch]
-fetch("https://alekeagle.me/api/domains", {
-  method: "POST",
+fetch('https://alekeagle.me/api/domains', {
+  method: 'POST',
   headers: {
-    Authorization:
-      "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q",
-    "Content-Type": "application/json",
+    'Authorization':
+      'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
+    'Content-Type': 'application/json',
   },
-  body: JSON.stringify({ id: "example.com", subdomains: true }),
+  body: JSON.stringify({ id: 'example.com', subdomains: true }),
 });
 ```
 
@@ -162,9 +162,9 @@ This endpoint is not public and requires authentication of a user with `staff` p
 
 **Parameters**
 
-| Name         | Type    | Location | Required | Description               |
-| ------------ | ------- | -------- | -------- | ------------------------- |
-| `id`         | string  | path     | Yes      | Domain Name (example.com) |
+| Name | Type   | Location | Required | Description               |
+| ---- | ------ | -------- | -------- | ------------------------- |
+| `id` | string | path     | Yes      | Domain Name (example.com) |
 
 **Example Requests**
 
@@ -177,11 +177,11 @@ https://alekeagle.me/api/domains/example.com/subdomains
 ```
 
 ```js [JS Fetch]
-fetch("https://alekeagle.me/api/domains/example.com/subdomains", {
-  method: "PUT",
+fetch('https://alekeagle.me/api/domains/example.com/subdomains', {
+  method: 'PUT',
   headers: {
     Authorization:
-      "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q",
+      'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
   },
 });
 ```
@@ -216,9 +216,9 @@ This endpoint is not public and requires authentication of a user with `staff` p
 
 **Parameters**
 
-| Name         | Type    | Location | Required | Description               |
-| ------------ | ------- | -------- | -------- | ------------------------- |
-| `id`         | string  | path     | Yes      | Domain Name (example.com) |
+| Name | Type   | Location | Required | Description               |
+| ---- | ------ | -------- | -------- | ------------------------- |
+| `id` | string | path     | Yes      | Domain Name (example.com) |
 
 **Example Requests**
 
@@ -231,11 +231,11 @@ https://alekeagle.me/api/domains/example.com/subdomains
 ```
 
 ```js [JS Fetch]
-fetch("https://alekeagle.me/api/domains/example.com/subdomains", {
-  method: "DELETE",
+fetch('https://alekeagle.me/api/domains/example.com/subdomains', {
+  method: 'DELETE',
   headers: {
     Authorization:
-      "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q",
+      'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
   },
 });
 ```
@@ -285,11 +285,11 @@ https://alekeagle.me/api/domains/example.com
 ```
 
 ```js [JS Fetch]
-fetch("https://alekeagle.me/api/domains/example.com", {
-  method: "DELETE",
+fetch('https://alekeagle.me/api/domains/example.com', {
+  method: 'DELETE',
   headers: {
     Authorization:
-      "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q",
+      'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
   },
 });
 ```
@@ -338,14 +338,14 @@ https://alekeagle.me/api/domains
 ```
 
 ```js [JS Fetch]
-fetch("https://alekaegle.me/api/domains", {
-  method: "DELETE",
+fetch('https://alekaegle.me/api/domains', {
+  method: 'DELETE',
   headers: {
-    Authorization:
-      "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q",
-    "Content-Type": "application/json",
+    'Authorization':
+      'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
+    'Content-Type': 'application/json',
   },
-  body: JSON.stringify(["example.com", "example.org"]),
+  body: JSON.stringify(['example.com', 'example.org']),
 });
 ```
 
