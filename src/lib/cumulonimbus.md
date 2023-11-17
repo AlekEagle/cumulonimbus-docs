@@ -321,6 +321,41 @@ editEmail(
 );
 ```
 
+### verifyEmail <Badge text="^3.1.0" type="tip"/>
+
+Verifies the email of yourself or another user. If no user ID is specified, it will assume the current user.
+
+See the [underlying endpoint](/api/account#put-users-id-verify) for more information.
+
+```ts
+verifyEmail(
+  uid: string,
+  token?: string
+);
+```
+
+### resendVerificationEmail <Badge text="^3.1.0" type="tip"/>
+
+Resends the verification email of yourself or another user. If no user ID is specified, it will assume the current user.
+
+See the [underlying endpoint](/api/account#put-users-id-verify-resend) for more information.
+
+```ts
+resendVerificationEmail(
+  uid?: string
+);
+```
+
+### unverifyEmail <Badge text="^3.1.0" type="tip"/>
+
+Unverifies the email of another user.
+
+```ts
+unverifyEmail(
+  uid: string
+);
+```
+
 ### editPassword <Badge text="^3.0.0" type="tip"/>
 
 Edits the password of yourself or another user. If no user ID is specified, it will assume the current user. If you're editing the current user's password, you must provide the current password.
