@@ -377,6 +377,10 @@ fetch('https://alekeagle.me/api/files/all', {
 
 Uploads a file to the server.
 
+::: danger Email Verification Requirement
+On December 15th, 2023, a verified email will be required to upload files.
+:::
+
 **Parameters**
 
 | Name   | Type | Location | Required | Description |
