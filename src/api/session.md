@@ -222,10 +222,10 @@ Delete multiple sessions for a user.
 
 **Parameters**
 
-| Name   | Type     | Location | Required | Description                                                      |
-| ------ | -------- | -------- | -------- | ---------------------------------------------------------------- |
-| `uid`  | string   | path     | yes      | The [User's ID](/api/#user-ids)                                  |
-| `sids` | string[] | body     | yes      | The session IDs. Can include `me` to target the current session. |
+| Name  | Type     | Location | Required | Description                                                      |
+| ----- | -------- | -------- | -------- | ---------------------------------------------------------------- |
+| `uid` | string   | path     | yes      | The [User's ID](/api/#user-ids)                                  |
+| `ids` | string[] | body     | yes      | The session IDs. Can include `me` to target the current session. |
 
 **Example Requests**
 
@@ -235,7 +235,7 @@ Delete multiple sessions for a user.
 curl -X DELETE \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
 -H "Content-Type: application/json" \
--d '["me"]' \
+-d '{"ids":["me"]}' \
 https://alekeagle.me/api/users/me/sessions
 ```
 
@@ -247,7 +247,7 @@ fetch('https://alekeagle.me/api/users/me/sessions', {
       'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
     'Content-Type': 'application/json',
   },
-  body: JSON.stringify(['me']),
+  body: JSON.stringify({ ids: ['me'] }),
 });
 ```
 

@@ -153,6 +153,56 @@ fetch('https://alekeagle.me/api/files/abcdefghij.png/name', {
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
 
+## DELETE /files/:id/name
+
+Delete a file's display name. Attempting to modify a file owned by another user without `staff` permissions will return a 404 error regardless of whether the file exists. This is to prevent users from being able to determine whether a file exists or not.
+
+**Parameters**
+
+| Name | Type   | Location | Required | Description |
+| ---- | ------ | -------- | -------- | ----------- |
+| `id` | string | path     | Yes      | The file ID |
+
+**Example Requests**
+
+::: code-group
+
+````sh [cURL]
+```sh [cURL]
+curl -X DELETE \
+-H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
+"https://alekeagle.me/api/files/abcdefghij.png/name"
+````
+
+```js [JS Fetch]
+fetch('https://alekeagle.me/api/files/abcdefghij.png/name', {
+  method: 'DELETE',
+  headers: {
+    Authorization:
+      'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
+  },
+});
+```
+
+:::
+
+**Responses**
+
+- 200 OK
+  - [File](/reference/structures#file)
+- 400 Bad Request
+  - [MissingFields](/reference/errors#missingfields)
+- 401 Unauthorized
+  - [InvalidSession](/reference/errors#invalidsession)
+- 403 Forbidden
+  - [Banned](/reference/errors#banned)
+- 404 Not Found
+  - [InvalidFile](/reference/errors#invalidfile)
+- 429 Too Many Requests
+  - [RateLimited](/reference/errors#ratelimited)
+- 500 Internal Server Error
+  - [Internal](/reference/errors#internal)
+
 ## PUT /files/:id/extension
 
 Update a file's extension. Attempting to modify a file owned by another user without `staff` permissions will return a 404 error regardless of whether the file exists. This is to prevent users from being able to determine whether a file exists or not.
