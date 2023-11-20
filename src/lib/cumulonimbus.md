@@ -6,6 +6,10 @@ outline: [2, 3]
 
 ## Interfaces, Types, and Subclasses
 
+::: danger Breaking Change
+The syntax of methods will be changing in the next major version. Each method will be using object destructuring instead of positional arguments. For example, instead of `editUsername(username, password, uid)`, it will be `editUsername({ username, password, uid })`. This will allow for optional arguments to be specified without having to specify the arguments before it. This will also allow for the arguments to be specified in any order. This change will be made in version 4.0.0.
+:::
+
 ::: tip Note
 Some of these interfaces, types, and subclasses are not documented here. This is to reduce repetition since they're already documented in the [Reference](/reference/) page.
 
