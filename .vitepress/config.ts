@@ -1,75 +1,71 @@
-import { defineConfig } from "vitepress";
+import { defineConfig } from 'vitepress';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Cumulonimbus",
-  description: "API Documentation",
+  title: 'Cumulonimbus',
+  description: 'API Documentation',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    logo: "https://alekeagle.me/Cumulonimbus.webp",
+    logo: 'https://alekeagle.me/Cumulonimbus.webp',
     nav: [
-      { text: "Home", link: "/" },
-      { text: "API", link: "/api/" },
-      { text: "Reference", link: "/reference/" },
-      { text: "Wrapper", link: "/lib/" },
+      { text: 'Home', link: '/' },
+      { text: 'API', link: '/api/' },
+      { text: 'Reference', link: '/reference/' },
+      { text: 'Wrapper', link: '/lib/' },
     ],
 
     sidebar: [
       {
-        text: "Getting Started",
-        link: "/api/",
+        text: 'Getting Started',
+        link: '/api/',
         items: [
           {
-            text: "Account",
-            link: "/api/account",
+            text: 'Account',
+            link: '/api/account',
           },
           {
-            text: "Domain",
-            link: "/api/domain",
+            text: 'Domain',
+            link: '/api/domain',
           },
           {
-            text: "File",
-            link: "/api/file",
+            text: 'File',
+            link: '/api/file',
           },
           {
-            text: "Instruction",
-            link: "/api/instruction",
+            text: 'Instruction',
+            link: '/api/instruction',
           },
           {
-            text: "Session",
-            link: "/api/session",
+            text: 'Session',
+            link: '/api/session',
           },
         ],
       },
       {
-        text: "Reference",
-        link: "/reference/",
+        text: 'Reference',
+        link: '/reference/',
         items: [
           {
-            text: "Structures",
-            link: "/reference/structures",
+            text: 'Structures',
+            link: '/reference/structures',
           },
           {
-            text: "Successes",
-            link: "/reference/successes",
+            text: 'Successes',
+            link: '/reference/successes',
           },
           {
-            text: "Errors",
-            link: "/reference/errors",
+            text: 'Errors',
+            link: '/reference/errors',
           },
         ],
       },
       {
-        text: "Wrapper",
-        link: "/lib/",
+        text: 'Wrapper',
+        link: '/lib/',
         items: [
           {
-            text: "Cumulonimbus",
-            link: "/lib/cumulonimbus",
-          },
-          {
-            text: "Migrating from v2",
-            link: "/lib/migrating",
+            text: 'Cumulonimbus',
+            link: '/lib/cumulonimbus',
           },
         ],
       },
@@ -77,33 +73,33 @@ export default defineConfig({
 
     socialLinks: [
       {
-        icon: "discord",
-        link: "https://alekeagle.com/d",
+        icon: 'discord',
+        link: 'https://alekeagle.com/d',
       },
       {
-        icon: "github",
-        link: "https://github.com/AlekEagle/cumulonimbus-docs",
+        icon: 'github',
+        link: 'https://github.com/AlekEagle/cumulonimbus-docs',
       },
     ],
     footer: {
-      message: "Made with ❤️ by Alek Evans (AlekEagle)",
+      message: 'Made with ❤️ by Alek Evans (AlekEagle)',
     },
   },
-  srcDir: "src",
+  srcDir: 'src',
   cleanUrls: true,
   head: [
     [
-      "link",
+      'link',
       {
-        rel: "icon",
-        href: "https://alekeagle.me/Cumulonimbus.webp",
+        rel: 'icon',
+        href: 'https://alekeagle.me/Cumulonimbus.webp',
       },
     ],
     [
-      "meta",
+      'meta',
       {
-        name: "og:image",
-        content: "https://alekeagle.me/Cumulonimbus.webp",
+        name: 'og:image',
+        content: 'https://alekeagle.me/Cumulonimbus.webp',
       },
     ],
   ],
