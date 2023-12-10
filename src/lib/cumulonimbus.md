@@ -144,7 +144,7 @@ constructor(
 
 ## Instance Methods
 
-The following methods are on the Cumulonimbus class and are used to make requests to the Cumulonimbus API. Not all of these methods are pubic on the class and are only used internally. They'll be documented here anyway for completeness and will be marked as internal. For example, both the `token` and `options` parameters are internal and are not meant to be used by the end user of the library.
+The following methods are on the Cumulonimbus class and are used to make requests to the Cumulonimbus API. Not all of these methods are pubic on the class and are only used internally. They have been omitted for brevity.
 
 ### getAPIStatus (Instance) <Badge text="^4.0.0" type="tip"/>
 
