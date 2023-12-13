@@ -11,8 +11,8 @@ export default withPwa(
         globDirectory: './.vitepress/dist',
       },
       manifest: {
-        name: 'Cumulonimbus',
-        short_name: 'Cumulonimbus',
+        name: 'Cumulonimbus Docs',
+        short_name: 'Cumulonimbus Documentation',
         description: 'Cumulonimbus API Documentation',
         icons: [
           {
