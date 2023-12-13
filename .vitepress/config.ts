@@ -16,9 +16,50 @@ export default withPwa(
         description: 'Cumulonimbus API Documentation',
         icons: [
           {
-            src: 'https://alekeagle.me/Cumulonimbus.webp',
+            src: 'https://alekeagle.me/icons/72x72.png',
+            sizes: '72x72',
+            type: 'image/png',
+          },
+          {
+            src: 'https://alekeagle.me/icons/96x96.png',
+            sizes: '96x96',
+            type: 'image/png',
+          },
+          {
+            src: 'https://alekeagle.me/icons/128x128.png',
+            sizes: '128x128',
+            type: 'image/png',
+          },
+          {
+            src: 'https://alekeagle.me/icons/144x144.png',
+            sizes: '144x144',
+            type: 'image/png',
+          },
+          {
+            src: 'https://alekeagle.me/icons/152x152.png',
+            sizes: '152x152',
+            type: 'image/png',
+          },
+          {
+            src: 'https://alekeagle.me/icons/192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: 'https://alekeagle.me/icons/384x384.png',
+            sizes: '384x384',
+            type: 'image/png',
+          },
+          {
+            src: 'https://alekeagle.me/icons/512x512.png',
             sizes: '512x512',
             type: 'image/png',
+          },
+          {
+            src: 'https://alekeagle.me/icons/maskable.png',
+            sizes: '1024x1024',
+            type: 'image/png',
+            purpose: 'maskable',
           },
         ],
         theme_color: '#3e63dd',
