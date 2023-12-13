@@ -3,6 +3,9 @@ import { withPwa } from '@vite-pwa/vitepress';
 
 // https://vitepress.dev/reference/site-config
 export default withPwa(defineConfig({
+  pwa: {
+    outDir: ".vitepress/dist"
+  },
   title: 'Cumulonimbus',
   description: 'API Documentation',
   themeConfig: {
