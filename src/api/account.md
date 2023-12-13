@@ -636,6 +636,7 @@ This endpoint is not public and requires authentication of a user with `staff` p
 | Name | Type   | Location | Required | Description                                                              |
 | ---- | ------ | -------- | -------- | ------------------------------------------------------------------------ |
 | `id` | string | path     | Yes      | The [User's ID](/api/#user-ids) (`me` is not accepted for this endpoint) |
+| `reason` | string | body     | Yes       | The reason for banning the user accounts. |
 
 **Example Requests**
 
@@ -644,6 +645,8 @@ This endpoint is not public and requires authentication of a user with `staff` p
 ```sh [cURL]
 curl -X PUT \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
+-H "Content-Type: application/json" \
+-d '{"reason":"Hurt my feel goods :("}' \
 https://alekeagle.me/api/users/1234567890123/ban
 ```
 
@@ -653,7 +656,11 @@ fetch('https://alekeagle.me/api/users/1234567890123', {
   headers: {
     Authorization:
       'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
+      'Content-Type': 'application/json'
   },
+  body: JSON.stringify({
+    reason: "Hurt my feel goods :("
+  }),
 });
 ```
 
