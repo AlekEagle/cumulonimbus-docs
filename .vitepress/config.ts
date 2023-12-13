@@ -11,6 +11,9 @@ export default withPwa(
         globDirectory: './.vitepress/dist',
       },
       manifest: {
+        scope: "/",
+        start_url: "/",
+        id: "https://docs.alekeagle.me",
         name: 'Cumulonimbus Docs',
         short_name: 'Cumulonimbus Documentation',
         description: 'Cumulonimbus API Documentation',
