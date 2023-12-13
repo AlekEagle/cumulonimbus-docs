@@ -10,6 +10,22 @@ export default withPwa(
       workbox: {
         globDirectory: './.vitepress/dist',
       },
+      manifest: {
+        name: 'Cumulonimbus',
+        short_name: 'Cumulonimbus',
+        description: 'Cumulonimbus API Documentation',
+        icons: [
+          {
+            src: 'https://alekeagle.me/Cumulonimbus.webp',
+            sizes: '512x512',
+            type: 'image/png',
+          },
+        ],
+        theme_color: '#3e63dd',
+        background_color: '#1b1b1f',
+        display: 'standalone',
+        orientation: 'portrait',
+      },
     },
     title: 'Cumulonimbus',
     description: 'API Documentation',
