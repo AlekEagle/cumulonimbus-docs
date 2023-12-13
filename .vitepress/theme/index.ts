@@ -1,4 +1,7 @@
+import { h } from "vue";
 import DefaultTheme from "vitepress/theme";
+
+import ReloadPrompt from "./components/ReloadPrompt.vue";
 
 // @ts-ignore
 const components = import.meta.glob(
@@ -28,4 +31,9 @@ export default {
       });
     }
   },
+  Layout() {
+    return h(DefaultTheme.Layout, null, {
+      'layout-bottom': () => h(ReloadPrompt)
+    })
+  }
 };

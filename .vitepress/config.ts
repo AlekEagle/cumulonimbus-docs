@@ -1,7 +1,8 @@
 import { defineConfig } from 'vitepress';
+import { withPwa } from '@vite-pwa/vitepress';
 
 // https://vitepress.dev/reference/site-config
-export default defineConfig({
+export default withPwa(defineConfig({
   title: 'Cumulonimbus',
   description: 'API Documentation',
   themeConfig: {
@@ -103,4 +104,4 @@ export default defineConfig({
       },
     ],
   ],
-});
+}));

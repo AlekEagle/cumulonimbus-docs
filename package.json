@@ -5,6 +5,7 @@
     "preview": "vitepress preview --host"
   },
   "devDependencies": {
-    "vitepress": "^1.0.0-beta.2"
+    "vitepress": "^1.0.0-rc.31",
+    "@vite-pwa/vitepress": "^0.3.1"
   }
 }
