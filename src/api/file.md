@@ -471,7 +471,7 @@ fetch('https://alekeagle.me/api/upload', {
 **Responses**
 
 - 201 Created
-  - [SuccessfulUpload](/reference/successes#successfulupload)
+  - [SuccessfulUpload](/reference/structures#successfulupload)
 - 400 Bad Request
   - [MissingFields](/reference/errors#missingfields)
 - 401 Unauthorized
