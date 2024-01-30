@@ -651,7 +651,7 @@ https://alekeagle.me/api/users/1234567890123/ban
 ```
 
 ```js [JS Fetch]
-fetch('https://alekeagle.me/api/users/1234567890123', {
+fetch('https://alekeagle.me/api/users/1234567890123/ban', {
   method: 'PUT',
   headers: {
     Authorization:
@@ -707,7 +707,7 @@ https://alekeagle.me/api/users/1234567890123/ban
 ```
 
 ```js [JS Fetch]
-fetch('https://alekeagle.me/api/users/1234567890123', {
+fetch('https://alekeagle.me/api/users/1234567890123/ban', {
   method: 'DELETE',
   headers: {
     Authorization:
