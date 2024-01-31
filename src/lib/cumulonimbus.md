@@ -144,7 +144,7 @@ constructor(
 
 ## Instance Methods
 
-The following methods are on the Cumulonimbus class and are used to make requests to the Cumulonimbus API. Not all of these methods are pubic on the class and are only used internally. They have been omitted for brevity.
+The following methods are on the Cumulonimbus class and are used to make requests to the Cumulonimbus API. Not all of these methods are public on the class and are only used internally. They have been omitted for brevity.
 
 ### getAPIStatus (Instance) <Badge text="^4.0.0" type="tip"/>
 
@@ -354,7 +354,7 @@ verifyEmail(
 
 Resend the verification email of yourself or another user. If no user ID is specified, it will assume the current user.
 
-See the [underlying endpoint](/api/account#put-users-id-verify-resend) for more information.
+See the [underlying endpoint](/api/account#get-users-id-verify) for more information.
 
 ```ts
 resendVerificationEmail(
@@ -365,6 +365,8 @@ resendVerificationEmail(
 ### unverifyEmail <Badge text="^4.0.0" type="tip"/>
 
 Unverify the email of another user.
+
+See the [underlying endpoint](/api/account#delete-users-id-verify) for more information.
 
 ```ts
 unverifyEmail(
