@@ -478,6 +478,7 @@ fetch('https://alekeagle.me/api/upload', {
   - [InvalidSession](/reference/errors#invalidsession)
 - 403 Forbidden
   - [Banned](/reference/errors#banned)
+  - [EmailNotVerified](/reference/errors#emailnotverified)
 - 413 Payload Too Large
   - [BodyTooLarge](/reference/errors#bodytoolarge)
 - 429 Too Many Requests
