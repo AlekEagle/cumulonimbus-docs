@@ -78,6 +78,27 @@ class ThumbnailError extends Error {
 }
 ```
 
+### KillSwitches <Badge text="^4.0.4" type="tip"/>
+
+An enum containing the kill switches.
+
+```ts
+enum KillSwitches {
+  // Account related killSwitches
+  ACCOUNT_CREATE,
+  ACCOUNT_MODIFY,
+  ACCOUNT_DELETE,
+  ACCOUNT_EMAIL_VERIFY,
+  ACCOUNT_LOGIN,
+  // File related killSwitches
+  FILE_CREATE,
+  FILE_MODIFY,
+  FILE_DELETE,
+  // The Global KillSwitch
+  GLOBAL,
+}
+```
+
 ## Static Methods
 
 ### login <Badge text="^4.0.0" type="tip"/>
@@ -812,6 +833,50 @@ See the [underlying endpoint](/api/instruction#delete-instructions) for more inf
 deleteInstructions(
   ids: string[]
 );
+```
+
+### getKillSwitches <Badge text="^4.0.4" type="tip"/>
+
+Fetches a list of kill switches.
+
+See the [underlying endpoint](/api/killswitches#get-killswitches) for more information.
+
+```ts
+getKillSwitches();
+```
+
+### enableKillSwitch <Badge text="^4.0.4" type="tip"/>
+
+Enables the specified kill switch.
+
+See the [underlying endpoint](/api/killswitches#put-killswitches-id) for more information.
+
+```ts
+enableKillSwitch(
+  id: KillSwitches
+);
+```
+
+### disableKillSwitch <Badge text="^4.0.4" type="tip"/>
+
+Disables the specified kill switch.
+
+See the [underlying endpoint](/api/killswitches#delete-killswitches-id) for more information.
+
+```ts
+disableKillSwitch(
+  id: KillSwitches
+);
+```
+
+### disableAllKillSwitches <Badge text="^4.0.4" type="tip"/>
+
+Disables all kill switches.
+
+See the [underlying endpoint](/api/killswitches#delete-killswitches) for more information.
+
+```ts
+disableAllKillSwitches();
 ```
 
 ### upload <Badge text="^4.0.0" type="tip"/>

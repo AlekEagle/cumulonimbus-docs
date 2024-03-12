@@ -11,9 +11,9 @@ export default withPwa(
         globDirectory: './.vitepress/dist',
       },
       manifest: {
-        scope: "/",
-        start_url: "/",
-        id: "https://docs.alekeagle.me",
+        scope: '/',
+        start_url: '/',
+        id: 'https://docs.alekeagle.me',
         name: 'Cumulonimbus Docs',
         short_name: 'Cumulonimbus Documentation',
         description: 'Cumulonimbus API Documentation',
@@ -105,6 +105,10 @@ export default withPwa(
               link: '/api/instruction',
             },
             {
+              text: 'Kill Switches',
+              link: '/api/killswitches',
+            },
+            {
               text: 'Session',
               link: '/api/session',
             },
@@ -135,6 +139,10 @@ export default withPwa(
             {
               text: 'Cumulonimbus',
               link: '/lib/cumulonimbus',
+            },
+            {
+              text: 'Migrating from v2',
+              link: '/lib/migrating',
             },
           ],
         },

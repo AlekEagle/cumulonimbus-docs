@@ -116,3 +116,13 @@ interface SuccessfulUpload {
   manage: string;
 }
 ```
+
+## KillSwitch
+
+```ts
+interface KillSwitch {
+  id: number;
+  name: string;
+  state: boolean;
+}
+```

@@ -1,10 +1,6 @@
 # Let's Get Acquainted
 
-To make the documentation easier to follow, the base URL will be omitted from endpoint paths. The base URL is:
-
-```txt
-https://alekeagle.me/api
-```
+To make the documentation easier to follow, the base URL will be omitted from endpoint paths. Base URLs can be found in the [Base URLs](/reference/#base-urls) section.
 
 ## Authentication
 
@@ -35,6 +31,10 @@ Cumulonimbus will send the following headers with every response:
 ## User IDs
 
 User IDs are 13-digit numbers that uniquely identify a user (Fun fact: they're actually just the UNIX timestamp of when the user was created). When an endpoint mentions something about a user ID, it's referring to the 13-digit number. You can also substitute `me` for your own user ID (we recommend using `me` since it requires less logic on your end).
+
+## Kill Switches
+
+Kill switches prevent the use of certain features of the API. For more information on kill switches, see [Kill Switches](/reference/#kill-switches) for a list of kill switches and their effects. Specific endpoints will also have information on how kill switches affect them. All endpoints are affected by the `GLOBAL(8)` kill switch and is omitted from specific endpoint documentation to avoid redundancy.
 
 ## Your First Request
 

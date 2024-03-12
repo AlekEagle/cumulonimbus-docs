@@ -60,35 +60,8 @@ interface PasswordsDoNotMatch {
 
 ```ts
 interface InvalidEmail {
-  code: 'INVALID_EMAIL_ERROR';
-  message: 'Invalid Email';
-}
-```
-
-## EmailNotVerified
-
-```ts
-interface EmailNotVerified {
-  code: 'EMAIL_NOT_VERIFIED_ERROR';
-  message: 'Email Not Verified';
-}
-```
-
-## EmailAlreadyVerified
-
-```ts
-interface EmailAlreadyVerified {
-  code: 'EMAIL_ALREADY_VERIFIED_ERROR';
-  message: 'Email Already Verified';
-}
-```
-
-## InvalidVerificationToken
-
-```ts
-interface InvalidVerificationToken {
-  code: 'INVALID_VERIFICATION_TOKEN_ERROR';
-  message: 'Invalid Verification Token';
+  code: "INVALID_EMAIL_ERROR";
+  message: "Invalid Email";
 }
 ```
 
@@ -196,8 +169,8 @@ interface Banned {
 
 ```ts
 interface BodyTooLarge {
-  code: 'BODY_TOO_LARGE_ERROR';
-  message: 'Body Too Large';
+  code: "BODY_TOO_LARGE_ERROR";
+  message: "Body Too Large";
 }
 ```
 

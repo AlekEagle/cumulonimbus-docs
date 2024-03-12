@@ -45,6 +45,8 @@ fetch('https://alekeagle.me/api/domains', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## GET /domains/:id
 
@@ -92,6 +94,8 @@ fetch('https://alekeagle.me/api/domains/alekeagle.me', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## POST /domains
 
@@ -151,6 +155,8 @@ fetch('https://alekeagle.me/api/domains', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## PUT /domains/:id/subdomains
 
@@ -205,6 +211,8 @@ fetch('https://alekeagle.me/api/domains/example.com/subdomains', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## DELETE /domains/:id/subdomains
 
@@ -259,6 +267,8 @@ fetch('https://alekeagle.me/api/domains/example.com/subdomains', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## DELETE /domains/:id
 
@@ -310,6 +320,9 @@ fetch('https://alekeagle.me/api/domains/example.com', {
 - 429 Too Many Requests
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
+  - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## DELETE /domains
 
@@ -368,3 +381,5 @@ fetch('https://alekaegle.me/api/domains', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)

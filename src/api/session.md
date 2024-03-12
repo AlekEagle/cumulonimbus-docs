@@ -4,6 +4,14 @@
 
 Login to Cumulonimbus.
 
+::: warning Kill Switch Behavior
+This endpoint is affected by the following [kill switches](/reference/#kill-switches):
+
+- `ACCOUNT_LOGIN(4)`
+
+and will fail with the error [ServiceUnavailable](/reference/errors#serviceunavailable) if any of these kill switches are enabled.
+:::
+
 ::: warning Ratelimit
 This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is 3 requests per 3 minutes per IP address. If you try to register an account while providing a session, you will receive an [InvalidSession](/reference/errors#invalidsession) error.
 :::
@@ -65,6 +73,8 @@ fetch('https://alekeagle.me/api/login', {
   - [Ratelimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## GET /users/:uid/sessions/:sid
 
@@ -115,6 +125,8 @@ fetch('https://alekeagle.me/api/me/sessions/me', {
   - [Ratelimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## GET /users/:uid/sessions
 
@@ -165,8 +177,18 @@ fetch('https://alekeagle.me/api/users/me/sessions', {
   - [Ratelimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## DELETE /users/:uid/sessions/:sid
+
+::: warning Kill Switch Behavior
+This endpoint is affected by the following [kill switches](/reference/#kill-switches):
+
+- `ACCOUNT_MODIFY(2)`
+
+and will fail with the error [ServiceUnavailable](/reference/errors#serviceunavailable) if any of these kill switches are enabled.
+:::
 
 Delete a session.
 
@@ -215,8 +237,18 @@ fetch('https://alekeagle.me/api/users/me/sessions/me', {
   - [Ratelimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## DELETE /users/:uid/sessions
+
+::: warning Kill Switch Behavior
+This endpoint is affected by the following [kill switches](/reference/#kill-switches):
+
+- `ACCOUNT_MODIFY(2)`
+
+and will fail with the error [ServiceUnavailable](/reference/errors#serviceunavailable) if any of these kill switches are enabled.
+:::
 
 Delete multiple sessions for a user.
 
@@ -269,8 +301,18 @@ fetch('https://alekeagle.me/api/users/me/sessions', {
   - [Ratelimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## DELETE /users/:uid/sessions/all
+
+::: warning Kill Switch Behavior
+This endpoint is affected by the following [kill switches](/reference/#kill-switches):
+
+- `ACCOUNT_MODIFY(2)`
+
+and will fail with the error [ServiceUnavailable](/reference/errors#serviceunavailable) if any of these kill switches are enabled.
+:::
 
 Delete all sessions for a user.
 
@@ -318,3 +360,5 @@ fetch('https://alekeagle.me/api/users/me/sessions/all', {
   - [Ratelimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)

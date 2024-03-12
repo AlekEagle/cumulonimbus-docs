@@ -4,6 +4,15 @@
 
 Register a new user.
 
+::: warning Kill Switch Behavior
+This endpoint is affected by the following [kill switches](/reference/#kill-switches):
+
+- `ACCOUNT_CREATE(0)`
+- `ACCOUNT_EMAIL_VERIFY(3)`
+
+and will fail with the error [ServiceUnavailable](/reference/errors#serviceunavailable) if any of these kill switches are enabled.
+:::
+
 ::: warning Ratelimit
 This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is 1 request per 30 minutes per IP address. If you try to register an account while providing a session, you will receive an [InvalidSession](/reference/errors#invalidsession) error.
 :::
@@ -64,6 +73,8 @@ fetch('https://alekeagle.me/api/register', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## GET /users
 
@@ -115,6 +126,8 @@ fetch('https://alekeagle.me/api/users', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## GET /users/:id
 
@@ -163,10 +176,20 @@ fetch('https://alekeagle.me/api/users/me', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## PUT /users/:id/username
 
 Updates a user's username. Updating other users' usernames requires the `staff` permission.
+
+::: warning Kill Switch Behavior
+This endpoint is affected by the following [kill switches](/reference/#kill-switches):
+
+- `ACCOUNT_MODIFY(1)`
+
+and will fail with the error [ServiceUnavailable](/reference/errors#serviceunavailable) if any of these kill switches are enabled.
+:::
 
 **Parameters**
 
@@ -222,10 +245,21 @@ fetch('https://alekeagle.me/api/users/me/username', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## PUT /users/:id/email
 
 Updates a user's email. Your email will need to ve reverified. Updating other users' emails requires the `staff` permission.
+
+::: warning Kill Switch Behavior
+This endpoint is affected by the following [kill switches](/reference/#kill-switches):
+
+- `ACCOUNT_MODIFY(1)`
+- `ACCOUNT_EMAIL_VERIFY(3)`
+
+and will fail with the error [ServiceUnavailable](/reference/errors#serviceunavailable) if any of these kill switches are enabled.
+:::
 
 **Parameters**
 
@@ -284,6 +318,8 @@ fetch('https://alekeagle.me/api/users/me/email', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## PUT /users/:id/verify
 
@@ -343,6 +379,8 @@ fetch('https://alekeagle.me/api/user/me/verify', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## DELETE /users/:id/verify
 
@@ -397,6 +435,8 @@ fetch('https://alekeagle.me/api/users/1234567890123/verify', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## GET /users/:id/verify
 
@@ -451,10 +491,20 @@ fetch('https://alekeagle.me/api/users/1234567890123/verify', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## PUT /users/:id/password
 
 Updates a user's password. Updating other users' passwords requires the `staff` permission.
+
+::: warning Kill Switch Behavior
+This endpoint is affected by the following [kill switches](/reference/#kill-switches):
+
+- `ACCOUNT_MODIFY(1)`
+
+and will fail with the error [ServiceUnavailable](/reference/errors#serviceunavailable) if any of these kill switches are enabled.
+:::
 
 **Parameters**
 
@@ -514,6 +564,8 @@ fetch('https://alekeagle.me/api/users/me/email', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## PUT /users/:id/staff
 
@@ -568,6 +620,8 @@ fetch('https://alekeagle.me/api/users/1234567890123/staff', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## DELETE /users/:id/staff
 
@@ -622,6 +676,8 @@ fetch('https://alekeagle.me/api/users/1234567890123/staff', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## PUT /users/:id/ban
 
@@ -681,6 +737,8 @@ fetch('https://alekeagle.me/api/users/1234567890123/ban', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## DELETE /users/:id/ban
 
@@ -733,10 +791,20 @@ fetch('https://alekeagle.me/api/users/1234567890123/ban', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## PUT /users/:id/domain
 
-Sets a user's domain and subdomain. Updating the current user's domain and subdomain can be done either by using the current user's 13-digit ID or `me`. Updating other users' domain and subdomain requires the `staff` permission.
+Sets a user's domain and subdomain. Updating other users' domain and subdomain requires the `staff` permission.
+
+::: warning Kill Switch Behavior
+This endpoint is affected by the following [kill switches](/reference/#kill-switches):
+
+- `ACCOUNT_MODIFY(1)`
+
+and will fail with the error [ServiceUnavailable](/reference/errors#serviceunavailable) if any of these kill switches are enabled.
+:::
 
 **Parameters**
 
@@ -795,10 +863,20 @@ fetch('https://alekeagle.me/api/users/me/domain', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## DELETE /users/:id
 
-Deletes a user. Deleting the current user can be done either by using the current user's 13-digit ID or `me`. Deleting other users requires the `staff` permission.
+Deletes a user. Deleting other users requires the `staff` permission.
+
+::: warning Kill Switch Behavior
+This endpoint is affected by the following [kill switches](/reference/#kill-switches):
+
+- `ACCOUNT_DELETE(2)`
+
+and will fail with the error [ServiceUnavailable](/reference/errors#serviceunavailable) if any of these kill switches are enabled.
+:::
 
 **Parameters**
 
@@ -856,6 +934,8 @@ fetch('https://alekeagle.me/api/users/me', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## DELETE /users
 
@@ -911,3 +991,5 @@ fetch('https://alekeagle.me/api/users', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)

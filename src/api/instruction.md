@@ -45,6 +45,8 @@ fetch('https://alekeagle.me/api/instructions', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## GET /api/instructions/:id
 
@@ -92,6 +94,8 @@ fetch('https://alekeagle.me/api/instructions/generic-service', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## POST /api/instructions
 
@@ -166,6 +170,8 @@ fetch('https://alekeagle.me/api/instructions', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## PUT /api/instructions/:id/name
 
@@ -228,6 +234,8 @@ fetch('https://alekeagle.me/api/instructions/generic-service/name', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## PUT /api/instructions/:id/description
 
@@ -289,6 +297,8 @@ fetch('https://alekeagle.me/api/instructions/generic-service/description', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## PUT /api/instructions/:id/file
 
@@ -352,6 +362,8 @@ fetch('https://alekeagle.me/api/instructions/generic-service/file', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## PUT /api/instructions/:id/steps
 
@@ -413,6 +425,8 @@ fetch('https://alekeagle.me/api/instructions/generic-service/steps', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## DELETE /api/instructions/:id
 
@@ -465,6 +479,8 @@ fetch('https://alekeagle.me/api/instructions/generic-service', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## DELETE /api/instructions
 
@@ -523,3 +539,5 @@ fetch('https://alekeagle.me/api/instructions', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)

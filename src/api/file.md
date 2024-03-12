@@ -49,6 +49,8 @@ fetch('https://alekeagle.me/api/files?limit=5&offset=0&uid=me', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## GET /files/:id
 
@@ -96,10 +98,20 @@ fetch('https://alekeagle.me/api/files/abcdefghij.png', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## PUT /files/:id/name
 
 Update a file's display name. Attempting to modify a file owned by another user without `staff` permissions will return a 404 error regardless of whether the file exists. This is to prevent users from being able to determine whether a file exists or not.
+
+::: warning Kill Switch Behavior
+This endpoint is affected by the following [kill switches](/reference/#kill-switches):
+
+- `FILE_MODIFY(6)`
+
+and will fail with the error [ServiceUnavailable](/reference/errors#serviceunavailable) if any of these kill switches are enabled.
+:::
 
 **Parameters**
 
@@ -152,10 +164,20 @@ fetch('https://alekeagle.me/api/files/abcdefghij.png/name', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## DELETE /files/:id/name
 
 Delete a file's display name. Attempting to modify a file owned by another user without `staff` permissions will return a 404 error regardless of whether the file exists. This is to prevent users from being able to determine whether a file exists or not.
+
+::: warning Kill Switch Behavior
+This endpoint is affected by the following [kill switches](/reference/#kill-switches):
+
+- `FILE_MODIFY(6)`
+
+and will fail with the error [ServiceUnavailable](/reference/errors#serviceunavailable) if any of these kill switches are enabled.
+:::
 
 **Parameters**
 
@@ -202,10 +224,20 @@ fetch('https://alekeagle.me/api/files/abcdefghij.png/name', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## PUT /files/:id/extension
 
 Update a file's extension. Attempting to modify a file owned by another user without `staff` permissions will return a 404 error regardless of whether the file exists. This is to prevent users from being able to determine whether a file exists or not.
+
+::: warning Kill Switch Behavior
+This endpoint is affected by the following [kill switches](/reference/#kill-switches):
+
+- `FILE_MODIFY(6)`
+
+and will fail with the error [ServiceUnavailable](/reference/errors#serviceunavailable) if any of these kill switches are enabled.
+:::
 
 ::: warning Warning
 Since the file extension is part of the file's ID, changing the extension will change the file's ID. This means that any links to the file will no longer work.
@@ -266,10 +298,20 @@ fetch('https://alekeagle.me/api/files/abcdefghij.png/extension', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## DELETE /files/:id
 
 Delete a file. Attempting to delete a file owned by another user without `staff` permissions will return a 404 error regardless of whether the file exists. This is to prevent users from being able to determine whether a file exists or not.
+
+::: warning Kill Switch Behavior
+This endpoint is affected by the following [kill switches](/reference/#kill-switches):
+
+- `FILE_DELETE(7)`
+
+and will fail with the error [ServiceUnavailable](/reference/errors#serviceunavailable) if any of these kill switches are enabled.
+:::
 
 **Parameters**
 
@@ -313,10 +355,20 @@ fetch('https://alekeagle.me/api/files/abcdefghij.png', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## DELETE /files
 
 Delete multiple files. Attempting to delete a file owned by another user without `staff` permissions will return a 404 error regardless of whether the file exists. This is to prevent users from being able to determine whether a file exists or not.
+
+::: warning Kill Switch Behavior
+This endpoint is affected by the following [kill switches](/reference/#kill-switches):
+
+- `FILE_DELETE(7)`
+
+and will fail with the error [ServiceUnavailable](/reference/errors#serviceunavailable) if any of these kill switches are enabled.
+:::
 
 **Parameters**
 
@@ -366,10 +418,20 @@ fetch('https://alekeagle.me/api/files', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## DELETE /files/all
 
 Deletes all files owned by the user specified.
+
+::: warning Kill Switch Behavior
+This endpoint is affected by the following [kill switches](/reference/#kill-switches):
+
+- `FILE_DELETE(7)`
+
+and will fail with the error [ServiceUnavailable](/reference/errors#serviceunavailable) if any of these kill switches are enabled.
+:::
 
 **Parameters**
 
@@ -422,13 +484,23 @@ fetch('https://alekeagle.me/api/files/all', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## POST /upload
 
 Uploads a file to the server.
 
+::: warning Kill Switch Behavior
+This endpoint is affected by the following [kill switches](/reference/#kill-switches):
+
+- `FILE_CREATE(5)`
+
+and will fail with the error [ServiceUnavailable](/reference/errors#serviceunavailable) if any of these kill switches are enabled.
+:::
+
 ::: danger Email Verification Requirement
-On December 15th, 2023, a verified email will be required to upload files.
+A verified email is required to upload files.
 :::
 
 **Parameters**
@@ -485,3 +557,5 @@ fetch('https://alekeagle.me/api/upload', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
