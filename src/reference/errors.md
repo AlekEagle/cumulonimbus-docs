@@ -20,6 +20,15 @@ interface InsufficientPermissions {
 }
 ```
 
+## EndpointRequiresSecondFactor
+
+```ts
+interface EndpointRequiresSecondFactor {
+  code: 'ENDPOINT_REQUIRES_SECOND_FACTOR_ERROR';
+  message: 'Endpoint Requires Second Factor';
+}
+```
+
 ## InvalidUser
 
 ```ts
@@ -29,12 +38,63 @@ interface InvalidUser {
 }
 ```
 
+## UserRequiresSecondFactor
+
+```ts
+interface UserRequiresSecondFactor {
+  code: 'USER_REQUIRES_SECOND_FACTOR_ERROR';
+  message: 'User Requires Second Factor';
+}
+```
+
 ## InvalidUsername
 
 ```ts
 interface InvalidUsername {
   code: 'INVALID_USERNAME_ERROR';
   message: 'Invalid Username';
+}
+```
+
+## InvalidSecondFactor
+
+```ts
+interface InvalidSecondFactor {
+  code: 'INVALID_SECOND_FACTOR_ERROR';
+  message: 'Invalid Second Factor';
+}
+```
+
+## InvalidSecondFactorMethod
+
+```ts
+interface InvalidSecondFactorMethod {
+  code: 'INVALID_SECOND_FACTOR_METHOD_ERROR';
+  message: 'Invalid Second Factor Method';
+}
+```
+
+## InvalidSecondFactorResponse
+
+```ts
+interface InvalidSecondFactorResponse {
+  code: 'INVALID_SECOND_FACTOR_RESPONSE_ERROR';
+  message: 'Invalid Second Factor Response';
+}
+```
+
+## SecondFactorChallengeRequired
+
+Documentation for the `challenge` field can be found [here](https://github.com/MasterKale/SimpleWebAuthn/blob/master/packages/types/src/index.ts#L72-L79).
+
+```ts
+interface SecondFactorChallengeRequired {
+  code: 'SECOND_FACTOR_CHALLENGE_REQUIRED_ERROR';
+  message: 'Second Factor Challenge Required';
+  token: string;
+  exp: number;
+  types: ('totp' | 'webauthn' | 'backup')[];
+  challenge: any; // Only present if one of the available types is 'webauthn'.
 }
 ```
 
@@ -60,8 +120,8 @@ interface PasswordsDoNotMatch {
 
 ```ts
 interface InvalidEmail {
-  code: "INVALID_EMAIL_ERROR";
-  message: "Invalid Email";
+  code: 'INVALID_EMAIL_ERROR';
+  message: 'Invalid Email';
 }
 ```
 
@@ -169,8 +229,8 @@ interface Banned {
 
 ```ts
 interface BodyTooLarge {
-  code: "BODY_TOO_LARGE_ERROR";
-  message: "Body Too Large";
+  code: 'BODY_TOO_LARGE_ERROR';
+  message: 'Body Too Large';
 }
 ```
 
@@ -189,5 +249,24 @@ interface RateLimited {
 interface Internal {
   code: 'INTERNAL_SERVER_ERROR';
   message: 'Internal Server Error';
+}
+```
+
+## ServiceUnavailable
+
+```ts
+interface ServiceUnavailable {
+  code: 'SERVICE_UNAVAILABLE_ERROR';
+  message: 'Service Unavailable';
+  feature: number;
+}
+```
+
+## NotImplemented
+
+```ts
+interface NotImplemented {
+  code: 'NOT_IMPLEMENTED_ERROR';
+  message: 'Not Implemented';
 }
 ```

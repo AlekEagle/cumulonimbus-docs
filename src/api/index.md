@@ -30,7 +30,9 @@ Cumulonimbus will send the following headers with every response:
 
 ## User IDs
 
-User IDs are 13-digit numbers that uniquely identify a user (Fun fact: they're actually just the UNIX timestamp of when the user was created). When an endpoint mentions something about a user ID, it's referring to the 13-digit number. You can also substitute `me` for your own user ID (we recommend using `me` since it requires less logic on your end).
+User IDs are 13-digit numbers that uniquely identify a user (Fun fact: they're actually just the UNIX timestamp of when the user was created). When an endpoint mentions something about a user ID, it's referring to the 13-digit number.
+
+You used to be able to provide your ID interchangeably with the keyword `me`, but this is no longer the case. Requesting data with a user ID, regardless of whether it's your own or someone else's, will result in an [InsufficientPermissions](/reference/errors#insufficientpermissions) error.
 
 ## Kill Switches
 
