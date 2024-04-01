@@ -54,11 +54,11 @@ This authentication flow does NOT apply to scoped sessions. They do not need to 
 
 Some endpoints require the user to reverify their identity, depending on your account's security settings, it may be a multi-step process. The following steps are taken to reverify the user's identity:
 
-1. The user makes a request to an endpoint that requires reverification (e.g. PUT /users/me/username) with the required parameters, as well as their password in the body.
+1. The user makes a request to an endpoint that requires reverification (e.g. `PUT /users/me/username`) with the required parameters, as well as their password in the body.
 2. If you:
    1. Do not have a second factor enabled, your request will complete successfully, and you will not need to take any further action.
    2. Do have a second factor enabled, you will receive a [`SecondFactorChallengeRequired`](/reference/errors#secondfactorchallengerequired) with all of the required data to complete the challenge.
-3. The user makes a second request to the same endpoint, with the required parameters, as well as a `2fa` object in the body containing the required data to complete the challenge, your password is not required in this request. e.g.
+3. The user makes a second request to the same endpoint, with the required parameters, as well as a `2fa` object in the body containing the required data to complete the challenge, your password is not required in this request. Using `PUT /users/me/username` as an example, the body would look like this:
 
 ```json
 {
@@ -69,7 +69,8 @@ Some endpoints require the user to reverify their identity, depending on your ac
     "response": {
       // WebAuthn response data. (Only present for 'webauthn' type)
     }
-  }
+  },
+  "username": "new-username"
 }
 ```
 
