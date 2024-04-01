@@ -48,31 +48,32 @@ The Cumulonimbus API supports two-factor authentication (2FA) using the followin
 
 ## Identity Reverification
 
-Some endpoints in the Cumulonimbus API require the user to reverify their identity. When this is required, the user must provide their password and, if applicable, their second factor(s) in order to access the endpoint. Scoped sessions will not need to reverify their identity as they are meant to be used for automated tasks or administrative purposes. If the user has second factor(s) enabled, the endpoint will respond with a [SecondFactorChallengeRequired](/reference/errors#secondfactorchallengerequired) error. To complete the challenge, the user will respond to the endpoint with both the data applicable to the endpoint as well as a `2fa` object containing the second factor type and the response to the challenge. For example, if you are responding to a challenge after attempting to change your username, your request might look like this:
+::: info Scoped Sessions
+This authentication flow does NOT apply to scoped sessions. They do not need to provide a password in the body, and will not receive multi-factor authentication challenges.
+:::
+
+Some endpoints require the user to reverify their identity, depending on your account's security settings, it may be a multi-step process. The following steps are taken to reverify the user's identity:
+
+1. The user makes a request to an endpoint that requires reverification (e.g. PUT /users/me/username) with the required parameters, as well as their password in the body.
+2. If you:
+   1. Do not have a second factor enabled, your request will complete successfully, and you will not need to take any further action.
+   2. Do have a second factor enabled, you will receive a [`SecondFactorChallengeRequired`](/reference/errors#secondfactorchallengerequired) with all of the required data to complete the challenge.
+3. The user makes a second request to the same endpoint, with the required parameters, as well as a `2fa` object in the body containing the required data to complete the challenge, your password is not required in this request. e.g.
 
 ```json
 {
-  "username": "new-username",
   "2fa": {
-    "token": "the token from the challenge",
+    "token": "the token",
     "type": "totp",
-    "code": "123456"
+    "code": "123456", // Present for types 'totp' or 'backup'
+    "response": {
+      // WebAuthn response data. (Only present for 'webauthn' type)
+    }
   }
 }
 ```
 
-Responding with a backup code is similar, but the `type` field should be set to `backup` and the `code` field should be set to the backup code. If you're responding to a challenge with a WebAuthn response, the `type` field should be set to `webauthn` and instead of a `code` field, you will include another object called `response` that contains the response to the WebAuthn challenge.
-
-The login endpoint is an exception to the response format, and the `2fa` object itself should be the response to the challenge. After providing the username and password and receiving a challenge, the user should respond with the the contents of the `2fa` object in addition to wether or not they want to remember the session. For example:
-
-```json
-{
-  "token": "the token from the challenge",
-  "type": "totp",
-  "code": "123456",
-  "rememberMe": true
-}
-```
+4. Assuming the response to the second factor challenge is valid and the response token has not expired, your request will complete successfully.
 
 ## Session Scopes
 
@@ -87,7 +88,7 @@ The Cumulonimbus API allows for the creation of sessions with specific scopes. T
 | `SECOND_FACTOR_READ`          | `16`      | Grants access to read second factor information. There is no scope for modifying second factors with a scoped session.                                                                                                               |
 | `SESSION_READ`                | `32`      | Grants access to read session information.                                                                                                                                                                                           |
 | `SESSION_MODIFY`              | `64`      | Grants access to modify session information. Includes the ability to revoke sessions.                                                                                                                                                |
-| `SESSION_CREATE`              | `128`     | Grants access to create new sessions. Restrictions for created sessions are explained in detail in the [Session Endpoints](/api/session#post-users-me-sessions) documentation.                                                      |
+| `SESSION_CREATE`              | `128`     | Grants access to create new sessions. Restrictions for created sessions are explained in detail in the [Session Endpoints](/api/session#post-users-me-sessions) documentation.                                                       |
 | `FILE_READ`                   | `256`     | Grants access to read information about files uploaded by the user.                                                                                                                                                                  |
 | `FILE_MODIFY`                 | `512`     | Grants access to modify files uploaded by the user. Includes the ability to delete files.                                                                                                                                            |
 | `STAFF_READ_ACCOUNTS`         | `1024`    | Grants access to read account information for all users. This does not include the ability to view other sessions or view second factor information. This scope and all following scopes require the user to have staff permissions. |
