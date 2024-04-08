@@ -207,11 +207,11 @@ Requests to this endpoint using a scoped session require the session to have the
 ```sh [cURL]
 curl -X GET \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
-https://alekeagle.me/api/users/me
+https://alekeagle.me/api/users/1234567890123
 ```
 
 ```js [JS Fetch]
-fetch('https://alekeagle.me/api/users/me', {
+fetch('https://alekeagle.me/api/users/1234567890123', {
   method: 'GET',
   headers: {
     Authorization:
@@ -233,7 +233,7 @@ fetch('https://alekeagle.me/api/users/me', {
   - [InsufficientPermissions](/reference/errors#insufficientpermissions)
   - [Banned](/reference/errors#banned)
 - 404 Not Found
-  - [NotFound](/reference/errors#notfound)
+  - [InvalidUser](/reference/errors#invaliduser)
 - 429 Too Many Requests
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
@@ -256,7 +256,7 @@ Requests to this endpoint using a scoped session require the session to have the
 :::
 
 ::: warning Identity Reverification
-This endpoint will require you to provide your password to confirm it's you. More information can found in the [Identity Reverification](/reference/#identity-reverification) section.
+This endpoint will require you to provide at least your password to confirm it's you. More information can found in the [Identity Reverification](/reference/#identity-reverification) section.
 :::
 
 **Parameters**
@@ -273,7 +273,7 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 curl -X PUT \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
 -H "Content-Type: application/json" \
--d '{"username": "alekeagle", "password": "password"}' \
+-d '{"username": "alekeagle"}' \
 https://alekeagle.me/api/users/me/username
 ```
 
@@ -285,7 +285,7 @@ fetch('https://alekeagle.me/api/users/me/username', {
       'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
     'Content-Type': 'application/json',
   },
-  body: JSON.stringify({ username: 'alekeagle', password: 'password' }),
+  body: JSON.stringify({ username: 'alekeagle' }),
 });
 ```
 
@@ -298,6 +298,7 @@ fetch('https://alekeagle.me/api/users/me/username', {
 - 400 Bad Request
   - [InvalidUsername](/reference/errors#invalidusername)
   - [MissingFields](/reference/errors#missingfields)
+  - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)
   - [SecondFactorChallengeRequired](/reference/errors#secondfactorchallengerequired)
@@ -321,20 +322,12 @@ Updates another user's username.
 This endpoint is not public and requires authentication of a user with `staff` permissions.
 :::
 
-::: warning Kill Switch Behavior
-This endpoint is affected by the following [kill switches](/reference/#kill-switches):
-
-- `ACCOUNT_MODIFY(1)`
-
-and will fail with the error [ServiceUnavailable](/reference/errors#serviceunavailable) if any of these kill switches are enabled.
-:::
-
 ::: warning Scoped Session
 Requests to this endpoint using a scoped session require the session to have the [`STAFF_MODIFY_ACCOUNTS`](/reference/#session-scopes) scope.
 :::
 
 ::: warning Identity Reverification
-This endpoint will require you to provide your password to confirm it's you. More information can found in the [Identity Reverification](/reference/#identity-reverification) section.
+This endpoint will require you to provide at least your password to confirm it's you. More information can found in the [Identity Reverification](/reference/#identity-reverification) section.
 :::
 
 **Parameters**
@@ -352,7 +345,7 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 curl -X PUT \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
 -H "Content-Type: application/json" \
--d '{"username": "alekeagle", "password": "password"}' \
+-d '{"username": "alekeagle"}' \
 https://alekeagle.me/api/users/1234567890123/username
 ```
 
@@ -364,7 +357,7 @@ fetch('https://alekeagle.me/api/users/1234567890123/username', {
       'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
     'Content-Type': 'application/json',
   },
-  body: JSON.stringify({ username: 'alekeagle', password: 'password' }),
+  body: JSON.stringify({ username: 'alekeagle' }),
 });
 ```
 
@@ -377,6 +370,7 @@ fetch('https://alekeagle.me/api/users/1234567890123/username', {
 - 400 Bad Request
   - [InvalidUsername](/reference/errors#invalidusername)
   - [MissingFields](/reference/errors#missingfields)
+  - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)
   - [SecondFactorChallengeRequired](/reference/errors#secondfactorchallengerequired)
@@ -411,7 +405,7 @@ Requests to this endpoint using a scoped session require the session to have the
 :::
 
 ::: warning Identity Reverification
-This endpoint will require you to provide your password to confirm it's you. More information can found in the [Identity Reverification](/reference/#identity-reverification) section.
+This endpoint will require you to provide at least your password to confirm it's you. More information can found in the [Identity Reverification](/reference/#identity-reverification) section.
 :::
 
 **Parameters**
@@ -428,7 +422,7 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 curl -X PUT \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
 -H "Content-Type: application/json" \
--d '{"email": "waycoolemail@waycooldomain.biz", "password": "password"}' \
+-d '{"email": "waycoolemail@waycooldomain.biz"}' \
 https://alekeagle.me/api/users/me/email
 ```
 
@@ -442,7 +436,6 @@ fetch('https://alekeagle.me/api/users/me/email', {
   },
   body: JSON.stringify({
     email: 'waycoolemail@waycooldomain.biz',
-    password: 'password',
   }),
 });
 ```
@@ -456,6 +449,7 @@ fetch('https://alekeagle.me/api/users/me/email', {
 - 400 Bad Request
   - [InvalidEmail](/reference/errors#invalidemail)
   - [MissingFields](/reference/errors#missingfields)
+  - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)
   - [SecondFactorChallengeRequired](/reference/errors#secondfactorchallengerequired)
@@ -479,21 +473,12 @@ Updates another user's email.
 This endpoint is not public and requires authentication of a user with `staff` permissions.
 :::
 
-::: warning Kill Switch Behavior
-This endpoint is affected by the following [kill switches](/reference/#kill-switches):
-
-- `ACCOUNT_MODIFY(1)`
-- `ACCOUNT_EMAIL_VERIFY(3)`
-
-and will fail with the error [ServiceUnavailable](/reference/errors#serviceunavailable) if any of these kill switches are enabled.
-:::
-
 ::: warning Scoped Session
 Requests to this endpoint using a scoped session require the session to have the [`STAFF_MODIFY_ACCOUNTS`](/reference/#session-scopes) scope.
 :::
 
 ::: warning Identity Reverification
-This endpoint will require you to provide your password to confirm it's you. More information can found in the [Identity Reverification](/reference/#identity-reverification) section.
+This endpoint will require you to provide at least your password to confirm it's you. More information can found in the [Identity Reverification](/reference/#identity-reverification) section.
 :::
 
 **Parameters**
@@ -511,7 +496,7 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 curl -X PUT \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
 -H "Content-Type: application/json" \
--d '{"email": "waycoolemail@waycooldomain.biz", "password": "password"}' \
+-d '{"email": "waycoolemail@waycooldomain.biz"}' \
 https://alekeagle.me/api/users/1234567890123/email
 ```
 
@@ -525,7 +510,6 @@ fetch('https://alekeagle.me/api/users/1234567890123/email', {
   },
   body: JSON.stringify({
     email: 'waycoolemail@waycooldomain.biz',
-    password: 'password',
   }),
 });
 ```
@@ -539,6 +523,7 @@ fetch('https://alekeagle.me/api/users/1234567890123/email', {
 - 400 Bad Request
   - [InvalidEmail](/reference/errors#invalidemail)
   - [MissingFields](/reference/errors#missingfields)
+  - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)
   - [SecondFactorChallengeRequired](/reference/errors#secondfactorchallengerequired)
@@ -574,9 +559,9 @@ and will fail with the error [ServiceUnavailable](/reference/errors#serviceunava
 
 **Parameters**
 
-| Name    | Type   | Location | Required | Description            |
-| ------- | ------ | -------- | -------- | ---------------------- |
-| `token` | string | body     | Yes      | The verification token |
+| Name    | Type   | Location | Required | Description                               |
+| ------- | ------ | -------- | -------- | ----------------------------------------- |
+| `token` | string | body     | Yes      | The verification token received via email |
 
 **Example Requests**
 
@@ -590,7 +575,7 @@ https://alekeagle.me/api/users/verify
 ```
 
 ```js [JS Fetch]
-fetch('https://alekeagle.me/api/user/verify', {
+fetch('https://alekeagle.me/api/users/verify', {
   method: 'PUT',
   headers: {
     'Content-Type': 'application/json',
@@ -632,6 +617,10 @@ This endpoint is not public and requires authentication of a user with `staff` p
 Requests to this endpoint using a scoped session require the session to have the [`STAFF_MODIFY_ACCOUNTS`](/reference/#session-scopes) scope.
 :::
 
+::: warning Identity Reverification
+This endpoint will require you to provide at least your password to confirm it's you. More information can found in the [Identity Reverification](/reference/#identity-reverification) section.
+:::
+
 **Parameters**
 
 | Name | Type   | Location | Required | Description                     |
@@ -645,6 +634,7 @@ Requests to this endpoint using a scoped session require the session to have the
 ```sh [cURL]
 curl -X PUT \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
+-H "Content-Type: application/json" \
 https://alekeagle.me/api/users/1234567890123/verify
 ```
 
@@ -652,8 +642,9 @@ https://alekeagle.me/api/users/1234567890123/verify
 fetch('https://alekeagle.me/api/users/1234567890123/verify', {
   method: 'PUT',
   headers: {
-    Authorization:
+    'Authorization':
       'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
+    'Content-Type': 'application/json',
   },
 });
 ```
@@ -666,6 +657,7 @@ fetch('https://alekeagle.me/api/users/1234567890123/verify', {
   - [User](/reference/structures#user)
 - 400 Bad Request
   - [EmailAlreadyVerified](/reference/errors#emailalreadyverified)
+  - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)
   - [SecondFactorChallengeRequired](/reference/errors#secondfactorchallengerequired)
@@ -682,7 +674,7 @@ fetch('https://alekeagle.me/api/users/1234567890123/verify', {
 
 ## DELETE /users/:id/verify
 
-Unverifies a user's email.
+Removes the verified email flag from a user's account.
 
 ::: warning Non-Public Endpoint
 This endpoint is not public and requires authentication of a user with `staff` permissions.
@@ -710,7 +702,6 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 curl -X DELETE \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
 -H "Content-Type: application/json" \
--d '{"password": "password"}' \
 https://alekeagle.me/api/users/1234567890123/verify
 ```
 
@@ -722,7 +713,6 @@ fetch('https://alekeagle.me/api/users/1234567890123/verify', {
       'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
     'Content-Type': 'application/json',
   },
-  body: JSON.stringify({ password: 'password' }),
 });
 ```
 
@@ -734,6 +724,7 @@ fetch('https://alekeagle.me/api/users/1234567890123/verify', {
   - [User](/reference/structures#user)
 - 400 Bad Request
   - [EmailNotVerified](/reference/errors#emailnotverified)
+  - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)
   - [SecondFactorChallengeRequired](/reference/errors#secondfactorchallengerequired)
@@ -769,6 +760,10 @@ and will fail with the error [ServiceUnavailable](/reference/errors#serviceunava
 Requests to this endpoint using a scoped session require the session to have the [`ACCOUNT_MODIFY`](/reference/#session-scopes) scope.
 :::
 
+**Parameters**
+
+There are no parameters for this endpoint.
+
 **Example Requests**
 
 ::: code-group
@@ -793,7 +788,7 @@ fetch('https://alekeagle.me/api/users/me/verify', {
 
 **Responses**
 
-- 201 OK
+- 201 Created
   - [SendVerificationEmail](/reference/successes#sendverificationemail)
 - 400 Bad Request
   - [EmailAlreadyVerified](/reference/errors#emailalreadyverified)
@@ -851,7 +846,7 @@ fetch('https://alekeagle.me/api/users/1234567890123/verify', {
 
 **Responses**
 
-- 201 OK
+- 201 Created
   - [SendVerificationEmail](/reference/successes#sendverificationemail)
 - 400 Bad Request
   - [EmailAlreadyVerified](/reference/errors#emailalreadyverified)
@@ -902,12 +897,12 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 curl -X PUT \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
 -H "Content-Type: application/json" \
--d '{ "password": "password", "newPassword": "password1", "confirmNewPassword": "password1"}' \
-https://alekeagle.me/api/users/me/email
+-d '{ "newPassword": "password1", "confirmNewPassword": "password1"}' \
+https://alekeagle.me/api/users/me/password
 ```
 
 ```js [JS Fetch]
-fetch('https://alekeagle.me/api/users/me/email', {
+fetch('https://alekeagle.me/api/users/me/password', {
   method: 'PUT',
   headers: {
     'Authorization':
@@ -915,7 +910,6 @@ fetch('https://alekeagle.me/api/users/me/email', {
     'Content-Type': 'application/json',
   },
   body: JSON.stringify({
-    password: 'password',
     newPassword: 'password1',
     confirmNewPassword: 'password1',
   }),
@@ -932,6 +926,7 @@ fetch('https://alekeagle.me/api/users/me/email', {
   - [InvalidPassword](/reference/errors#invalidpassword)
   - [MissingFields](/reference/errors#missingfields)
   - [PasswordsDoNotMatch](/reference/errors#passwordsdonotmatch)
+  - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)
   - [SecondFactorChallengeRequired](/reference/errors#secondfactorchallengerequired)
@@ -951,14 +946,6 @@ Updates another user's password.
 
 ::: warning Non-Public Endpoint
 This endpoint is not public and requires authentication of a user with `staff` permissions.
-:::
-
-::: warning Kill Switch Behavior
-This endpoint is affected by the following [kill switches](/reference/#kill-switches):
-
-- `ACCOUNT_MODIFY(1)`
-
-and will fail with the error [ServiceUnavailable](/reference/errors#serviceunavailable) if any of these kill switches are enabled.
 :::
 
 ::: warning Scoped Session
@@ -985,12 +972,12 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 curl -X PUT \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
 -H "Content-Type: application/json" \
--d '{ "password": "password", "newPassword": "password1", "confirmNewPassword": "password1"}' \
-https://alekeagle.me/api/users/1234567890123/email
+-d '{ "newPassword": "password1", "confirmNewPassword": "password1"}' \
+https://alekeagle.me/api/users/1234567890123/password
 ```
 
 ```js [JS Fetch]
-fetch('https://alekeagle.me/api/users/1234567890123/email', {
+fetch('https://alekeagle.me/api/users/1234567890123/password', {
   method: 'PUT',
   headers: {
     'Authorization':
@@ -998,7 +985,6 @@ fetch('https://alekeagle.me/api/users/1234567890123/email', {
     'Content-Type': 'application/json',
   },
   body: JSON.stringify({
-    password: 'password',
     newPassword: 'password1',
     confirmNewPassword: 'password1',
   }),
@@ -1015,6 +1001,7 @@ fetch('https://alekeagle.me/api/users/1234567890123/email', {
   - [InvalidPassword](/reference/errors#invalidpassword)
   - [MissingFields](/reference/errors#missingfields)
   - [PasswordsDoNotMatch](/reference/errors#passwordsdonotmatch)
+  - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)
   - [SecondFactorChallengeRequired](/reference/errors#secondfactorchallengerequired)
@@ -1058,6 +1045,7 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 ```sh [cURL]
 curl -X PUT \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
+-H "Content-Type: application/json" \
 https://alekeagle.me/api/users/1234567890123/staff
 ```
 
@@ -1065,8 +1053,9 @@ https://alekeagle.me/api/users/1234567890123/staff
 fetch('https://alekeagle.me/api/users/1234567890123/staff', {
   method: 'PUT',
   headers: {
-    Authorization:
+    'Authorization':
       'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
+    'Content-Type': 'application/json',
   },
 });
 ```
@@ -1080,9 +1069,12 @@ fetch('https://alekeagle.me/api/users/1234567890123/staff', {
 - 400 Bad Request
   - [MissingFields](/reference/errors#missingfields)
   - [UserRequiresSecondFactor](/reference/errors#userrequiressecondfactor)
-  - [EndpointRequiresSecondFactor](/reference/errors#endpointrequiressecondfactor)
+  - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)
+  - [InvalidPassword](/reference/errors#invalidpassword)
+  - [EndpointRequiresSecondFactor](/reference/errors#endpointrequiressecondfactor)
+  - [SecondFactorChallengeRequired](/reference/errors#secondfactorchallengerequired)
 - 403 Forbidden
   - [InsufficientPermissions](/reference/errors#insufficientpermissions)
   - [Banned](/reference/errors#banned)
@@ -1122,6 +1114,7 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 ```sh [cURL]
 curl -X DELETE \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
+-H "Content-Type: application/json" \
 https://alekeagle.me/api/users/1234567890123/staff
 ```
 
@@ -1129,8 +1122,9 @@ https://alekeagle.me/api/users/1234567890123/staff
 fetch('https://alekeagle.me/api/users/1234567890123/staff', {
   method: 'DELETE',
   headers: {
-    Authorization:
+    'Authorization':
       'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
+    'Content-Type': 'application/json',
   },
 });
 ```
@@ -1143,10 +1137,12 @@ fetch('https://alekeagle.me/api/users/1234567890123/staff', {
   - [User](/reference/structures#user)
 - 400 Bad Request
   - [MissingFields](/reference/errors#missingfields)
+  - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)
   - [SecondFactorChallengeRequired](/reference/errors#secondfactorchallengerequired)
   - [EndpointRequiresSecondFactor](/reference/errors#endpointrequiressecondfactor)
+  - [InvalidPassword](/reference/errors#invalidpassword)
 - 403 Forbidden
   - [InsufficientPermissions](/reference/errors#insufficientpermissions)
   - [Banned](/reference/errors#banned)
@@ -1156,8 +1152,6 @@ fetch('https://alekeagle.me/api/users/1234567890123/staff', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
-- 503 Service Unavailable
-  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## PUT /users/:id/ban
 
@@ -1177,10 +1171,10 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 
 **Parameters**
 
-| Name     | Type   | Location | Required | Description                                                              |
-| -------- | ------ | -------- | -------- | ------------------------------------------------------------------------ |
-| `id`     | string | path     | Yes      | The [User's ID](/api/#user-ids) (`me` is not accepted for this endpoint) |
-| `reason` | string | body     | Yes      | The reason for banning the user accounts.                                |
+| Name     | Type   | Location | Required | Description                                |
+| -------- | ------ | -------- | -------- | ------------------------------------------ |
+| `id`     | string | path     | Yes      | The [User's ID](/api/#user-ids)            |
+| `reason` | string | body     | Yes      | The reason for banning the user's account. |
 
 **Example Requests**
 
@@ -1214,6 +1208,8 @@ fetch('https://alekeagle.me/api/users/1234567890123/ban', {
 
 - 200 OK
   - [User](/reference/structures#user)
+- 400 Bad Request
+  - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)
   - [SecondFactorChallengeRequired](/reference/errors#secondfactorchallengerequired)
@@ -1227,8 +1223,6 @@ fetch('https://alekeagle.me/api/users/1234567890123/ban', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
-- 503 Service Unavailable
-  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## DELETE /users/:id/ban
 
@@ -1248,9 +1242,9 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 
 **Parameters**
 
-| Name | Type   | Location | Required | Description                                                              |
-| ---- | ------ | -------- | -------- | ------------------------------------------------------------------------ |
-| `id` | string | path     | Yes      | The [User's ID](/api/#user-ids) (`me` is not accepted for this endpoint) |
+| Name | Type   | Location | Required | Description                     |
+| ---- | ------ | -------- | -------- | ------------------------------- |
+| `id` | string | path     | Yes      | The [User's ID](/api/#user-ids) |
 
 **Example Requests**
 
@@ -1278,8 +1272,11 @@ fetch('https://alekeagle.me/api/users/1234567890123/ban', {
 
 - 200 OK
   - [User](/reference/structures#user)
+- 400 Bad Request
+  - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)
+  - [SecondFactorChallengeRequired](/reference/errors#secondfactorchallengerequired)
 - 403 Forbidden
   - [InsufficientPermissions](/reference/errors#insufficientpermissions)
   - [Banned](/reference/errors#banned)
@@ -1289,8 +1286,6 @@ fetch('https://alekeagle.me/api/users/1234567890123/ban', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
-- 503 Service Unavailable
-  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## PUT /users/me/domain
 
@@ -1310,10 +1305,10 @@ Requests to this endpoint using a scoped session require the session to have the
 
 **Parameters**
 
-| Name        | Type   | Location | Required | Description          |
-| ----------- | ------ | -------- | -------- | -------------------- |
-| `domain`    | string | body     | Yes      | The user's domain    |
-| `subdomain` | string | body     | No       | The user's subdomain |
+| Name        | Type   | Location | Required | Description              |
+| ----------- | ------ | -------- | -------- | ------------------------ |
+| `domain`    | string | body     | Yes      | The user's new domain    |
+| `subdomain` | string | body     | No       | The user's new subdomain |
 
 **Example Requests**
 
@@ -1369,6 +1364,14 @@ fetch('https://alekeagle.me/api/users/me/domain', {
 ## PUT /users/:id/domain
 
 Updates another user's domain.
+
+::: warning Non-Public Endpoint
+This endpoint is not public and requires authentication of a user with `staff` permissions.
+:::
+
+::: warning Scoped Session
+Requests to this endpoint using a scoped session require the session to have the [`STAFF_MODIFY_ACCOUNTS`](/reference/#session-scopes) scope.
+:::
 
 **Parameters**
 
@@ -1428,8 +1431,6 @@ fetch('https://alekeagle.me/api/users/1234567890123/domain', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
-- 503 Service Unavailable
-  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## DELETE /users/me
 
@@ -1463,7 +1464,6 @@ This endpoint does not require any parameters.
 curl -X DELETE \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
 -H "Content-Type: application/json" \
--d '{"password": "password"}' \
 https://alekeagle.me/api/users/me
 ```
 
@@ -1475,9 +1475,6 @@ fetch('https://alekeagle.me/api/users/me', {
       'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
     'Content-Type': 'application/json',
   },
-  body: JSON.stringify({
-    password: 'password',
-  }),
 });
 ```
 
@@ -1521,11 +1518,9 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 
 **Parameters**
 
-| Name       | Type   | Location | Required                               | Description                             |
-| ---------- | ------ | -------- | -------------------------------------- | --------------------------------------- |
-| `id`       | string | path     | Yes                                    | The [User's ID](/api/#user-ids)         |
-| `username` | string | body     | If the user is deleting their own user | The user's username to confirm deletion |
-| `password` | string | body     | If the user is deleting their own user | The user's password to confirm deletion |
+| Name | Type   | Location | Required | Description                     |
+| ---- | ------ | -------- | -------- | ------------------------------- |
+| `id` | string | path     | Yes      | The [User's ID](/api/#user-ids) |
 
 **Example Requests**
 
@@ -1579,7 +1574,7 @@ fetch('https://alekeagle.me/api/users/1234567890123', {
 
 ## DELETE /users
 
-Delete multiple users. Deleting users requires the `staff` permission.
+Delete multiple users.
 
 ::: warning Non-Public Endpoint
 This endpoint is not public and requires authentication of a user with `staff` permissions.
@@ -1645,5 +1640,3 @@ fetch('https://alekeagle.me/api/users', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
-- 503 Service Unavailable
-  - [ServiceUnavailable](/reference/errors#serviceunavailable)

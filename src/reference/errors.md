@@ -85,7 +85,7 @@ interface InvalidSecondFactorResponse {
 
 ## SecondFactorChallengeRequired
 
-Documentation for the `challenge` field can be found [here](https://github.com/MasterKale/SimpleWebAuthn/blob/master/packages/types/src/index.ts#L72-L79).
+The specific structure for `PublicKeyCredentialRequestOptionsJSON` can be found [here](https://github.com/MasterKale/SimpleWebAuthn/blob/master/packages/types/src/index.ts#L72-L79).
 
 ```ts
 interface SecondFactorChallengeRequired {
@@ -94,7 +94,7 @@ interface SecondFactorChallengeRequired {
   token: string;
   exp: number;
   types: ('totp' | 'webauthn' | 'backup')[];
-  challenge: any; // Only present if one of the available types is 'webauthn'.
+  challenge: PublicKeyCredentialRequestOptionsJSON; // Only present if one of the available types is 'webauthn'.
 }
 ```
 

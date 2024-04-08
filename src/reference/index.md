@@ -46,9 +46,13 @@ The Cumulonimbus API supports two-factor authentication (2FA) using the followin
 - WebAuthn (FIDO2)
 - Backup Codes
 
+::: danger SMS and Email OTPs
+SMS and email based second factors are not, and will never be officially supported by the Cumulonimbus development team. The reasoning for this is that SMS based OTPs are vulnerable to SIM card hijacking and email based OTPs are only as secure as your email provider and your account with them. This decision is final and to maintain security of the platform.
+:::
+
 ## Identity Reverification
 
-::: info Scoped Sessions
+::: tip Scoped Sessions
 This authentication flow does NOT apply to scoped sessions. They do not need to provide a password in the body, and will not receive multi-factor authentication challenges.
 :::
 
@@ -70,6 +74,7 @@ Some endpoints require the user to reverify their identity, depending on your ac
       // WebAuthn response data. (Only present for 'webauthn' type)
     }
   },
+  // Parameters required for the endpoint
   "username": "new-username"
 }
 ```
@@ -80,29 +85,28 @@ Some endpoints require the user to reverify their identity, depending on your ac
 
 The Cumulonimbus API allows for the creation of sessions with specific scopes. These sessions are special in that they do not require the user to reverify their credentials or second factor(s) when making requests to the API. Instead, the session is used to determine the user's permissions and access level. Sessions with scopes are useful for creating long-lived sessions that have specific permissions, such as for automated tasks or administrative purposes. Making a request an endpoint that requires a scope that the session does not have will result in a [InsufficientPermissions](/reference/errors#insufficientpermissions) error.
 
-| Scope Name                    | Bitmask   | Description                                                                                                                                                                                                                          |
-| ----------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `ALL`                         | `1`       | Grants access to all endpoints. This scope should be used with caution, as it effectively grants full access to the API without the need to reverify the user's credentials or second factor(s).                                     |
-| `UPLOAD_FILE`                 | `2`       | Grants access to the [file upload endpoint](/api/file#post-upload).                                                                                                                                                                  |
-| `ACCOUNT_READ`                | `4`       | Grants access to read account information. This does not include the ability to view other sessions or view second factor information.                                                                                               |
-| `ACCOUNT_MODIFY`              | `8`       | Grants access to modify account information. This does not include the ability to modify other sessions or second factor information.                                                                                                |
-| `SECOND_FACTOR_READ`          | `16`      | Grants access to read second factor information. There is no scope for modifying second factors with a scoped session.                                                                                                               |
-| `SESSION_READ`                | `32`      | Grants access to read session information.                                                                                                                                                                                           |
-| `SESSION_MODIFY`              | `64`      | Grants access to modify session information. Includes the ability to revoke sessions.                                                                                                                                                |
-| `SESSION_CREATE`              | `128`     | Grants access to create new sessions. Restrictions for created sessions are explained in detail in the [Session Endpoints](/api/session#post-users-me-sessions) documentation.                                                       |
-| `FILE_READ`                   | `256`     | Grants access to read information about files uploaded by the user.                                                                                                                                                                  |
-| `FILE_MODIFY`                 | `512`     | Grants access to modify files uploaded by the user. Includes the ability to delete files.                                                                                                                                            |
-| `STAFF_READ_ACCOUNTS`         | `1024`    | Grants access to read account information for all users. This does not include the ability to view other sessions or view second factor information. This scope and all following scopes require the user to have staff permissions. |
-| `STAFF_MODIFY_ACCOUNTS`       | `2048`    | Grants access to modify account information for all users. This does not include the ability to modify other sessions or second factor information.                                                                                  |
-| `STAFF_READ_SECOND_FACTORS`   | `4096`    | Grants access to read second factor information for all users.                                                                                                                                                                       |
-| `STAFF_MODIFY_SECOND_FACTORS` | `8192`    | Grants access to modify second factor information for all users.                                                                                                                                                                     |
-| `STAFF_READ_SESSIONS`         | `16384`   | Grants access to read session information for all users.                                                                                                                                                                             |
-| `STAFF_MODIFY_SESSIONS`       | `32768`   | Grants access to modify session information for all users.                                                                                                                                                                           |
-| `STAFF_READ_FILES`            | `65536`   | Grants access to read information about files uploaded by all users.                                                                                                                                                                 |
-| `STAFF_MODIFY_FILES`          | `131072`  | Grants access to modify files uploaded by all users. Includes the ability to delete files.                                                                                                                                           |
-| `STAFF_MODIFY_DOMAINS`        | `262144`  | Grants access to modify domain information.                                                                                                                                                                                          |
-| `STAFF_MODIFY_INSTRUCTIONS`   | `524288`  | Grants access to modify instruction information.                                                                                                                                                                                     |
-| `STAFF_MODIFY_KILLSWITCHES`   | `1048576` | Grants access to modify kill switch information.                                                                                                                                                                                     |
+| Scope Name                    | Bitmask  | Description                                                                                                                                                                                                                          |
+| ----------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `ALL`                         | `1`      | Grants access to all endpoints. This scope should be used with caution, as it effectively grants full access to the API without the need to reverify the user's credentials or second factor(s).                                     |
+| `UPLOAD_FILE`                 | `2`      | Grants access to the [file upload endpoint](/api/file#post-upload).                                                                                                                                                                  |
+| `ACCOUNT_READ`                | `4`      | Grants access to read account information. This does not include the ability to view other sessions or view second factor information.                                                                                               |
+| `ACCOUNT_MODIFY`              | `8`      | Grants access to modify account information. This does not include the ability to modify other sessions or second factor information.                                                                                                |
+| `SECOND_FACTOR_READ`          | `16`     | Grants access to read second factor information. There is no scope for modifying second factors with a scoped session.                                                                                                               |
+| `SESSION_READ`                | `32`     | Grants access to read session information.                                                                                                                                                                                           |
+| `SESSION_MODIFY`              | `64`     | Grants access to modify session information. Includes the ability to revoke sessions.                                                                                                                                                |
+| `FILE_READ`                   | `128`    | Grants access to read information about files uploaded by the user.                                                                                                                                                                  |
+| `FILE_MODIFY`                 | `256`    | Grants access to modify files uploaded by the user. Includes the ability to delete files.                                                                                                                                            |
+| `STAFF_READ_ACCOUNTS`         | `512`    | Grants access to read account information for all users. This does not include the ability to view other sessions or view second factor information. This scope and all following scopes require the user to have staff permissions. |
+| `STAFF_MODIFY_ACCOUNTS`       | `1024`   | Grants access to modify account information for all users. This does not include the ability to modify other sessions or second factor information.                                                                                  |
+| `STAFF_READ_SECOND_FACTORS`   | `2048`   | Grants access to read second factor information for all users.                                                                                                                                                                       |
+| `STAFF_MODIFY_SECOND_FACTORS` | `4096`   | Grants access to modify second factor information for all users.                                                                                                                                                                     |
+| `STAFF_READ_SESSIONS`         | `8192`   | Grants access to read session information for all users.                                                                                                                                                                             |
+| `STAFF_MODIFY_SESSIONS`       | `16384`  | Grants access to modify session information for all users.                                                                                                                                                                           |
+| `STAFF_READ_FILES`            | `32768`  | Grants access to read information about files uploaded by all users.                                                                                                                                                                 |
+| `STAFF_MODIFY_FILES`          | `65536`  | Grants access to modify files uploaded by all users. Includes the ability to delete files.                                                                                                                                           |
+| `STAFF_MODIFY_DOMAINS`        | `131072` | Grants access to modify domain information.                                                                                                                                                                                          |
+| `STAFF_MODIFY_INSTRUCTIONS`   | `262144` | Grants access to modify instruction information.                                                                                                                                                                                     |
+| `STAFF_MODIFY_KILLSWITCHES`   | `524288` | Grants access to modify kill switch information.                                                                                                                                                                                     |
 
 ## Your Intelligence
 

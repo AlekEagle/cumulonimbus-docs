@@ -58,6 +58,10 @@ Enable a kill switch.
 This endpoint is not public and requires authentication of a user with `staff` permissions.
 :::
 
+::: warning Identity Reverification
+This endpoint will require you to provide your password to confirm it's you. More information can found in the [Identity Reverification](/reference/#identity-reverification) section.
+:::
+
 **Parameters**
 
 | Name | Type   | Location | Required | Description                                                       |
@@ -110,6 +114,10 @@ Disable a kill switch.
 This endpoint is not public and requires authentication of a user with `staff` permissions.
 :::
 
+::: warning Identity Reverification
+This endpoint will require you to provide your password to confirm it's you. More information can found in the [Identity Reverification](/reference/#identity-reverification) section.
+:::
+
 **Parameters**
 
 | Name | Type   | Location | Required | Description                                                        |
@@ -160,6 +168,10 @@ Disable all kill switches.
 
 ::: warning Non-Public Endpoint
 This endpoint is not public and requires authentication of a user with `staff` permissions.
+:::
+
+::: warning Identity Reverification
+This endpoint will require you to provide your password to confirm it's you. More information can found in the [Identity Reverification](/reference/#identity-reverification) section.
 :::
 
 **Parameters**

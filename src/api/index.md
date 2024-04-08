@@ -38,6 +38,10 @@ You used to be able to provide your ID interchangeably with the keyword `me`, bu
 
 Kill switches prevent the use of certain features of the API. For more information on kill switches, see [Kill Switches](/reference/#kill-switches) for a list of kill switches and their effects. Specific endpoints will also have information on how kill switches affect them. All endpoints are affected by the `GLOBAL(8)` kill switch and is omitted from specific endpoint documentation to avoid redundancy.
 
+## Non-Public Endpoints
+
+All non-public endpoints will return the [`EndpointRequiresSecondFactor`](/reference/errors#endpointrequiressecondfactor) error. This is to prevent users who are already staff without at least one second factor registered from accessing sensitive endpoints until they register a second factor.
+
 ## Your First Request
 
 Making a request of any type to the API's base URL (`https://alekeagle.me/api/`) will return a JSON object with the following structure:
@@ -45,8 +49,8 @@ Making a request of any type to the API's base URL (`https://alekeagle.me/api/`)
 ```json
 {
   "hello": "world",
-  "version": "4.0.0"
+  "version": "5.0.0"
 }
 ```
 
-This is a simple way to check if the API is online and responding to requests and also works for the thumbnail API.
+This is a simple way to check if the API is online and responding to requests and also works for the thumbnail API (`https://previews.alekeagle.me/`).
