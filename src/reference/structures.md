@@ -25,6 +25,7 @@ interface User {
   staff: boolean; // Omitted in List<T>
   domain: string; // Omitted in List<T>
   subdomain?: string; // Omitted in List<T>
+  verifiedAt?: string; // Omitted in List<T>
   bannedAt?: string; // Omitted in List<T>
   createdAt: string; // Omitted in List<T>
   updatedAt: string; // Omitted in List<T>
