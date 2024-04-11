@@ -168,10 +168,10 @@ fetch('https://alekeagle.me/api/users/me/2fa/totp', {
   - [SecondFactorTOTPRegistration](/reference/structures#secondfactortotpregistration)
 - 400 Bad Request
   - [InvalidPassword](/reference/errors#invalidpassword)
-  - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)
   - [SecondFactorChallengeRequired](/reference/errors#secondfactorchallengerequired)
+  - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
 - 403 Forbidden
   - [InsufficientPermissions](/reference/errors#insufficientpermissions)
   - [Banned](/reference/errors#banned)
@@ -238,9 +238,9 @@ fetch('https://alekeagle.me/api/users/me/2fa/totp/confirm', {
   - [SecondFactorRegisterSuccess](/reference/structures#secondfactorregistersuccess)
 - 400 Bad Request
   - [MissingFields](/reference/errors#missingfields)
-  - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)
+  - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
 - 403 Forbidden
   - [InsufficientPermissions](/reference/errors#insufficientpermissions)
   - [Banned](/reference/errors#banned)
@@ -307,10 +307,10 @@ fetch('https://alekeagle.me/api/users/me/2fa/webauthn', {
   - [SecondFactorWebAuthnRegistration](/reference/structures#secondfactorwebauthnregistration)
 - 400 Bad Request
   - [InvalidPassword](/reference/errors#invalidpassword)
-  - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)
   - [SecondFactorChallengeRequired](/reference/errors#secondfactorchallengerequired)
+  - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
 - 403 Forbidden
   - [InsufficientPermissions](/reference/errors#insufficientpermissions)
   - [Banned](/reference/errors#banned)
@@ -381,9 +381,9 @@ fetch('https://alekeagle.me/api/users/me/2fa/webauthn/confirm', {
   - [SecondFactorRegisterSuccess](/reference/structures#secondfactorregistersuccess)
 - 400 Bad Request
   - [MissingFields](/reference/errors#missingfields)
-  - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)
+  - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
 - 403 Forbidden
   - [InsufficientPermissions](/reference/errors#insufficientpermissions)
   - [Banned](/reference/errors#banned)
@@ -450,9 +450,9 @@ fetch('https://alekeagle.me/api/users/me/2fa/backup', {
   - [SecondFactorBackupRegisterSuccess](/reference/structures#secondfactorbackupregistersuccess)
 - 400 Bad Request
   - [InvalidPassword](/reference/errors#invalidpassword)
-  - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)
+  - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
   - [SecondFactorChallengeRequired](/reference/errors#secondfactorchallengerequired)
   - [EndpointRequiresSecondFactor](/reference/errors#endpointrequiressecondfactor)
 - 403 Forbidden
@@ -523,7 +523,6 @@ fetch('https://alekeagle.me/api/users/me/2fa/1234567890', {
   - [SecondFactorDeleteSuccess](/reference/structures#secondfactordeletesuccess)
 - 400 Bad Request
   - [InvalidPassword](/reference/errors#invalidpassword)
-  - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)
   - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
@@ -595,4 +594,147 @@ fetch('https://alekeagle.me/api/users/1234567890123/2fa/1234567890', {
   - [SecondFactorDeleteSuccess](/reference/structures#secondfactordeletesuccess)
 - 400 Bad Request
   - [InvalidPassword](/reference/errors#invalidpassword)
+- 401 Unauthorized
+  - [InvalidSession](/reference/errors#invalidsession)
   - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
+  - [SecondFactorChallengeRequired](/reference/errors#secondfactorchallengerequired)
+- 403 Forbidden
+  - [InsufficientPermissions](/reference/errors#insufficientpermissions)
+  - [Banned](/reference/errors#banned)
+- 404 Not Found
+  - [InvalidSecondFactor](/reference/errors#invalidsecondfactor)
+  - [InvalidUser](/reference/errors#invaliduser)
+- 429 Too Many Requests
+  - [RateLimited](/reference/errors#ratelimited)
+- 500 Internal Server Error
+  - [Internal](/reference/errors#internal)
+
+## DELETE /users/me/2fa/all
+
+Deletes all second factors for the current user.
+
+::: warning Kill Switch Behavior
+This endpoint is affected by the following [kill switches](/reference/#kill-switches):
+
+- `ACCOUNT_MODIFY(1)`
+
+and will fail with the error [ServiceUnavailable](/reference/errors#serviceunavailable) if any of these kill switches are enabled.
+:::
+
+::: warning Scoped Session
+Requests to this endpoint using a scoped session are not allowed in order to prevent second factors being removed without explicit user consent.
+:::
+
+::: warning Identity Reverification
+This endpoint will require you to provide your password to confirm it's you. More information can be found in the [Identity Reverification](/reference/#identity-reverification) section.
+:::
+
+**Parameters**
+
+This endpoint does not require any parameters.
+
+**Example Requests**
+
+::: code-group
+
+```sh [cURL]
+curl -X DELETE \
+-H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
+-H "Content-Type: application/json" \
+https://alekeagle.me/api/users/me/2fa/all
+```
+
+```js [JS Fetch]
+fetch('https://alekeagle.me/api/users/me/2fa/all', {
+  method: 'DELETE',
+  headers: {
+    'Authorization':
+      'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
+    'Content-Type': 'application/json',
+  },
+});
+```
+
+:::
+
+**Responses**
+
+- 200 OK
+  - [DeleteSecondFactors](/reference/structures#deletesecondfactors)
+- 401 Unauthorized
+  - [InvalidSession](/reference/errors#invalidsession)
+  - [SecondFactorChallengeRequired](/reference/errors#secondfactorchallengerequired)
+  - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
+- 403 Forbidden
+  - [InsufficientPermissions](/reference/errors#insufficientpermissions)
+  - [Banned](/reference/errors#banned)
+- 429 Too Many Requests
+  - [RateLimited](/reference/errors#ratelimited)
+- 500 Internal Server Error
+  - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
+
+## DELETE /users/:uid/2fa/all
+
+Deletes all second factors for the specified user.
+
+::: warning Non-Public Endpoint
+This endpoint is not public and requires authentication of a user with `staff` permissions.
+:::
+
+::: warning Scoped Session
+Requests to this endpoint using a scoped session require the session to have the [`STAFF_MODIFY_SECOND_FACTORS`](/reference/#session-scopes) scope.
+:::
+
+::: warning Identity Reverification
+This endpoint will require you to provide your password to confirm it's you. More information can be found in the [Identity Reverification](/reference/#identity-reverification) section.
+:::
+
+**Parameters**
+
+| Name  | Type   | Location | Required | Description                     |
+| ----- | ------ | -------- | -------- | ------------------------------- |
+| `uid` | string | path     | Yes      | The [User's ID](/api/#user-ids) |
+
+**Example Requests**
+
+::: code-group
+
+```sh [cURL]
+curl -X DELETE \
+-H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
+-H "Content-Type: application/json" \
+https://alekeagle.me/api/users/1234567890123/2fa/all
+```
+
+```js [JS Fetch]
+fetch('https://alekeagle.me/api/users/1234567890123/2fa/all', {
+  method: 'DELETE',
+  headers: {
+    'Authorization':
+      'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
+    'Content-Type': 'application/json',
+  },
+});
+```
+
+:::
+
+**Responses**
+
+- 200 OK
+  - [DeleteSecondFactors](/reference/structures#deletesecondfactors)
+- 401 Unauthorized
+  - [InvalidSession](/reference/errors#invalidsession)
+  - [SecondFactorChallengeRequired](/reference/errors#secondfactorchallengerequired)
+  - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
+- 403 Forbidden
+  - [InsufficientPermissions](/reference/errors#insufficientpermissions)
+  - [Banned](/reference/errors#banned)
+- 404 Not Found
+  - [InvalidUser](/reference/errors#invaliduser)
+- 429 Too Many Requests
+  - [RateLimited](/reference/errors#ratelimited)
+- 500 Internal Server Error
+  - [Internal](/reference/errors#internal)
