@@ -112,6 +112,119 @@ fetch('https://alekeagle.me/api/users/1234567890123/2fa', {
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
 
+## GET /users/me/2fa/:id
+
+Get the specified second factor for the current user.
+
+::: warning Scoped Session
+Requests to this endpoint using a scoped session require the session to have the [`SECOND_FACTOR_READ`](/reference/#session-scopes) scope.
+:::
+
+**Parameters**
+
+| Name | Type   | Location | Required | Description                            |
+| ---- | ------ | -------- | -------- | -------------------------------------- |
+| `id` | string | path     | Yes      | The ID of the second factor to return. |
+
+**Example Requests**
+
+::: code-group
+
+```sh [cURL]
+curl -X GET \
+-H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
+https://alekeagle.me/api/users/me/2fa/1234567890
+```
+
+```js [JS Fetch]
+fetch('https://alekeagle.me/api/users/me/2fa/1234567890', {
+  method: 'GET',
+  headers: {
+    Authorization:
+      'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
+  },
+});
+```
+
+:::
+
+**Responses**
+
+- 200 OK
+  - [SecondFactor](/reference/structures#secondfactor)
+- 401 Unauthorized
+  - [InvalidSession](/reference/errors#invalidsession)
+- 403 Forbidden
+  - [InsufficientPermissions](/reference/errors#insufficientpermissions)
+  - [Banned](/reference/errors#banned)
+- 404 Not Found
+  - [InvalidSecondFactor](/reference/errors#invalidsecondfactor)
+- 429 Too Many Requests
+  - [RateLimited](/reference/errors#ratelimited)
+- 500 Internal Server Error
+  - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
+
+## GET /users/:uid/2fa/:id
+
+Get the specified second factor for the specified user.
+
+::: warning Non-Public Endpoint
+This endpoint is not public and requires authentication of a user with `staff` permissions.
+:::
+
+::: warning Scoped Session
+Requests to this endpoint using a scoped session require the session to have the [`STAFF_READ_SECOND_FACTORS`](/reference/#session-scopes) scope.
+:::
+
+**Parameters**
+
+| Name  | Type   | Location | Required | Description                            |
+| ----- | ------ | -------- | -------- | -------------------------------------- |
+| `uid` | string | path     | Yes      | The [User's ID](/api/#user-ids)        |
+| `id`  | string | path     | Yes      | The ID of the second factor to return. |
+
+**Example Requests**
+
+::: code-group
+
+```sh [cURL]
+curl -X GET \
+-H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
+https://alekeagle.me/api/users/1234567890123/2fa/1234567890
+```
+
+```js [JS Fetch]
+fetch('https://alekeagle.me/api/users/1234567890123/2fa/1234567890', {
+  method: 'GET',
+  headers: {
+    Authorization:
+      'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
+  },
+});
+```
+
+:::
+
+**Responses**
+
+- 200 OK
+  - [SecondFactor](/reference/structures#secondfactor)
+- 401 Unauthorized
+  - [InvalidSession](/reference/errors#invalidsession)
+  - [EndpointRequiresSecondFactor](/reference/errors#endpointrequiressecondfactor)
+- 403 Forbidden
+  - [InsufficientPermissions](/reference/errors#insufficientpermissions)
+  - [Banned](/reference/errors#banned)
+- 404 Not Found
+  - [InvalidSecondFactor](/reference/errors#invalidsecondfactor)
+  - [InvalidUser](/reference/errors#invaliduser)
+- 429 Too Many Requests
+  - [RateLimited](/reference/errors#ratelimited)
+- 500 Internal Server Error
+  - [Internal](/reference/errors#internal)
+
 ## POST /users/me/2fa/totp
 
 Begins the process of registering a new TOTP second factor for the current user.
