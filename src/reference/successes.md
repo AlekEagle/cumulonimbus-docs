@@ -105,3 +105,31 @@ interface SendVerificationEmail {
   message: 'Verification Email Successfully Sent';
 }
 ```
+
+## VerifyEmail
+
+```ts
+interface VerifyEmail {
+  code: 'VERIFY_EMAIL_SUCCESS';
+  message: 'Successfully Verified Email';
+}
+```
+
+## DeleteSecondFactor
+
+```ts
+interface DeleteSecondFactor {
+  code: 'DELETE_SECOND_FACTOR_SUCCESS';
+  message: 'Second Factor Successfully Deleted';
+}
+```
+
+## DeleteSecondFactors
+
+```ts
+interface DeleteSecondFactors {
+  code: 'DELETE_SECOND_FACTORS_SUCCESS';
+  message: 'Second Factors Successfully Deleted';
+  count: number;
+}
+```

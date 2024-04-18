@@ -8,5 +8,7 @@
   // Disable warnings about using emphasized text as headers (Used for "slugless headers")
   "MD036": false,
   // Disable warnings about link fragments
-  "MD051": false
+  "MD051": false,
+  // Disable warnings about invalid ordered list prefix
+  "MD029": false
 }

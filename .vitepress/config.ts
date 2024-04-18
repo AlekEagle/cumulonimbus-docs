@@ -109,6 +109,10 @@ export default withPwa(
               link: '/api/killswitches',
             },
             {
+              text: 'Second Factors',
+              link: '/api/secondfactor',
+            },
+            {
               text: 'Session',
               link: '/api/session',
             },
@@ -139,10 +143,6 @@ export default withPwa(
             {
               text: 'Cumulonimbus',
               link: '/lib/cumulonimbus',
-            },
-            {
-              text: 'Migrating from v2',
-              link: '/lib/migrating',
             },
           ],
         },

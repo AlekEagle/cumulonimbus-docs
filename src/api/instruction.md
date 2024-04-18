@@ -1,6 +1,6 @@
 # Instruction Endpoints
 
-## GET /api/instructions
+## GET /instructions
 
 Returns a list of all instructions.
 
@@ -48,7 +48,7 @@ fetch('https://alekeagle.me/api/instructions', {
 - 503 Service Unavailable
   - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
-## GET /api/instructions/:id
+## GET /instructions/:id
 
 Returns a single instruction.
 
@@ -97,7 +97,7 @@ fetch('https://alekeagle.me/api/instructions/generic-service', {
 - 503 Service Unavailable
   - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
-## POST /api/instructions
+## POST /instructions
 
 Creates a new instruction.
 
@@ -173,7 +173,7 @@ fetch('https://alekeagle.me/api/instructions', {
 - 503 Service Unavailable
   - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
-## PUT /api/instructions/:id/name
+## PUT /instructions/:id/name
 
 Updates the name of an instruction.
 
@@ -237,7 +237,7 @@ fetch('https://alekeagle.me/api/instructions/generic-service/name', {
 - 503 Service Unavailable
   - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
-## PUT /api/instructions/:id/description
+## PUT /instructions/:id/description
 
 Updates the description of an instruction.
 
@@ -300,7 +300,7 @@ fetch('https://alekeagle.me/api/instructions/generic-service/description', {
 - 503 Service Unavailable
   - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
-## PUT /api/instructions/:id/file
+## PUT /instructions/:id/file
 
 Updates the file of an instruction.
 
@@ -365,7 +365,7 @@ fetch('https://alekeagle.me/api/instructions/generic-service/file', {
 - 503 Service Unavailable
   - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
-## PUT /api/instructions/:id/steps
+## PUT /instructions/:id/steps
 
 Updates the steps of an instruction.
 

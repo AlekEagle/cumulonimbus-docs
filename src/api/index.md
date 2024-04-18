@@ -30,11 +30,17 @@ Cumulonimbus will send the following headers with every response:
 
 ## User IDs
 
-User IDs are 13-digit numbers that uniquely identify a user (Fun fact: they're actually just the UNIX timestamp of when the user was created). When an endpoint mentions something about a user ID, it's referring to the 13-digit number. You can also substitute `me` for your own user ID (we recommend using `me` since it requires less logic on your end).
+User IDs are 13-digit numbers that uniquely identify a user (Fun fact: they're actually just the UNIX timestamp of when the user was created). When an endpoint mentions something about a user ID, it's referring to the 13-digit number.
+
+You used to be able to provide your ID interchangeably with the keyword `me`, but this is no longer the case. Requesting data with a user ID, regardless of whether it's your own or someone else's, will result in an [InsufficientPermissions](/reference/errors#insufficientpermissions) error.
 
 ## Kill Switches
 
 Kill switches prevent the use of certain features of the API. For more information on kill switches, see [Kill Switches](/reference/#kill-switches) for a list of kill switches and their effects. Specific endpoints will also have information on how kill switches affect them. All endpoints are affected by the `GLOBAL(8)` kill switch and is omitted from specific endpoint documentation to avoid redundancy.
+
+## Non-Public Endpoints
+
+All non-public endpoints will return the [`EndpointRequiresSecondFactor`](/reference/errors#endpointrequiressecondfactor) error. This is to prevent users who are already staff without at least one second factor registered from accessing sensitive endpoints until they register a second factor.
 
 ## Your First Request
 
@@ -43,8 +49,8 @@ Making a request of any type to the API's base URL (`https://alekeagle.me/api/`)
 ```json
 {
   "hello": "world",
-  "version": "4.0.0"
+  "version": "5.0.0"
 }
 ```
 
-This is a simple way to check if the API is online and responding to requests and also works for the thumbnail API.
+This is a simple way to check if the API is online and responding to requests and also works for the thumbnail API (`https://previews.alekeagle.me/`).

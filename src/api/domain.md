@@ -105,6 +105,10 @@ Create a new domain.
 This endpoint is not public and requires authentication of a user with `staff` permissions.
 :::
 
+::: warning Scoped Session
+Requests to this endpoint using a scoped session require the session to have the [`STAFF_MODIFY_DOMAINS`](/reference/#session-scopes) scope.
+:::
+
 **Parameters**
 
 | Name         | Type    | Location | Required | Description                       |
@@ -146,6 +150,7 @@ fetch('https://alekeagle.me/api/domains', {
   - [MissingFields](/reference/errors#missingfields)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)
+  - [EndpointRequiresSecondFactor](/reference/errors#endpointrequiressecondfactor)
 - 403 Forbidden
   - [Banned](/reference/errors#banned)
   - [InsufficientPermissions](/reference/errors#insufficientpermissions)
@@ -155,8 +160,6 @@ fetch('https://alekeagle.me/api/domains', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
-- 503 Service Unavailable
-  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## PUT /domains/:id/subdomains
 
@@ -166,6 +169,9 @@ Allow subdomains on a domain.
 This endpoint is not public and requires authentication of a user with `staff` permissions.
 :::
 
+::: warning Scoped Session
+Requests to this endpoint using a scoped session require the session to have the [`STAFF_MODIFY_DOMAINS`](/reference/#session-scopes) scope.
+:::
 **Parameters**
 
 | Name | Type   | Location | Required | Description               |
@@ -202,6 +208,7 @@ fetch('https://alekeagle.me/api/domains/example.com/subdomains', {
   - [MissingFields](/reference/errors#missingfields)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)
+  - [EndpointRequiresSecondFactor](/reference/errors#endpointrequiressecondfactor)
 - 403 Forbidden
   - [Banned](/reference/errors#banned)
   - [InsufficientPermissions](/reference/errors#insufficientpermissions)
@@ -211,8 +218,6 @@ fetch('https://alekeagle.me/api/domains/example.com/subdomains', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
-- 503 Service Unavailable
-  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## DELETE /domains/:id/subdomains
 
@@ -220,6 +225,10 @@ Disallow subdomains on a domain.
 
 ::: warning Non-Public Endpoint
 This endpoint is not public and requires authentication of a user with `staff` permissions.
+:::
+
+::: warning Scoped Session
+Requests to this endpoint using a scoped session require the session to have the [`STAFF_MODIFY_DOMAINS`](/reference/#session-scopes) scope.
 :::
 
 **Parameters**
@@ -258,6 +267,7 @@ fetch('https://alekeagle.me/api/domains/example.com/subdomains', {
   - [MissingFields](/reference/errors#missingfields)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)
+  - [EndpointRequiresSecondFactor](/reference/errors#endpointrequiressecondfactor)
 - 403 Forbidden
   - [Banned](/reference/errors#banned)
   - [InsufficientPermissions](/reference/errors#insufficientpermissions)
@@ -267,8 +277,6 @@ fetch('https://alekeagle.me/api/domains/example.com/subdomains', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
-- 503 Service Unavailable
-  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## DELETE /domains/:id
 
@@ -276,6 +284,10 @@ Delete a domain. All users using this domain will have their domains reset to th
 
 ::: warning Non-Public Endpoint
 This endpoint is not public and requires authentication of a user with `staff` permissions.
+:::
+
+::: warning Scoped Session
+Requests to this endpoint using a scoped session require the session to have the [`STAFF_MODIFY_DOMAINS`](/reference/#session-scopes) scope.
 :::
 
 **Parameters**
@@ -312,6 +324,7 @@ fetch('https://alekeagle.me/api/domains/example.com', {
   - [DeleteDomain](/reference/successes#deletedomain)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)
+  - [EndpointRequiresSecondFactor](/reference/errors#endpointrequiressecondfactor)
 - 403 Forbidden
   - [Banned](/reference/errors#banned)
   - [InsufficientPermissions](/reference/errors#insufficientpermissions)
@@ -321,8 +334,6 @@ fetch('https://alekeagle.me/api/domains/example.com', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
-- 503 Service Unavailable
-  - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
 ## DELETE /domains
 
@@ -330,6 +341,10 @@ Delete multiple domains. All users using these domains will have their domains r
 
 ::: warning Non-Public Endpoint
 This endpoint is not public and requires authentication of a user with `staff` permissions.
+:::
+
+::: warning Scoped Session
+Requests to this endpoint using a scoped session require the session to have the [`STAFF_MODIFY_DOMAINS`](/reference/#session-scopes) scope.
 :::
 
 **Parameters**
@@ -372,6 +387,7 @@ fetch('https://alekaegle.me/api/domains', {
   - [MissingFields](/reference/errors#missingfields)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)
+  - [EndpointRequiresSecondFactor](/reference/errors#endpointrequiressecondfactor)
 - 403 Forbidden
   - [Banned](/reference/errors#banned)
   - [InsufficientPermissions](/reference/errors#insufficientpermissions)
@@ -381,5 +397,3 @@ fetch('https://alekaegle.me/api/domains', {
   - [RateLimited](/reference/errors#ratelimited)
 - 500 Internal Server Error
   - [Internal](/reference/errors#internal)
-- 503 Service Unavailable
-  - [ServiceUnavailable](/reference/errors#serviceunavailable)

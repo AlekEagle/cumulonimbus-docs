@@ -25,6 +25,7 @@ interface User {
   staff: boolean; // Omitted in List<T>
   domain: string; // Omitted in List<T>
   subdomain?: string; // Omitted in List<T>
+  verifiedAt?: string; // Omitted in List<T>
   bannedAt?: string; // Omitted in List<T>
   createdAt: string; // Omitted in List<T>
   updatedAt: string; // Omitted in List<T>
@@ -36,8 +37,12 @@ interface User {
 ```ts
 interface Session {
   id: number;
-  exp: number; // Omitted in List<T>
   name: string;
+  exp: number; // Omitted in List<T>
+  permissionFlags: number | null; // Omitted in List<T>
+  usedAt: string; // Omitted in List<T>
+  createdAt: string; // Omitted in List<T>
+  updatedAt: string; // Omitted in List<T>
 }
 ```
 
@@ -124,5 +129,78 @@ interface KillSwitch {
   id: number;
   name: string;
   state: boolean;
+}
+```
+
+## SecondFactor
+
+```ts
+interface SecondFactor {
+  id: string;
+  name: string;
+  type: 'totp' | 'webauthn'; // Omitted in List<T>
+  createdAt: string; // Omitted in List<T>
+  updatedAt: string; // Omitted in List<T>
+}
+```
+
+## SecondFactorBaseRegistration
+
+```ts
+interface SecondFactorBaseRegistration {
+  token: string;
+  exp: number;
+  type: 'totp' | 'webauthn';
+}
+```
+
+## SecondFactorTOTPRegistration
+
+```ts
+interface SecondFactorTOTPRegistration extends SecondFactorBaseRegistration {
+  type: 'totp';
+  secret: string;
+  algorithm: string;
+  digits: number;
+  period: number;
+}
+```
+
+## SecondFactorWebAuthnRegistration
+
+The specific structure for `PublicKeyCredentialCreationOptionsJSON` can be found [here](https://github.com/MasterKale/SimpleWebAuthn/blob/master/packages/types/src/index.ts#L56-L66)
+
+```ts
+interface SecondFactorWebAuthnRegistration
+  extends SecondFactorBaseRegistration,
+    PublicKeyCredentialCreationOptionsJSON {
+  type: 'webauthn';
+}
+```
+
+## SecondFactorRegisterSuccess
+
+```ts
+interface SecondFactorRegisterSuccess {
+  id: string;
+  name: string;
+  type: 'totp' | 'webauthn';
+  backupCodes?: string[];
+}
+```
+
+## SecondFactorBackupRegisterSuccess
+
+```ts
+interface SecondFactorBackupRegisterSuccess {
+  codes: string[];
+}
+```
+
+## ScopedSessionCreate
+
+```ts
+interface ScopedSessionCreate extends Session {
+  token: string;
 }
 ```
