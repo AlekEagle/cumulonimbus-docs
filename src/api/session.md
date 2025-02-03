@@ -13,7 +13,7 @@ and will fail with the error [ServiceUnavailable](/reference/errors#serviceunava
 :::
 
 ::: warning Ratelimit
-This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is 3 requests per 3 minutes per IP address. If you try to register an account while providing a session, you will receive an [InvalidSession](/reference/errors#invalidsession) error.
+This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is `4` request(s) per `5` minute(s) per IP address. Requests that are responded to with error code `404 Not Found` are not counted towards this ratelimit.
 :::
 
 ::: warning Identity Reverification
@@ -94,6 +94,10 @@ and will fail with the error [ServiceUnavailable](/reference/errors#serviceunava
 
 ::: warning Scoped Session
 Requests to this endpoint using a scoped session are not allowed in order to prevent additional sessions to be created without explicit user consent.
+:::
+
+::: warning Ratelimit
+This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is `4` request(s) per `5` minute(s) per IP address.
 :::
 
 ::: warning Identity Reverification

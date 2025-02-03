@@ -14,7 +14,7 @@ and will fail with the error [ServiceUnavailable](/reference/errors#serviceunava
 :::
 
 ::: warning Ratelimit
-This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is 1 request per 6 hours per IP address. Requests that are responded to with error codes `500 Internal Server Error` and `409 Conflict` are not counted towards this ratelimit.
+This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is `1` request(s) per `6` hour(s) per IP address. Requests that are responded to with error codes `500 Internal Server Error` and `409 Conflict` are not counted towards this ratelimit.
 :::
 
 **Parameters**
@@ -260,7 +260,7 @@ This endpoint will require you to provide at least your password to confirm it's
 :::
 
 ::: warning Ratelimit
-This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is 3 requests per day per user. Requests that are responded to with error codes `500 Internal Server Error` and `409 Conflict` are not counted towards this ratelimit.
+This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is `3` request(s) per `24` hour(s) per user. Requests that are responded to with error codes `500 Internal Server Error` and `409 Conflict` are not counted towards this ratelimit.
 :::
 
 **Parameters**
@@ -413,7 +413,7 @@ This endpoint will require you to provide at least your password to confirm it's
 :::
 
 ::: warning Ratelimit
-This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is 3 requests per day per user. Requests that are responded to with error codes `500 Internal Server Error` and `409 Conflict` are not counted towards this ratelimit.
+This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is `3` request(s) per `24` hour(s) per user. Requests that are responded to with error codes `500 Internal Server Error` and `409 Conflict` are not counted towards this ratelimit.
 :::
 
 **Parameters**
@@ -752,7 +752,7 @@ fetch('https://alekeagle.me/api/users/1234567890123/verify', {
 Resend the current user's verification email.
 
 ::: warning Ratelimit
-This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is 1 request per hour per user. Requests that are responded to with error code `500 Internal Server Error` are not counted towards this ratelimit.
+This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is `1` request(s) per `1` hour(s) per user. Requests that are responded to with error code `500 Internal Server Error` are not counted towards this ratelimit.
 :::
 
 ::: warning Kill Switch Behavior
@@ -891,7 +891,7 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 :::
 
 ::: warning Ratelimit
-This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is 3 requests per day per user. Requests that are responded to with error code `500 Internal Server Error` are not counted towards this ratelimit.
+This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is `5` request(s) per `24` hour(s) per user. Requests that are responded to with error code `500 Internal Server Error` are not counted towards this ratelimit.
 :::
 
 **Parameters**
@@ -1309,6 +1309,10 @@ This endpoint is affected by the following [kill switches](/reference/#kill-swit
 - `ACCOUNT_MODIFY(1)`
 
 and will fail with the error [ServiceUnavailable](/reference/errors#serviceunavailable) if any of these kill switches are enabled.
+:::
+
+::: warning Ratelimit
+This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is `20` request(s) per `1` hour(s) per user. Requests that are responded to with error code `500 Internal Server Error` are not counted towards this ratelimit.
 :::
 
 ::: warning Scoped Session

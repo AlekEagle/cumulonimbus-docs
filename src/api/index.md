@@ -16,17 +16,23 @@ Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUg
 
 ## Rate Limiting
 
-Cumulonimbus has a rate limit of `100` requests per `1 minute` unless otherwise specified. If you exceed this limit, you will receive a `429 Too Many Requests` response.
+Cumulonimbus API endpoints have ratelimits to prevent abuse. The default ratelimit is `100` request(s) per `1` minute(s), but this can vary depending on the endpoint. If you exceed the ratelimit, you will receive a [`RateLimited`](/reference/errors#ratelimited) error.
+
+In addition to the default ratelimit, there is also a burst ratelimit. The burst ratelimit is `3` request(s) per `1` second(s). If you exceed the burst ratelimit, you will also receive a [`RateLimited`](/reference/errors#ratelimited) error.
+
+Staff endpoints generally do not have a ratelimit.
 
 ### Rate Limit Headers
 
 Cumulonimbus will send the following headers with every response:
 
-| Header                | Description                                                    |
-| --------------------- | -------------------------------------------------------------- |
-| `RateLimit-Limit`     | The maximum number of requests you can make per allotted time. |
-| `RateLimit-Remaining` | The number of requests you have left for this allotted time.   |
-| `RateLimit-Reset`     | The time in seconds until the rate limit resets.               |
+| Header                | Description                                                                          |
+| --------------------- | ------------------------------------------------------------------------------------ |
+| `RateLimit-Limit`     | The maximum number of requests you can make per allotted time.                       |
+| `RateLimit-Remaining` | The number of requests you have left for this allotted time.                         |
+| `RateLimit-Reset`     | The time in seconds until the rate limit resets.                                     |
+| `RateLimit-Skipped`   | Wether the request counted towards the ratelimit.                                    |
+| `RateLimit-Reason`    | The reason for your request being ratelimited. Can either be `standard`, or `burst`. |
 
 ## User IDs
 
