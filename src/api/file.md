@@ -242,6 +242,10 @@ and will fail with the error [ServiceUnavailable](/reference/errors#serviceunava
 Requests to this endpoint using a scoped session require the session to have the [`FILE_MODIFY` (`STAFF_MODIFY_FILES` for staff)](/reference/#session-scopes) scope.
 :::
 
+::: warning Ratelimit
+This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is 20 requests per hour per user. Requests that are responded to with error code `500 Internal Server Error` are not counted towards this ratelimit.
+:::
+
 **Parameters**
 
 | Name   | Type   | Location | Required | Description          |
@@ -310,6 +314,10 @@ and will fail with the error [ServiceUnavailable](/reference/errors#serviceunava
 
 ::: warning Scoped Session
 Requests to this endpoint using a scoped session require the session to have the [`FILE_MODIFY` (`STAFF_MODIFY_FILES` for staff)](/reference/#session-scopes) scope.
+:::
+
+::: warning Ratelimit
+This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is 20 requests per hour per user. Requests that are responded to with error code `500 Internal Server Error` are not counted towards this ratelimit.
 :::
 
 **Parameters**
@@ -382,6 +390,10 @@ Since the file extension is part of the file's ID, changing the extension will c
 
 ::: tip Note
 When a file's extension is changed, it is logged to the server's logs, that way staff can use this information to help improve the file type detection.
+:::
+
+::: warning Ratelimit
+This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is 20 requests per hour per user. Requests that are responded to with error code `500 Internal Server Error` are not counted towards this ratelimit.
 :::
 
 **Parameters**
@@ -515,6 +527,10 @@ and will fail with the error [ServiceUnavailable](/reference/errors#serviceunava
 Requests to this endpoint using a scoped session require the session to have the [`FILE_MODIFY` (`STAFF_MODIFY_FILES` for staff)](/reference/#session-scopes) scope.
 :::
 
+::: warning Ratelimit
+This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is 20 requests per 6 hours per user. Requests that are responded to with error codes `400 Bad Request`, `404 Not Found`, and `500 Internal Server Error` are not counted towards this ratelimit.
+:::
+
 **Parameters**
 
 | Name  | Type   | Location | Required | Description  |
@@ -584,6 +600,10 @@ Requests to this endpoint using a scoped session require the session to have the
 
 ::: warning Identity Reverification
 This endpoint will require you to provide your password to confirm it's you. More information can found in the [Identity Reverification](/reference/#identity-reverification) section.
+:::
+
+::: warning Ratelimit
+This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is 1 request per 7 days per user. Requests that are responded to with error codes `404 Not Found`, and `500 Internal Server Error` are not counted towards this ratelimit.
 :::
 
 **Parameters**

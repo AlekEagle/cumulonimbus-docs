@@ -14,7 +14,7 @@ and will fail with the error [ServiceUnavailable](/reference/errors#serviceunava
 :::
 
 ::: warning Ratelimit
-This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is 1 request per 30 minutes per IP address. If you try to register an account while providing a session, you will receive an [InvalidSession](/reference/errors#invalidsession) error.
+This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is 1 request per 6 hours per IP address. Requests that are responded to with error codes `500 Internal Server Error` and `409 Conflict` are not counted towards this ratelimit.
 :::
 
 **Parameters**
@@ -259,6 +259,10 @@ Requests to this endpoint using a scoped session require the session to have the
 This endpoint will require you to provide at least your password to confirm it's you. More information can found in the [Identity Reverification](/reference/#identity-reverification) section.
 :::
 
+::: warning Ratelimit
+This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is 3 requests per day per user. Requests that are responded to with error codes `500 Internal Server Error` and `409 Conflict` are not counted towards this ratelimit.
+:::
+
 **Parameters**
 
 | Name       | Type   | Location | Required | Description                                                            |
@@ -406,6 +410,10 @@ Requests to this endpoint using a scoped session require the session to have the
 
 ::: warning Identity Reverification
 This endpoint will require you to provide at least your password to confirm it's you. More information can found in the [Identity Reverification](/reference/#identity-reverification) section.
+:::
+
+::: warning Ratelimit
+This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is 3 requests per day per user. Requests that are responded to with error codes `500 Internal Server Error` and `409 Conflict` are not counted towards this ratelimit.
 :::
 
 **Parameters**
@@ -744,7 +752,7 @@ fetch('https://alekeagle.me/api/users/1234567890123/verify', {
 Resend the current user's verification email.
 
 ::: warning Ratelimit
-This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is 1 request per 5 minutes per IP address.
+This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is 1 request per hour per user. Requests that are responded to with error code `500 Internal Server Error` are not counted towards this ratelimit.
 :::
 
 ::: warning Kill Switch Behavior
@@ -880,6 +888,10 @@ Requests to this endpoint using a scoped session require the session to have the
 
 ::: warning Identity Reverification
 This endpoint will require you to provide your password to confirm it's you. More information can found in the [Identity Reverification](/reference/#identity-reverification) section.
+:::
+
+::: warning Ratelimit
+This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is 3 requests per day per user. Requests that are responded to with error code `500 Internal Server Error` are not counted towards this ratelimit.
 :::
 
 **Parameters**
