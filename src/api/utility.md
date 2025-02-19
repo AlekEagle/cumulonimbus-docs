@@ -57,7 +57,7 @@ This endpoint is not public and requires authentication of a user with `staff` p
 :::
 
 ::: warning Scoped Session
-Requests to this endpoint using a scoped session require the session ot have the [`STAFF_MODIFY_LOGLEVEL`](/reference/#session-scopes) scope.
+Requests to this endpoint using a scoped session require the session to have the [`STAFF_MODIFY_LOGLEVEL`](/reference/#session-scopes) scope.
 :::
 
 ::: warning Identity Reverification
