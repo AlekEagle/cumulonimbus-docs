@@ -116,6 +116,10 @@ export default withPwa(
               text: 'Session',
               link: '/api/session',
             },
+            {
+              text: 'Utility',
+              link: '/api/utility',
+            },
           ],
         },
         {
