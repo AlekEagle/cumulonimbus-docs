@@ -204,3 +204,11 @@ interface ScopedSessionCreate extends Session {
   token: string;
 }
 ```
+
+## LogLevel
+
+```ts
+interface LogLevel {
+  name: string;
+}
+```

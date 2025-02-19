@@ -170,6 +170,15 @@ interface InvalidInstruction {
 }
 ```
 
+## InvalidLogLevel
+
+```ts
+interface InvalidLogLevel {
+  code: 'INVALID_LOGLEVEL_ERROR';
+  message: 'Invalid LogLevel';
+}
+```
+
 ## SubdomainNotAllowed
 
 ```ts

@@ -1,9 +1,9 @@
 {
   "type": "module",
   "scripts": {
-    "dev": "vitepress dev --host",
+    "dev": "vitepress dev --host --port 3000",
     "build": "vitepress build",
-    "preview": "vitepress preview --host"
+    "preview": "vitepress preview --host --port 3000"
   },
   "devDependencies": {
     "vitepress": "^1.0.0-rc.31",

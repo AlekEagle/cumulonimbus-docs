@@ -20,7 +20,7 @@ Cumulonimbus API endpoints have ratelimits to prevent abuse. The default ratelim
 
 In addition to the default ratelimit, there is also a burst ratelimit. The burst ratelimit is `3` request(s) per `1` second(s). If you exceed the burst ratelimit, you will also receive a [`RateLimited`](/reference/errors#ratelimited) error.
 
-Staff endpoints generally do not have a ratelimit.
+Staff endpoints generally do not have a ratelimit that differs from the default.
 
 ### Rate Limit Headers
 
