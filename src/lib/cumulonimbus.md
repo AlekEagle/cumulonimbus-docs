@@ -5,7 +5,7 @@ outline: [2, 3]
 # Cumulonimbus
 
 ::: danger Warning
-This page is for v4 of the library. If you're using v3, it will no longer be maintained. Please refer to type definitions for v3.
+This page is no longer being updated. For the most up-to-date information, please refer to the JSDoc documentation inside the package.
 :::
 
 ## Interfaces, Types, and Subclasses

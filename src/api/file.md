@@ -623,6 +623,10 @@ fetch('https://alekeagle.me/api/users/me/files/abcdefghij.png/name', {
 
 Update a file's extension that is owned by a specific user.
 
+::: warning Non-Public Endpoint
+This endpoint is not public and requires authentication of a user with `staff` permissions.
+:::
+
 ::: warning Scoped Session
 Requests to this endpoint using a scoped session require the session to have the [`STAFF_MODIFY_FILES`](/reference/#session-scopes) scope.
 :::
@@ -781,6 +785,10 @@ fetch('https://alekeagle.me/api/users/me/files/abcdefghij.png/extension', {
 
 Delete a file owned by a specific user.
 
+::: warning Non-Public Endpoint
+This endpoint is not public and requires authentication of a user with `staff` permissions.
+:::
+
 ::: warning Scoped Session
 Requests to this endpoint using a scoped session require the session to have the [`STAFF_MODIFY_FILES`](/reference/#session-scopes) scope.
 :::
@@ -897,6 +905,11 @@ fetch('https://alekeagle.me/api/users/me/files/abcdefghij.png', {
 ## DELETE /users/:uid/files
 
 Delete multiple files owned by a specific user.
+
+::: warning Non-Public Endpoint
+This endpoint is not public and requires authentication of a user with `staff` permissions.
+:::
+
 ::: warning Scoped Session
 Requests to this endpoint using a scoped session require the session to have the [`STAFF_MODIFY_FILES`](/reference/#session-scopes) scope.
 :::
@@ -967,7 +980,7 @@ and will fail with the error [ServiceUnavailable](/reference/errors#serviceunava
 :::
 
 ::: warning Scoped Session
-Requests to this endpoint using a scoped session require the session to have the [`FILE_MODIFY` (`STAFF_MODIFY_FILES` for staff)](/reference/#session-scopes) scope.
+Requests to this endpoint using a scoped session require the session to have the [`FILE_MODIFY`](/reference/#session-scopes) scope.
 :::
 
 ::: warning Ratelimit
@@ -1025,6 +1038,68 @@ fetch('https://alekeagle.me/api/users/me/files', {
   - [Internal](/reference/errors#internal)
 - 503 Service Unavailable
   - [ServiceUnavailable](/reference/errors#serviceunavailable)
+
+## DELETE /files
+
+Arbitrarily delete a list of files by ID, regardless of ownership.
+
+::: warning Non-Public Endpoint
+This endpoint is not public and requires authentication of a user with `staff` permissions.
+:::
+
+::: warning Scoped Session
+Requests to this endpoint using a scoped session require the session to have the [`STAFF_MODIFY_FILES`](/reference/#session-scopes) scope.
+:::
+
+**Parameters**
+
+| Name  | Type   | Location | Required | Description  |
+| ----- | ------ | -------- | -------- | ------------ |
+| `ids` | string | body     | Yes      | The file IDs |
+
+**Example Requests**
+
+::: code-group
+
+```sh [cURL]
+curl -X DELETE \
+-H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
+-H "Content-Type: application/json" \
+-d '{"ids":["abcdefghij.png","klmnopqrst.png"]}' \
+"https://alekeagle.me/api/files"
+```
+
+```js [JS Fetch]
+fetch('https://alekeagle.me/api/files', {
+  method: 'DELETE',
+  headers: {
+    'Authorization':
+      'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    ids: ['abcdefghij.png', 'klmnopqrst.png'],
+  }),
+});
+```
+
+:::
+
+**Responses**
+
+- 200 OK
+  - [DeleteFiles](/reference/successes#deletefiles)
+- 401 Unauthorized
+  - [InvalidSession](/reference/errors#invalidsession)
+- 403 Forbidden
+  - [Banned](/reference/errors#banned)
+  - [InsufficientPermissions](/reference/errors#insufficientpermissions)
+- 404 Not Found
+  - [InvalidFile](/reference/errors#invalidfile)
+- 429 Too Many Requests
+  - [RateLimited](/reference/errors#ratelimited)
+- 500 Internal Server Error
+  - [Internal](/reference/errors#internal)
 
 ## DELETE /users/:uid/files/all
 
