@@ -16,5 +16,6 @@
     "webauthn",
     "Wxla",
     "XVCJ"
-  ]
+  ],
+  "markdown.validate.enabled": false
 }

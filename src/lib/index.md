@@ -45,5 +45,9 @@ const client = await Cumulonimbus.register({
   email: 'email',
 });
 
-console.log((await client.getSession()).result);
+console.log((await client.getSelfSession()).result);
 ```
+
+## Documentation
+
+Up-to-date documentation of the wrapper can be found in the JSdoc in the wrapper itself.
