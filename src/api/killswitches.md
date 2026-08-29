@@ -64,9 +64,10 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 
 **Parameters**
 
-| Name | Type   | Location | Required | Description                                                       |
-| ---- | ------ | -------- | -------- | ----------------------------------------------------------------- |
-| `id` | string | path     | yes      | The ID of the [kill switch](/reference/#kill-switches) to enable. |
+| Name       | Type   | Location | Required           | Description                                                       |
+| ---------- | ------ | -------- | ------------------ | ----------------------------------------------------------------- |
+| `id`       | string | path     | yes                | The ID of the [kill switch](/reference/#kill-switches) to enable. |
+| `password` | string | body     | Initially Required | The calling user's password. Required for identity reverification |
 
 **Example Requests**
 
@@ -75,7 +76,8 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 ```sh [cURL]
 curl -X PUT \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
-https://alekeagle.me/api/killswitches/0
+-d '{"password": "your-password"}' \
+https://alekeagle.me/api/killswitches/0 # Password is required for identity reverification.
 ```
 
 ```js [JS Fetch]
@@ -85,6 +87,9 @@ fetch('https://alekeagle.me/api/killswitches/0', {
     Authorization:
       'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
   },
+  body: JSON.stringify({
+    password: 'your-password', // Required for identity reverification.
+  }),
 });
 ```
 
@@ -120,9 +125,10 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 
 **Parameters**
 
-| Name | Type   | Location | Required | Description                                                        |
-| ---- | ------ | -------- | -------- | ------------------------------------------------------------------ |
-| `id` | string | path     | yes      | The ID of the [kill switch](/reference/#kill-switches) to disable. |
+| Name       | Type   | Location | Required           | Description                                                        |
+| ---------- | ------ | -------- | ------------------ | ------------------------------------------------------------------ |
+| `id`       | string | path     | yes                | The ID of the [kill switch](/reference/#kill-switches) to disable. |
+| `password` | string | body     | Initially Required | The calling user's password. Required for identity reverification  |
 
 **Example Requests**
 
@@ -131,7 +137,8 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 ```sh [cURL]
 curl -X DELETE \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
-https://alekeagle.me/api/killswitches/0
+-d '{"password": "your-password"}' \
+https://alekeagle.me/api/killswitches/0 # Password is required for identity reverification.
 ```
 
 ```js [JS Fetch]
@@ -141,6 +148,9 @@ fetch('https://alekeagle.me/api/killswitches/0', {
     Authorization:
       'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
   },
+  body: JSON.stringify({
+    password: 'your-password', // Required for identity reverification.
+  }),
 });
 ```
 
@@ -176,7 +186,9 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 
 **Parameters**
 
-There are no parameters for this endpoint.
+| Name       | Type   | Location | Required           | Description                                                       |
+| ---------- | ------ | -------- | ------------------ | ----------------------------------------------------------------- |
+| `password` | string | body     | Initially Required | The calling user's password. Required for identity reverification |
 
 **Example Requests**
 
@@ -185,7 +197,8 @@ There are no parameters for this endpoint.
 ```sh [cURL]
 curl -X DELETE \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
-https://alekeagle.me/api/killswitches
+-d '{"password": "your-password"}' \
+https://alekeagle.me/api/killswitches # Password is required for identity reverification.
 ```
 
 ```js [JS Fetch]
@@ -195,6 +208,9 @@ fetch('https://alekeagle.me/api/killswitches', {
     Authorization:
       'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
   },
+  body: JSON.stringify({
+    password: 'your-password', // Required for identity reverification.
+  }),
 });
 ```
 

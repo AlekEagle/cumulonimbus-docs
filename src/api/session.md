@@ -37,7 +37,7 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 ```sh [cURL]
 curl -X POST \
 -H "Content-Type: application/json" \
--d '{"username": "alekeagle", "password": "password", "rememberMe": true}' \
+-d '{"username": "username", "password": "password", "rememberMe": true}' \
 https://alekeagle.me/api/login
 ```
 
@@ -48,7 +48,7 @@ fetch('https://alekeagle.me/api/login', {
     'Content-Type': 'application/json',
   },
   body: JSON.stringify({
-    username: 'alekeagle',
+    username: 'password',
     password: 'password',
     rememberMe: true,
   }),
@@ -106,11 +106,12 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 
 **Parameters**
 
-| Name              | Type    | Location | Required | Description                                                                                  |
-| ----------------- | ------- | -------- | -------- | -------------------------------------------------------------------------------------------- |
-| `name`            | string  | body     | Yes      | A friendly name to give the scoped session.                                                  |
-| `permissionFlags` | number  | body     | Yes      | The [session scopes](/reference/#session-scopes) you'd like to grant to this scoped session. |
-| `longLived`       | boolean | body     | No       | Whether you would like this session to last 24 hours or 10 years.                            |
+| Name              | Type    | Location | Required           | Description                                                                                  |
+| ----------------- | ------- | -------- | ------------------ | -------------------------------------------------------------------------------------------- |
+| `name`            | string  | body     | Yes                | A friendly name to give the scoped session.                                                  |
+| `permissionFlags` | number  | body     | Yes                | The [session scopes](/reference/#session-scopes) you'd like to grant to this scoped session. |
+| `longLived`       | boolean | body     | No                 | Whether you would like this session to last 24 hours or 10 years.                            |
+| `password`        | string  | body     | Initially Required | The calling user's password. Required for identity reverification                            |
 
 **Example Requests**
 
@@ -120,8 +121,8 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 curl -X POST \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
 -H "Content-Type: application/json" \
--d '{"name":"Upload Only Token", "permissionFlags": 2, "longLived": true}' \
-https://alekeagle.me/api/users/me/sessions
+-d '{"name":"Upload Only Token", "permissionFlags": 2, "longLived": true, "password": "your-password"}' \
+https://alekeagle.me/api/users/me/sessions # Password is required for identity reverification.
 ```
 
 ```js [JS Fetch]
@@ -134,8 +135,9 @@ fetch('https://alekeagle.me/api/users/me/sessions', {
   },
   body: JSON.stringify({
     name: 'Upload Only Token',
-    permissionFlags: 2
-    longLived: true
+    permissionFlags: 2,
+    longLived: true,
+    password: 'your-password', // Required for identity reverification.
   }),
 });
 ```
@@ -381,6 +383,7 @@ fetch('https://alekeagle.me/api/users/1234567890123/sessions', {
 - 403 Forbidden
   - [Banned](/reference/errors#banned)
   - [InsufficientPermissions](/reference/errors#insufficientpermissions)
+  - [EndpointRequiresSecondFactor](/reference/errors#endpointrequiressecondfactor)
 - 404 Not Found
   - [InvalidUser](/reference/errors#invaliduser)
 - 429 Too Many Requests

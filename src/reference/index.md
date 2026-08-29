@@ -58,24 +58,59 @@ This authentication flow does NOT apply to scoped sessions. They do not need to 
 
 Some endpoints require the user to reverify their identity, depending on your account's security settings, it may be a multi-step process. The following steps are taken to reverify the user's identity:
 
-1. The user makes a request to an endpoint that requires reverification (e.g. `PUT /users/me/username`) with the required parameters, as well as their password in the body.
-2. If you:
-   1. Do not have a second factor enabled, your request will complete successfully, and you will not need to take any further action.
-   2. Do have a second factor enabled, you will receive a [`SecondFactorChallengeRequired`](/reference/errors#secondfactorchallengerequired) with all of the required data to complete the challenge.
-3. The user makes a second request to the same endpoint, with the required parameters, as well as a `2fa` object in the body containing the required data to complete the challenge, your password is not required in this request. Using `PUT /users/me/username` as an example, the body would look like this:
+1. The user makes a request to an endpoint that requires reverification (e.g. `POST /login`) with the required parameters, as well as their password in the body. Your request should look something like this:
 
 ```json
 {
-  "2fa": {
-    "token": "the token",
-    "type": "totp",
-    "code": "123456", // Present for types 'totp' or 'backup'
-    "response": {
-      // WebAuthn response data. (Only present for 'webauthn' type)
-    }
-  },
   // Parameters required for the endpoint
-  "username": "new-username"
+  "username": "username",
+  "password": "your-password",
+  "rememberMe": true
+}
+```
+
+2. If you:
+   1. Do not have a second factor enabled, your request will complete successfully, and you will not need to take any further action.
+   2. Do have a second factor enabled, you will receive a 401 [`SecondFactorChallengeRequired`](/reference/errors#secondfactorchallengerequired) with all of the required data to complete the challenge. It might look something like this:
+
+   ```json
+   {
+     "code": "SECOND_FACTOR_CHALLENGE_REQUIRED_ERROR",
+     "message": "Second Factor Challenge Required",
+     "token": "eyJhbG...",
+     "exp": 1690000000,
+     "types": ["totp", "webauthn", "backup"],
+     "challenge": {
+       "challenge": "random-challenge-string",
+       "rpId": "alekeagle.me",
+       "allowCredentials": [
+         {
+           "type": "public-key",
+           "id": "base64url-encoded-credential-id"
+         }
+       ],
+       "userVerification": "preferred"
+     }
+   }
+   ```
+
+3. The user makes a second request to the same endpoint, with the required parameters, as well as a `2fa` object in the body containing the required data to complete the challenge, your password is not required in this request. Using `POST /login` as an example, the body would look like this:
+
+```json
+{
+  // Parameters required for the endpoint
+  "username": "new-username",
+  // Note: Including your password will result in another second factor challenge being issued, and will NOT complete the request.
+  "rememberMe": true,
+  // The 2fa object contains the required data to complete the challenge.
+  "2fa": {
+    "token": "eyJhbG...",
+    "type": "totp",
+    "code": "123456", // Present when responding with types 'totp' or 'backup'
+    "response": {
+      // WebAuthn response data. (Present when responding with 'webauthn' type)
+    }
+  }
 }
 ```
 

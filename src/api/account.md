@@ -265,9 +265,10 @@ This endpoint uses a ratelimit that is separate from the rest of the API. This r
 
 **Parameters**
 
-| Name       | Type   | Location | Required | Description                                                            |
-| ---------- | ------ | -------- | -------- | ---------------------------------------------------------------------- |
-| `username` | string | body     | Yes      | The user's new username. Must be between 1 and 64 characters in length |
+| Name       | Type   | Location | Required           | Description                                                            |
+| ---------- | ------ | -------- | ------------------ | ---------------------------------------------------------------------- |
+| `username` | string | body     | Yes                | The user's new username. Must be between 1 and 64 characters in length |
+| `password` | string | body     | Initially Required | The calling user's password. Required for identity reverification      |
 
 **Example Requests**
 
@@ -277,8 +278,8 @@ This endpoint uses a ratelimit that is separate from the rest of the API. This r
 curl -X PUT \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
 -H "Content-Type: application/json" \
--d '{"username": "alekeagle"}' \
-https://alekeagle.me/api/users/me/username
+-d '{"username": "alekeagle", "password": "your-password"}' \
+https://alekeagle.me/api/users/me/username # Password is required for identity reverification.
 ```
 
 ```js [JS Fetch]
@@ -289,7 +290,10 @@ fetch('https://alekeagle.me/api/users/me/username', {
       'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
     'Content-Type': 'application/json',
   },
-  body: JSON.stringify({ username: 'alekeagle' }),
+  body: JSON.stringify({
+    username: 'alekeagle',
+    password: 'your-password', // Required for identity reverification.
+  }),
 });
 ```
 
@@ -336,10 +340,11 @@ This endpoint will require you to provide at least your password to confirm it's
 
 **Parameters**
 
-| Name       | Type   | Location | Required | Description                                                            |
-| ---------- | ------ | -------- | -------- | ---------------------------------------------------------------------- |
-| `id`       | string | path     | Yes      | The [User's ID](/api/#user-ids)                                        |
-| `username` | string | body     | Yes      | The user's new username. Must be between 1 and 64 characters in length |
+| Name       | Type   | Location | Required           | Description                                                            |
+| ---------- | ------ | -------- | ------------------ | ---------------------------------------------------------------------- |
+| `id`       | string | path     | Yes                | The [User's ID](/api/#user-ids)                                        |
+| `username` | string | body     | Yes                | The user's new username. Must be between 1 and 64 characters in length |
+| `password` | string | body     | Initially Required | The calling user's password. Required for identity reverification      |
 
 **Example Requests**
 
@@ -349,7 +354,7 @@ This endpoint will require you to provide at least your password to confirm it's
 curl -X PUT \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
 -H "Content-Type: application/json" \
--d '{"username": "alekeagle"}' \
+-d '{"username": "alekeagle", "password": "your-password"}' \
 https://alekeagle.me/api/users/1234567890123/username
 ```
 
@@ -361,7 +366,10 @@ fetch('https://alekeagle.me/api/users/1234567890123/username', {
       'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
     'Content-Type': 'application/json',
   },
-  body: JSON.stringify({ username: 'alekeagle' }),
+  body: JSON.stringify({
+    username: 'alekeagle',
+    password: 'your-password', // Required for identity reverification.
+  }),
 });
 ```
 
@@ -418,9 +426,10 @@ This endpoint uses a ratelimit that is separate from the rest of the API. This r
 
 **Parameters**
 
-| Name    | Type   | Location | Required | Description                                         |
-| ------- | ------ | -------- | -------- | --------------------------------------------------- |
-| `email` | string | body     | Yes      | The user's new email. Must be a valid email address |
+| Name       | Type   | Location | Required           | Description                                                       |
+| ---------- | ------ | -------- | ------------------ | ----------------------------------------------------------------- |
+| `email`    | string | body     | Yes                | The user's new email. Must be a valid email address               |
+| `password` | string | body     | Initially Required | The calling user's password. Required for identity reverification |
 
 **Example Requests**
 
@@ -430,8 +439,8 @@ This endpoint uses a ratelimit that is separate from the rest of the API. This r
 curl -X PUT \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
 -H "Content-Type: application/json" \
--d '{"email": "waycoolemail@waycooldomain.biz"}' \
-https://alekeagle.me/api/users/me/email
+-d '{"email": "waycoolemail@waycooldomain.biz", "password": "your-password"}' \
+https://alekeagle.me/api/users/me/email # Password is required for identity reverification.
 ```
 
 ```js [JS Fetch]
@@ -444,6 +453,7 @@ fetch('https://alekeagle.me/api/users/me/email', {
   },
   body: JSON.stringify({
     email: 'waycoolemail@waycooldomain.biz',
+    password: 'your-password', // Required for identity reverification.
   }),
 });
 ```
@@ -491,10 +501,11 @@ This endpoint will require you to provide at least your password to confirm it's
 
 **Parameters**
 
-| Name    | Type   | Location | Required | Description                                         |
-| ------- | ------ | -------- | -------- | --------------------------------------------------- |
-| `id`    | string | path     | Yes      | The [User's ID](/api/#user-ids)                     |
-| `email` | string | body     | Yes      | The user's new email. Must be a valid email address |
+| Name       | Type   | Location | Required           | Description                                                       |
+| ---------- | ------ | -------- | ------------------ | ----------------------------------------------------------------- |
+| `id`       | string | path     | Yes                | The [User's ID](/api/#user-ids)                                   |
+| `email`    | string | body     | Yes                | The user's new email. Must be a valid email address               |
+| `password` | string | body     | Initially Required | The calling user's password. Required for identity reverification |
 
 **Example Requests**
 
@@ -504,8 +515,8 @@ This endpoint will require you to provide at least your password to confirm it's
 curl -X PUT \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
 -H "Content-Type: application/json" \
--d '{"email": "waycoolemail@waycooldomain.biz"}' \
-https://alekeagle.me/api/users/1234567890123/email
+-d '{"email": "waycoolemail@waycooldomain.biz", "password": "your-password"}' \
+https://alekeagle.me/api/users/1234567890123/email # Password is required for identity reverification.
 ```
 
 ```js [JS Fetch]
@@ -518,6 +529,7 @@ fetch('https://alekeagle.me/api/users/1234567890123/email', {
   },
   body: JSON.stringify({
     email: 'waycoolemail@waycooldomain.biz',
+    password: 'your-password', // Required for identity reverification.
   }),
 });
 ```
@@ -631,9 +643,10 @@ This endpoint will require you to provide at least your password to confirm it's
 
 **Parameters**
 
-| Name | Type   | Location | Required | Description                     |
-| ---- | ------ | -------- | -------- | ------------------------------- |
-| `id` | string | path     | Yes      | The [User's ID](/api/#user-ids) |
+| Name       | Type   | Location | Required           | Description                                                       |
+| ---------- | ------ | -------- | ------------------ | ----------------------------------------------------------------- |
+| `id`       | string | path     | Yes                | The [User's ID](/api/#user-ids)                                   |
+| `password` | string | body     | Initially Required | The calling user's password. Required for identity reverification |
 
 **Example Requests**
 
@@ -643,7 +656,8 @@ This endpoint will require you to provide at least your password to confirm it's
 curl -X PUT \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
 -H "Content-Type: application/json" \
-https://alekeagle.me/api/users/1234567890123/verify
+-d '{"password": "your-password"}' \
+https://alekeagle.me/api/users/1234567890123/verify # Password is required for identity reverification.
 ```
 
 ```js [JS Fetch]
@@ -654,6 +668,9 @@ fetch('https://alekeagle.me/api/users/1234567890123/verify', {
       'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
     'Content-Type': 'application/json',
   },
+  body: JSON.stringify({
+    password: 'your-password', // Required for identity reverification.
+  }),
 });
 ```
 
@@ -698,9 +715,10 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 
 **Parameters**
 
-| Name | Type   | Location | Required | Description                     |
-| ---- | ------ | -------- | -------- | ------------------------------- |
-| `id` | string | path     | Yes      | The [User's ID](/api/#user-ids) |
+| Name       | Type   | Location | Required           | Description                                                       |
+| ---------- | ------ | -------- | ------------------ | ----------------------------------------------------------------- |
+| `id`       | string | path     | Yes                | The [User's ID](/api/#user-ids)                                   |
+| `password` | string | body     | Initially Required | The calling user's password. Required for identity reverification |
 
 **Example Requests**
 
@@ -710,7 +728,8 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 curl -X DELETE \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
 -H "Content-Type: application/json" \
-https://alekeagle.me/api/users/1234567890123/verify
+-d '{"password": "your-password"}' \
+https://alekeagle.me/api/users/1234567890123/verify # Password is required for identity reverification.
 ```
 
 ```js [JS Fetch]
@@ -721,6 +740,9 @@ fetch('https://alekeagle.me/api/users/1234567890123/verify', {
       'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
     'Content-Type': 'application/json',
   },
+  body: JSON.stringify({
+    password: 'your-password', // Required for identity reverification.
+  }),
 });
 ```
 
@@ -896,10 +918,11 @@ This endpoint uses a ratelimit that is separate from the rest of the API. This r
 
 **Parameters**
 
-| Name                 | Type   | Location | Required | Description                                                                        |
-| -------------------- | ------ | -------- | -------- | ---------------------------------------------------------------------------------- |
-| `newPassword`        | string | body     | Yes      | The user's new password. Must be no more than 64 characters in length              |
-| `confirmNewPassword` | string | body     | Yes      | The user's new password confirmation. Must be no more than 64 characters in length |
+| Name                 | Type   | Location | Required           | Description                                                                        |
+| -------------------- | ------ | -------- | ------------------ | ---------------------------------------------------------------------------------- |
+| `password`           | string | body     | Initially Required | The calling user's password. Required for identity reverification                  |
+| `newPassword`        | string | body     | Yes                | The user's new password. Must be no more than 64 characters in length              |
+| `confirmNewPassword` | string | body     | Yes                | The user's new password confirmation. Must be no more than 64 characters in length |
 
 **Example Requests**
 
@@ -909,8 +932,8 @@ This endpoint uses a ratelimit that is separate from the rest of the API. This r
 curl -X PUT \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
 -H "Content-Type: application/json" \
--d '{ "newPassword": "password1", "confirmNewPassword": "password1"}' \
-https://alekeagle.me/api/users/me/password
+-d '{ "password": "your-password", "newPassword": "password1", "confirmNewPassword": "password1"}' \
+https://alekeagle.me/api/users/me/password # Password is required for identity reverification.
 ```
 
 ```js [JS Fetch]
@@ -922,6 +945,7 @@ fetch('https://alekeagle.me/api/users/me/password', {
     'Content-Type': 'application/json',
   },
   body: JSON.stringify({
+    password: 'your-password', // Required for identity reverification.
     newPassword: 'password1',
     confirmNewPassword: 'password1',
   }),
@@ -970,11 +994,12 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 
 **Parameters**
 
-| Name                 | Type   | Location | Required | Description                                                                        |
-| -------------------- | ------ | -------- | -------- | ---------------------------------------------------------------------------------- |
-| `id`                 | string | path     | Yes      | The [User's ID](/api/#user-ids)                                                    |
-| `newPassword`        | string | body     | Yes      | The user's new password. Must be no more than 64 characters in length              |
-| `confirmNewPassword` | string | body     | Yes      | The user's new password confirmation. Must be no more than 64 characters in length |
+| Name                 | Type   | Location | Required           | Description                                                                        |
+| -------------------- | ------ | -------- | ------------------ | ---------------------------------------------------------------------------------- |
+| `id`                 | string | path     | Yes                | The [User's ID](/api/#user-ids)                                                    |
+| `password`           | string | body     | Initially Required | The calling user's password. Required for identity reverification                  |
+| `newPassword`        | string | body     | Yes                | The user's new password. Must be no more than 64 characters in length              |
+| `confirmNewPassword` | string | body     | Yes                | The user's new password confirmation. Must be no more than 64 characters in length |
 
 **Example Requests**
 
@@ -984,8 +1009,8 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 curl -X PUT \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
 -H "Content-Type: application/json" \
--d '{ "newPassword": "password1", "confirmNewPassword": "password1"}' \
-https://alekeagle.me/api/users/1234567890123/password
+-d '{ "password": "your-password", "newPassword": "password1", "confirmNewPassword": "password1"}' \
+https://alekeagle.me/api/users/1234567890123/password # Password is required for identity reverification.
 ```
 
 ```js [JS Fetch]
@@ -997,6 +1022,7 @@ fetch('https://alekeagle.me/api/users/1234567890123/password', {
     'Content-Type': 'application/json',
   },
   body: JSON.stringify({
+    password: 'your-password', // Required for identity reverification.
     newPassword: 'password1',
     confirmNewPassword: 'password1',
   }),
@@ -1046,9 +1072,10 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 
 **Parameters**
 
-| Name | Type   | Location | Required | Description                     |
-| ---- | ------ | -------- | -------- | ------------------------------- |
-| `id` | string | path     | Yes      | The [User's ID](/api/#user-ids) |
+| Name       | Type   | Location | Required           | Description                                                       |
+| ---------- | ------ | -------- | ------------------ | ----------------------------------------------------------------- |
+| `id`       | string | path     | Yes                | The [User's ID](/api/#user-ids)                                   |
+| `password` | string | body     | Initially Required | The calling user's password. Required for identity reverification |
 
 **Example Requests**
 
@@ -1058,7 +1085,8 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 curl -X PUT \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
 -H "Content-Type: application/json" \
-https://alekeagle.me/api/users/1234567890123/staff
+-d '{"password": "your-password"}' \
+https://alekeagle.me/api/users/1234567890123/staff # Password is required for identity reverification.
 ```
 
 ```js [JS Fetch]
@@ -1069,6 +1097,9 @@ fetch('https://alekeagle.me/api/users/1234567890123/staff', {
       'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
     'Content-Type': 'application/json',
   },
+  body: JSON.stringify({
+    password: 'your-password', // Required for identity reverification.
+  }),
 });
 ```
 
@@ -1115,9 +1146,10 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 
 **Parameters**
 
-| Name | Type   | Location | Required | Description                     |
-| ---- | ------ | -------- | -------- | ------------------------------- |
-| `id` | string | path     | Yes      | The [User's ID](/api/#user-ids) |
+| Name       | Type   | Location | Required           | Description                                                       |
+| ---------- | ------ | -------- | ------------------ | ----------------------------------------------------------------- |
+| `id`       | string | path     | Yes                | The [User's ID](/api/#user-ids)                                   |
+| `password` | string | body     | Initially Required | The calling user's password. Required for identity reverification |
 
 **Example Requests**
 
@@ -1127,7 +1159,8 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 curl -X DELETE \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
 -H "Content-Type: application/json" \
-https://alekeagle.me/api/users/1234567890123/staff
+-d '{"password": "your-password"}' \
+https://alekeagle.me/api/users/1234567890123/staff # Password is required for identity reverification.
 ```
 
 ```js [JS Fetch]
@@ -1138,6 +1171,9 @@ fetch('https://alekeagle.me/api/users/1234567890123/staff', {
       'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
     'Content-Type': 'application/json',
   },
+  body: JSON.stringify({
+    password: 'your-password', // Required for identity reverification.
+  }),
 });
 ```
 
@@ -1183,10 +1219,11 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 
 **Parameters**
 
-| Name     | Type   | Location | Required | Description                                |
-| -------- | ------ | -------- | -------- | ------------------------------------------ |
-| `id`     | string | path     | Yes      | The [User's ID](/api/#user-ids)            |
-| `reason` | string | body     | Yes      | The reason for banning the user's account. |
+| Name       | Type   | Location | Required           | Description                                                       |
+| ---------- | ------ | -------- | ------------------ | ----------------------------------------------------------------- |
+| `id`       | string | path     | Yes                | The [User's ID](/api/#user-ids)                                   |
+| `reason`   | string | body     | Yes                | The reason for banning the user's account.                        |
+| `password` | string | body     | Initially Required | The calling user's password. Required for identity reverification |
 
 **Example Requests**
 
@@ -1196,8 +1233,8 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 curl -X PUT \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
 -H "Content-Type: application/json" \
--d '{"reason":"Hurt my feel goods :("}' \
-https://alekeagle.me/api/users/1234567890123/ban
+-d '{"reason":"Hurt my feel goods :(", "password":"your-password"}' \
+https://alekeagle.me/api/users/1234567890123/ban # Password is required for identity reverification.
 ```
 
 ```js [JS Fetch]
@@ -1210,6 +1247,7 @@ fetch('https://alekeagle.me/api/users/1234567890123/ban', {
   },
   body: JSON.stringify({
     reason: 'Hurt my feel goods :(',
+    password: 'your-password', // Required for identity reverification.
   }),
 });
 ```
@@ -1254,9 +1292,10 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 
 **Parameters**
 
-| Name | Type   | Location | Required | Description                     |
-| ---- | ------ | -------- | -------- | ------------------------------- |
-| `id` | string | path     | Yes      | The [User's ID](/api/#user-ids) |
+| Name       | Type   | Location | Required           | Description                                                       |
+| ---------- | ------ | -------- | ------------------ | ----------------------------------------------------------------- |
+| `id`       | string | path     | Yes                | The [User's ID](/api/#user-ids)                                   |
+| `password` | string | body     | Initially Required | The calling user's password. Required for identity reverification |
 
 **Example Requests**
 
@@ -1265,16 +1304,22 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 ```sh [cURL]
 curl -X DELETE \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
-https://alekeagle.me/api/users/1234567890123/ban
+-H "Content-Type: application/json" \
+-d '{"password":"your-password"}' \
+https://alekeagle.me/api/users/1234567890123/ban # Password is required for identity reverification.
 ```
 
 ```js [JS Fetch]
 fetch('https://alekeagle.me/api/users/1234567890123/ban', {
   method: 'DELETE',
   headers: {
-    Authorization:
+    'Authorization':
       'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
+    'Content-Type': 'application/json',
   },
+  body: JSON.stringify({
+    password: 'your-password', // Required for identity reverification.
+  }),
 });
 ```
 
@@ -1470,7 +1515,9 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 
 **Parameters**
 
-This endpoint does not require any parameters.
+| Name       | Type   | Location | Required           | Description                                                       |
+| ---------- | ------ | -------- | ------------------ | ----------------------------------------------------------------- |
+| `password` | string | body     | Initially Required | The calling user's password. Required for identity reverification |
 
 **Example Requests**
 
@@ -1480,6 +1527,7 @@ This endpoint does not require any parameters.
 curl -X DELETE \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
 -H "Content-Type: application/json" \
+-d '{"password": "your-password"}' \
 https://alekeagle.me/api/users/me
 ```
 
@@ -1491,6 +1539,9 @@ fetch('https://alekeagle.me/api/users/me', {
       'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
     'Content-Type': 'application/json',
   },
+  body: JSON.stringify({
+    password: 'your-password', // Required for identity reverification.
+  }),
 });
 ```
 
@@ -1534,9 +1585,10 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 
 **Parameters**
 
-| Name | Type   | Location | Required | Description                     |
-| ---- | ------ | -------- | -------- | ------------------------------- |
-| `id` | string | path     | Yes      | The [User's ID](/api/#user-ids) |
+| Name       | Type   | Location | Required           | Description                                                       |
+| ---------- | ------ | -------- | ------------------ | ----------------------------------------------------------------- |
+| `id`       | string | path     | Yes                | The [User's ID](/api/#user-ids)                                   |
+| `password` | string | body     | Initially Required | The calling user's password. Required for identity reverification |
 
 **Example Requests**
 
@@ -1547,7 +1599,7 @@ curl -X DELETE \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
 -H "Content-Type: application/json" \
 -d '{"username": "alekeagle", "password": "password"}' \
-https://alekeagle.me/api/users/1234567890123
+https://alekeagle.me/api/users/1234567890123 # Password is required for identity reverification.
 ```
 
 ```js [JS Fetch]
@@ -1560,7 +1612,7 @@ fetch('https://alekeagle.me/api/users/1234567890123', {
   },
   body: JSON.stringify({
     username: 'alekeagle',
-    password: 'password',
+    password: 'password', // Required for identity reverification.
   }),
 });
 ```
@@ -1606,9 +1658,10 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 
 **Parameters**
 
-| Name  | Type   | Location | Required | Description                            |
-| ----- | ------ | -------- | -------- | -------------------------------------- |
-| `ids` | string | body     | Yes      | An array of [User IDs](/api/#user-ids) |
+| Name       | Type   | Location | Required           | Description                                                       |
+| ---------- | ------ | -------- | ------------------ | ----------------------------------------------------------------- |
+| `ids`      | string | body     | Yes                | An array of [User IDs](/api/#user-ids)                            |
+| `password` | string | body     | Initially Required | The calling user's password. Required for identity reverification |
 
 **Example Requests**
 
@@ -1618,8 +1671,8 @@ This endpoint will require you to provide your password to confirm it's you. Mor
 curl -X DELETE \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
 -H "Content-Type: application/json" \
--d '{"ids": ["1647015028626", "1647015028626"]}' \
-https://alekeagle.me/api/users
+-d '{"ids": ["1647015028626", "1647015028626"], "password": "your-password"}' \
+https://alekeagle.me/api/users # Password is required for identity reverification.
 ```
 
 ```js [JS Fetch]
@@ -1632,6 +1685,7 @@ fetch('https://alekeagle.me/api/users', {
   },
   body: JSON.stringify({
     ids: ['1647015028626', '1647015028626'],
+    password: 'your-password', // Required for identity reverification.
   }),
 });
 ```
