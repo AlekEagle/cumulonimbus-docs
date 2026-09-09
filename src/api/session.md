@@ -189,7 +189,7 @@ https://alekeagle.me/api/users/me/sessions/me
 ```
 
 ```js [JS Fetch]
-fetch('https://alekeagle.me/api/me/sessions/me', {
+fetch('https://alekeagle.me/api/users/me/sessions/me', {
   method: 'GET',
   headers: {
     Authorization:
@@ -199,6 +199,63 @@ fetch('https://alekeagle.me/api/me/sessions/me', {
 ```
 
 :::
+
+**Responses**
+
+- 200 OK
+  - [Session](/reference/structures#session)
+- 401 Unauthorized
+  - [InvalidSession](/reference/errors#invalidsession)
+- 403 Forbidden
+  - [Banned](/reference/errors#banned)
+  - [InsufficientPermissions](/reference/errors#insufficientpermissions)
+- 404 Not Found
+  - [InvalidSession](/reference/errors#invalidsession)
+- 429 Too Many Requests
+  - [Ratelimited](/reference/errors#ratelimited)
+- 500 Internal Server Error
+  - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
+
+## PATCH /users/me/sessions/:sid
+
+Update a session of the current user.
+
+::: warning Scoped Session
+Requests to this endpoint using a scoped session require the session to have the [`SESSION_MODIFY`](/reference/#session-scopes) scope.
+:::
+
+**Parameters**
+
+| Name   | Type   | Location | Required | Description                   |
+| ------ | ------ | -------- | -------- | ----------------------------- |
+| `sid`  | string | path     | yes      | The session ID.               |
+| `name` | string | body     | yes      | The new name for the session. |
+
+**Example Requests**
+
+::: code-group
+
+```sh [cURL]
+curl -X PATCH \
+-H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
+-H "Content-Type: application/json" \
+-d '{"name":"New Session Name"}' \
+https://alekeagle.me/api/users/me/sessions/1234567890
+```
+
+```js [JS Fetch]
+fetch('https://alekeagle.me/api/users/me/sessions/1234567890', {
+  method: 'PATCH',
+  headers: {
+    'Authorization':
+      'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({ name: 'New Session Name' }),
+});
+```
 
 **Responses**
 
@@ -263,6 +320,74 @@ fetch('https://alekeagle.me/api/1234567890123/sessions/1234567890', {
 
 - 200 OK
   - [Session](/reference/structures#session)
+- 401 Unauthorized
+  - [InvalidSession](/reference/errors#invalidsession)
+- 403 Forbidden
+  - [Banned](/reference/errors#banned)
+  - [InsufficientPermissions](/reference/errors#insufficientpermissions)
+  - [EndpointRequiresSecondFactor](/reference/errors#endpointrequiressecondfactor)
+- 404 Not Found
+  - [InvalidUser](/reference/errors#invaliduser)
+  - [InvalidSession](/reference/errors#invalidsession)
+- 429 Too Many Requests
+  - [Ratelimited](/reference/errors#ratelimited)
+- 500 Internal Server Error
+  - [Internal](/reference/errors#internal)
+- 503 Service Unavailable
+  - [ServiceUnavailable](/reference/errors#serviceunavailable)
+
+## PATCH /users/:uid/sessions/:sid
+
+Update a specific session for a user.
+
+::: warning Non-Public Endpoint
+This endpoint is not public and requires authentication of a user with `staff` permissions.
+:::
+
+::: warning Scoped Session
+Requests to this endpoint using a scoped session require the session to have the [`STAFF_SESSION_MODIFY`](/reference/#session-scopes) scope.
+:::
+
+**Parameters**
+
+| Name   | Type   | Location | Required | Description                     |
+| ------ | ------ | -------- | -------- | ------------------------------- |
+| `uid`  | string | path     | yes      | The [User's ID](/api/#user-ids) |
+| `sid`  | string | path     | yes      | The session ID.                 |
+| `name` | string | body     | yes      | The new name for the session.   |
+
+**Example Requests**
+
+::: code-group
+
+```sh [cURL]
+curl -X PATCH \
+-H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
+-H "Content-Type: application/json" \
+-d '{"name":"New Session Name"}' \
+https://alekeagle.me/api/users/1234567890123/sessions/1234567890
+```
+
+```js [JS Fetch]
+fetch('https://alekeagle.me/api/users/1234567890123/sessions/1234567890', {
+  method: 'PATCH',
+  headers: {
+    'Authorization':
+      'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({ name: 'New Session Name' }),
+});
+```
+
+:::
+
+**Responses**
+
+- 200 OK
+  - [Session](/reference/structures#session)
+- 400 Bad Request
+  - [InvalidRequest](/reference/errors#invalidrequest)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)
 - 403 Forbidden
