@@ -64,7 +64,6 @@ fetch('https://alekeagle.me/api/register', {
   - [MissingFields](/reference/errors#missingfields)
   - [InvalidUsername](/reference/errors#invalidusername)
   - [InvalidEmail](/reference/errors#invalidemail)
-  - [PasswordsDoNotMatch](/reference/errors#passwordsdonotmatch)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)
 - 409 Conflict
@@ -961,7 +960,6 @@ fetch('https://alekeagle.me/api/users/me/password', {
 - 400 Bad Request
   - [InvalidPassword](/reference/errors#invalidpassword)
   - [MissingFields](/reference/errors#missingfields)
-  - [PasswordsDoNotMatch](/reference/errors#passwordsdonotmatch)
   - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)
@@ -1038,7 +1036,6 @@ fetch('https://alekeagle.me/api/users/1234567890123/password', {
 - 400 Bad Request
   - [InvalidPassword](/reference/errors#invalidpassword)
   - [MissingFields](/reference/errors#missingfields)
-  - [PasswordsDoNotMatch](/reference/errors#passwordsdonotmatch)
   - [InvalidSecondFactorResponse](/reference/errors#invalidsecondfactorresponse)
 - 401 Unauthorized
   - [InvalidSession](/reference/errors#invalidsession)

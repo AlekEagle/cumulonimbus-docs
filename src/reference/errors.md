@@ -85,7 +85,7 @@ interface InvalidSecondFactorResponse {
 
 ## SecondFactorChallengeRequired
 
-The specific structure for `PublicKeyCredentialRequestOptionsJSON` can be found [here](https://github.com/MasterKale/SimpleWebAuthn/blob/master/packages/types/src/index.ts#L72-L79).
+The specific structure for `PublicKeyCredentialRequestOptionsJSON` can be found [in the SimpleWebAuthn types](https://github.com/MasterKale/SimpleWebAuthn/blob/master/packages/types/src/index.ts#L79-L87).
 
 ```ts
 interface SecondFactorChallengeRequired {
@@ -104,15 +104,6 @@ interface SecondFactorChallengeRequired {
 interface InvalidPassword {
   code: 'INVALID_PASSWORD_ERROR';
   message: 'Invalid Password';
-}
-```
-
-## PasswordsDoNotMatch
-
-```ts
-interface PasswordsDoNotMatch {
-  code: 'PASSWORDS_DO_NOT_MATCH_ERROR';
-  message: 'Passwords Do Not Match';
 }
 ```
 
