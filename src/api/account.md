@@ -19,13 +19,12 @@ This endpoint uses a ratelimit that is separate from the rest of the API. This r
 
 **Parameters**
 
-| Name              | Type    | Location | Required | Description                                   |
-| ----------------- | ------- | -------- | -------- | --------------------------------------------- |
-| `username`        | string  | body     | Yes      | The new user's username                       |
-| `email`           | string  | body     | Yes      | The new user's email                          |
-| `password`        | string  | body     | Yes      | The new user's password                       |
-| `confirmPassword` | string  | body     | Yes      | The new user's password confirmation          |
-| `rememberMe`      | boolean | body     | No       | Whether or not to remember the user's session |
+| Name         | Type    | Location | Required | Description                                   |
+| ------------ | ------- | -------- | -------- | --------------------------------------------- |
+| `username`   | string  | body     | Yes      | The new user's username                       |
+| `email`      | string  | body     | Yes      | The new user's email                          |
+| `password`   | string  | body     | Yes      | The new user's password                       |
+| `rememberMe` | boolean | body     | No       | Whether or not to remember the user's session |
 
 **Example Requests**
 
@@ -34,7 +33,7 @@ This endpoint uses a ratelimit that is separate from the rest of the API. This r
 ```sh [cURL]
 curl -X POST \
 -H "Content-Type: application/json" \
--d '{"username": "alekeagle", "email": "waycoolemail@waycooldomain.biz", "password": "password", "confirmPassword": "password", "rememberMe": true}' \
+-d '{"username": "alekeagle", "email": "waycoolemail@waycooldomain.biz", "password": "password", "rememberMe": true}' \
 https://alekeagle.me/api/register
 ```
 
@@ -48,7 +47,6 @@ fetch('https://alekeagle.me/api/register', {
     username: 'alekeagle',
     email: 'waycoolemail@waycooldomain.biz',
     password: 'password',
-    confirmPassword: 'password',
     rememberMe: true,
   }),
 });
