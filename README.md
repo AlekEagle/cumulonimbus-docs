@@ -9,6 +9,7 @@ The documentation for the API of the Cumulonimbus ecosystem.
 - [Cumulonimbus Wrapper](https://github.com/AlekEagle/cumulonimbus-wrapper)
 - Cumulonimbus Documentation (You are here.)
 - [Cumulonimbus Frontend](https://github.com/AlekEagle/cumulonimbus-frontend)
+- [Cumulonimbus Types](https://github.com/AlekEagle/cumulonimbus-types)
 
 ## What is in this repository?
 

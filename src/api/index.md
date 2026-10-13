@@ -33,10 +33,15 @@ Cumulonimbus will send the following headers with every response:
 | `RateLimit-Reset`     | The time in seconds until the rate limit resets.                                     |
 | `RateLimit-Skipped`   | Wether the request counted towards the ratelimit.                                    |
 | `RateLimit-Reason`    | The reason for your request being ratelimited. Can either be `standard`, or `burst`. |
+| `RateLimit-Bucket`    | The identifier for the rate limit bucket your request belongs to.                    |
 
 ## User IDs
 
-User IDs are 13-digit numbers that uniquely identify a user (Fun fact: they're actually just the UNIX timestamp of when the user was created). When an endpoint mentions something about a user ID, it's referring to the 13-digit number.
+User IDs are used throughout the API to uniquely identify users.
+
+User IDs are UUIDs (Universally Unique Identifiers).
+
+User IDs used to be the UNIX timestamp of when the user was created, but they have since been changed to UUIDs.
 
 You used to be able to provide your ID interchangeably with the keyword `me`, but this is no longer the case. Requesting data with a user ID, regardless of whether it's your own or someone else's, will result in an [InsufficientPermissions](/reference/errors#insufficientpermissions) error.
 

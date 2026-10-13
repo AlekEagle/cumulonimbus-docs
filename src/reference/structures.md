@@ -2,6 +2,8 @@
 
 The Cumulonimbus API uses consistent structures to streamline parsing data. Below are the structures that Cumulonimbus will respond with.
 
+`TimestampString` represents a date and time in ISO 8601 format.
+
 ## List
 
 ::: tip Note
@@ -25,10 +27,10 @@ interface User {
   staff: boolean; // Omitted in List<T>
   domain: string; // Omitted in List<T>
   subdomain?: string; // Omitted in List<T>
-  verifiedAt?: string; // Omitted in List<T>
-  bannedAt?: string; // Omitted in List<T>
-  createdAt: string; // Omitted in List<T>
-  updatedAt: string; // Omitted in List<T>
+  verifiedAt?: TimestampString; // Omitted in List<T>
+  bannedAt?: TimestampString; // Omitted in List<T>
+  createdAt: TimestampString; // Omitted in List<T>
+  updatedAt: TimestampString; // Omitted in List<T>
 }
 ```
 
@@ -36,13 +38,13 @@ interface User {
 
 ```ts
 interface Session {
-  id: number;
+  id: string;
   name: string;
-  exp: number; // Omitted in List<T>
+  exp: TimestampString; // Omitted in List<T>
   permissionFlags: number | null; // Omitted in List<T>
-  usedAt: string; // Omitted in List<T>
-  createdAt: string; // Omitted in List<T>
-  updatedAt: string; // Omitted in List<T>
+  usedAt: TimestampString; // Omitted in List<T>
+  createdAt: TimestampString; // Omitted in List<T>
+  updatedAt: TimestampString; // Omitted in List<T>
 }
 ```
 
@@ -74,8 +76,8 @@ interface Instruction {
   steps: string[]; // Omitted in List<T>
   filename: string; // Omitted in List<T>
   fileContent: string; // Omitted in List<T>
-  createdAt: string; // Omitted in List<T>
-  updatedAt: string; // Omitted in List<T>
+  createdAt: TimestampString; // Omitted in List<T>
+  updatedAt: TimestampString; // Omitted in List<T>
 }
 ```
 
@@ -85,8 +87,8 @@ interface Instruction {
 interface Domain {
   id: string;
   subdomains: boolean;
-  createdAt: string; // Omitted in List<T>
-  updatedAt: string; // Omitted in List<T>
+  createdAt: TimestampString; // Omitted in List<T>
+  updatedAt: TimestampString; // Omitted in List<T>
 }
 ```
 
@@ -95,7 +97,7 @@ interface Domain {
 ```ts
 interface SuccessfulAuth {
   token: string;
-  exp: number;
+  exp: TimestampString;
 }
 ```
 
@@ -105,8 +107,8 @@ interface SuccessfulAuth {
 interface File {
   id: string;
   name: string;
-  createdAt: string; // Omitted in List<T>
-  updatedAt: string; // Omitted in List<T>
+  createdAt: TimestampString; // Omitted in List<T>
+  updatedAt: TimestampString; // Omitted in List<T>
   userID: string; // Omitted in List<T>
   size: number; // Omitted in List<T>
 }
@@ -139,8 +141,8 @@ interface SecondFactor {
   id: string;
   name: string;
   type: 'totp' | 'webauthn'; // Omitted in List<T>
-  createdAt: string; // Omitted in List<T>
-  updatedAt: string; // Omitted in List<T>
+  createdAt: TimestampString; // Omitted in List<T>
+  updatedAt: TimestampString; // Omitted in List<T>
 }
 ```
 
@@ -149,7 +151,7 @@ interface SecondFactor {
 ```ts
 interface SecondFactorBaseRegistration {
   token: string;
-  exp: number;
+  exp: TimestampString;
   type: 'totp' | 'webauthn';
 }
 ```
@@ -168,12 +170,11 @@ interface SecondFactorTOTPRegistration extends SecondFactorBaseRegistration {
 
 ## SecondFactorWebAuthnRegistration
 
-The specific structure for `PublicKeyCredentialCreationOptionsJSON` can be found [here](https://github.com/MasterKale/SimpleWebAuthn/blob/master/packages/types/src/index.ts#L56-L66)
+The specific structure for `PublicKeyCredentialCreationOptionsJSON` can be found [on MDN](https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialCreationOptions)
 
 ```ts
 interface SecondFactorWebAuthnRegistration
-  extends SecondFactorBaseRegistration,
-    PublicKeyCredentialCreationOptionsJSON {
+  extends SecondFactorBaseRegistration, PublicKeyCredentialCreationOptionsJSON {
   type: 'webauthn';
 }
 ```
