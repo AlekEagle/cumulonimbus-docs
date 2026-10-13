@@ -170,7 +170,7 @@ interface SecondFactorTOTPRegistration extends SecondFactorBaseRegistration {
 
 ## SecondFactorWebAuthnRegistration
 
-The specific structure for `PublicKeyCredentialCreationOptionsJSON` can be found [on MDN](https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialCreationOptions)
+The specific structure for `PublicKeyCredentialCreationOptionsJSON` can be found [on the simplewebauthn typescript type file](https://github.com/MasterKale/SimpleWebAuthn/blob/master/packages/browser/src/types/index.ts#L71-L83)
 
 ```ts
 interface SecondFactorWebAuthnRegistration
