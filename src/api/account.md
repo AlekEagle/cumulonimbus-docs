@@ -771,7 +771,7 @@ fetch('https://alekeagle.me/api/users/1234567890123/verify', {
 Resend the current user's verification email.
 
 ::: warning Ratelimit
-This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is `1` request(s) per `1` hour(s) per user. Requests that are responded to with error code `500 Internal Server Error` are not counted towards this ratelimit.
+This endpoint uses a ratelimit that is separate from the rest of the API. This ratelimit is `1` request(s) per `5` minute(s) per user. Requests that are responded to with error code `500 Internal Server Error` are not counted towards this ratelimit.
 :::
 
 ::: warning Kill Switch Behavior
