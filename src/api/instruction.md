@@ -107,14 +107,11 @@ This endpoint is not public and requires authentication of a user with `staff` p
 
 **Parameters**
 
-| Name          | Type     | Location | Required | Description      |
-| ------------- | -------- | -------- | -------- | ---------------- |
-| `id`          | string   | body     | Yes      | The ID           |
-| `name`        | string   | body     | Yes      | The display name |
-| `description` | string   | body     | Yes      | The description  |
-| `filename`    | string   | body     | No       | The filename     |
-| `content`     | string   | body     | Yes      | The file content |
-| `steps`       | string[] | body     | Yes      | The steps        |
+| Name          | Type                                                       | Location | Required | Description      |
+| ------------- | ---------------------------------------------------------- | -------- | -------- | ---------------- |
+| `name`        | string                                                     | body     | Yes      | The display name |
+| `description` | string                                                     | body     | Yes      | The description  |
+| `steps`       | [InstructionStep](/reference/structures#instructionstep)[] | body     | Yes      | The steps        |
 
 **Example Requests**
 
@@ -124,7 +121,7 @@ This endpoint is not public and requires authentication of a user with `staff` p
 curl -X POST \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
 -H "Content-Type: application/json" \
--d '{"id":"generic-service","name":"Generic Service","description":"A generic service","filename":"generic-service.sh","content":"#!/bin/bash\necho \"Hello, World!\"","steps":["Click me to download the configuration file!", "Run the file provided."]}' \
+-d '{"name":"Generic Service","description":"A generic service","steps":[{"action":"DOWNLOAD_CONFIG_FILE","content":"Click me to download the configuration file!"},{"action":"COPY_TOKEN_TO_CLIPBOARD","content":"Copy the token to your clipboard."},{"action":"OPEN_URL","content":"Open the following URL.","url":"https://example.com"},{"action":"NOOP","content":"Run the file provided."}]}' \
 https://alekeagle.me/api/instructions
 ```
 
@@ -137,14 +134,30 @@ fetch('https://alekeagle.me/api/instructions', {
     'Content-Type': 'application/json',
   },
   body: JSON.stringify({
-    id: 'generic-service',
     name: 'Generic Service',
     description: 'A generic service',
-    filename: 'generic-service.sh',
-    content: '#!/bin/bash\necho "Hello, World!"',
     steps: [
-      'Click me to download the configuration file!',
-      'Run the file provided.',
+      {
+        action: 'DOWNLOAD_CONFIG_FILE',
+        content: 'Click me to download the configuration file!',
+        file: {
+          name: 'generic-service.sh',
+          content: '#!/bin/bash\necho "Hello, World!"',
+        },
+      },
+      {
+        action: 'COPY_TOKEN_TO_CLIPBOARD',
+        content: 'Copy the token to your clipboard.',
+      },
+      {
+        action: 'OPEN_URL',
+        content: 'Open the following URL.',
+        url: 'https://example.com',
+      },
+      {
+        action: 'NOOP',
+        content: 'Run the file provided.',
+      },
     ],
   }),
 });
@@ -300,71 +313,6 @@ fetch('https://alekeagle.me/api/instructions/generic-service/description', {
 - 503 Service Unavailable
   - [ServiceUnavailable](/reference/errors#serviceunavailable)
 
-## PUT /instructions/:id/file
-
-Updates the file of an instruction.
-
-::: warning Non-Public Endpoint
-This endpoint is not public and requires authentication of a user with `staff` permissions.
-:::
-
-**Parameters**
-
-| Name       | Type   | Location | Required | Description                                     |
-| ---------- | ------ | -------- | -------- | ----------------------------------------------- |
-| `id`       | string | path     | Yes      | The ID                                          |
-| `filename` | string | body     | No       | The filename. Omit to specify clipboard content |
-| `content`  | string | body     | Yes      | The content                                     |
-
-**Example Requests**
-
-::: code-group
-
-```sh [cURL]
-curl -X PUT \
--H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
--H "Content-Type: application/json" \
--d '{"filename":"index.js","content":"console.log(\"Hello, world!\");"}' \
-https://alekeagle.me/api/instructions/generic-service/file
-```
-
-```js [JS Fetch]
-fetch('https://alekeagle.me/api/instructions/generic-service/file', {
-  method: 'PUT',
-  headers: {
-    'Authorization':
-      'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q',
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    filename: 'index.js',
-    content: 'console.log("Hello, world!");',
-  }),
-});
-```
-
-:::
-
-**Responses**
-
-- 200 OK
-  - [Instruction](/reference/structures#instruction)
-- 400 Bad Request
-  - [MissingFields](/reference/errors#missingfields)
-- 401 Unauthorized
-  - [InvalidSession](/reference/errors#invalidsession)
-- 403 Forbidden
-  - [Banned](/reference/errors#banned)
-  - [InsufficientPermissions](/reference/errors#insufficientpermissions)
-- 404 Not Found
-  - [InvalidInstruction](/reference/errors#invalidinstruction)
-- 429 Too Many Requests
-  - [RateLimited](/reference/errors#ratelimited)
-- 500 Internal Server Error
-  - [Internal](/reference/errors#internal)
-- 503 Service Unavailable
-  - [ServiceUnavailable](/reference/errors#serviceunavailable)
-
 ## PUT /instructions/:id/steps
 
 Updates the steps of an instruction.
@@ -375,10 +323,10 @@ This endpoint is not public and requires authentication of a user with `staff` p
 
 **Parameters**
 
-| Name    | Type     | Location | Required | Description |
-| ------- | -------- | -------- | -------- | ----------- |
-| `id`    | string   | path     | Yes      | The ID      |
-| `steps` | string[] | body     | Yes      | The steps   |
+| Name    | Type                                                       | Location | Required | Description |
+| ------- | ---------------------------------------------------------- | -------- | -------- | ----------- |
+| `id`    | string                                                     | path     | Yes      | The ID      |
+| `steps` | [InstructionStep](/reference/structures#instructionstep)[] | body     | Yes      | The steps   |
 
 **Example Requests**
 
@@ -388,7 +336,7 @@ This endpoint is not public and requires authentication of a user with `staff` p
 curl -X PUT \
 -H "Authorization: eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhlIGV4YW1wbGUgdG9rZW4gZm9yIGRvY3MuYWxla2VhZ2xlLm1lIiwic3ViIjoiMTY0NzAxNTAyODYyNiIsImlhdCI6MTY4NzA2NzYxNCwiZXhwIjoyMDAyNjQzNjE0fQ.qAwhjhtGT56iAI52EsdVYcaTjmLPeR51TALkJ1CwRlfyDHwrsOTzAe8Y3za_tJqkvSaohwQq4cD7lZbTzMSw8Q" \
 -H "Content-Type: application/json" \
--d '{"steps":["Step 1","Step 2","Step 3"]}' \
+-d '{"steps":[{"action":"DOWNLOAD_CONFIG_FILE","content":"Click me to download the configuration file!"},{"action":"COPY_TOKEN_TO_CLIPBOARD","content":"Copy the token to your clipboard."},{"action":"OPEN_URL","content":"Open the following URL.","url":"https://example.com"},{"action":"NOOP","content":"Run the file provided."}]}' \
 https://alekeagle.me/api/instructions/generic-service/steps
 ```
 
@@ -401,7 +349,29 @@ fetch('https://alekeagle.me/api/instructions/generic-service/steps', {
     'Content-Type': 'application/json',
   },
   body: JSON.stringify({
-    steps: ['Step 1', 'Step 2', 'Step 3'],
+    steps: [
+      {
+        action: 'DOWNLOAD_CONFIG_FILE',
+        content: 'Click me to download the configuration file!',
+        file: {
+          name: 'generic-service.sh',
+          content: '#!/bin/bash\necho "Hello, World!"',
+        },
+      },
+      {
+        action: 'COPY_TOKEN_TO_CLIPBOARD',
+        content: 'Copy the token to your clipboard.',
+      },
+      {
+        action: 'OPEN_URL',
+        content: 'Open the following URL.',
+        url: 'https://example.com',
+      },
+      {
+        action: 'NOOP',
+        content: 'Run the file provided.',
+      },
+    ],
   }),
 });
 ```

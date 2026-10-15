@@ -66,6 +66,30 @@ interface Error {
 }
 ```
 
+## InstructionFile
+
+```ts
+interface InstructionFile {
+  name: string;
+  content: string;
+}
+```
+
+## InstructionStep
+
+```ts
+interface InstructionStep {
+  action:
+    | 'OPEN_URL'
+    | 'COPY_TOKEN_TO_CLIPBOARD'
+    | 'DOWNLOAD_CONFIG_FILE'
+    | 'NOOP';
+  content: string;
+  file?: InstructionFile;
+  url?: string;
+}
+```
+
 ## Instruction
 
 ```ts
@@ -73,9 +97,7 @@ interface Instruction {
   id: string;
   name: string;
   description: string;
-  steps: string[]; // Omitted in List<T>
-  filename: string; // Omitted in List<T>
-  fileContent: string; // Omitted in List<T>
+  steps: InstructionStep[]; // Omitted in List<T>
   createdAt: TimestampString; // Omitted in List<T>
   updatedAt: TimestampString; // Omitted in List<T>
 }
